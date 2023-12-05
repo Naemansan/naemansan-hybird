@@ -99,6 +99,21 @@ class _HomeScreenState extends State<HomeScreen> {
                           const LatLng(37.3595704, 127.105399),
                       zoom: 17,
                     ),
+                    initLocationTrackingMode: LocationTrackingMode.values[1],
+                    markers: [
+                      Marker(
+                        markerId: 'myLocation',
+                        position: _currentLocation ??
+                            const LatLng(37.3595704, 127.105399),
+                        captionText: '내 위치',
+                        captionColor: ColorStyles.black,
+                        captionTextSize: 10,
+                        captionMinZoom: 13,
+                        iconTintColor: ColorStyles.main2,
+                        width: 20,
+                        height: 26,
+                      ),
+                    ],
                   ),
                 ),
               ],
