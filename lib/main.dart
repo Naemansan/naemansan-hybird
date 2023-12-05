@@ -5,6 +5,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:naemansan/utilities/style/color_styles.dart';
 
 void main() {
   initializeDateFormatting().then((_) => runApp(const MyApp()));
@@ -30,9 +31,11 @@ class MyApp extends StatelessWidget {
         Locale('ko', 'KR'),
       ],
       theme: ThemeData(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
         useMaterial3: true,
-        colorSchemeSeed: Colors.blue,
-        scaffoldBackgroundColor: const Color(0xFFf6f6f8),
+        colorSchemeSeed: ColorStyles.main1,
+        // scaffoldBackgroundColor: const Color(0xFFf6f6f8),
       ),
       initialRoute: "/",
       getPages: [
