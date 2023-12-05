@@ -1,4 +1,4 @@
-import 'package:naemansan/screen/root_screen.dart';
+import 'package:naemansan/screens/root_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -7,7 +7,9 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   initializeDateFormatting().then((_) => runApp(const MyApp()));
 }
 
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
     FlutterNativeSplash.remove();
 
     return GetMaterialApp(
-      title: "JJoin",
+      title: "내만산",
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
