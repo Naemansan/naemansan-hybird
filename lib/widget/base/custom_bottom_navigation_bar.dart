@@ -13,14 +13,14 @@ class CustomBottomNavigationBar
     Get.put(CustomBottomNavigationBarController());
     return Obx(() => Theme(
           data: ThemeData(
+            splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
             splashFactory: NoSplash.splashFactory,
           ),
           child: BottomAppBar(
-            // backgroundColor: Colors.white,
-
+            surfaceTintColor: Colors.white,
+            color: Colors.white,
             shape: const CircularNotchedRectangle(),
-            notchMargin: 7.0,
             clipBehavior: Clip.antiAlias,
             child: BottomNavigationBar(
               elevation: 0,
@@ -31,7 +31,6 @@ class CustomBottomNavigationBar
               // 탭 애니메이션 변경 (fixed: 없음)
               type: BottomNavigationBarType.fixed,
               backgroundColor: Colors.white,
-
               // Bar에 보여질 요소. icon과 label로 구성.
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(

@@ -30,14 +30,9 @@ class RootScreen extends StatelessWidget {
                   ProfileScreen(),
                 ],
               )),
-          extendBody: true,
           bottomNavigationBar: const Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Divider(
-                height: 1,
-                thickness: 1,
-              ),
               CustomBottomNavigationBar(),
             ],
           ),

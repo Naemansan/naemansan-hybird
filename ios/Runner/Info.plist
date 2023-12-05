@@ -27,7 +27,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NMFClientId</key>
-	<string>$(NAVER_MAP_ID)</string>
+	<string>p6fjdmx322</string>
 	<key>NSAllowsArbitraryLoads</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
