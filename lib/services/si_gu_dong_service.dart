@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:naemansan/models/naver_map_sigudong.dart';
+import 'package:naemansan/models/si_gu_dong_model.dart';
 
 class SiGuDongService {
   // 시구동 정보를 받아오는 함수
-  Future<SiguDong> fetchData(double lat, double lon) async {
+  Future<SiGuDongModel> fetchData(double lat, double lon) async {
     // 환경 변수를 불러옴
     await dotenv.load(fileName: "assets/config/.env");
 
@@ -19,12 +19,12 @@ class SiGuDongService {
     final uri = Uri.parse(
         "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?request=coordsToaddr&coords=$lon,$lat&sourcecrs=epsg:4326&output=json");
 
-    // 응답 받은 데이터를 SiguDong 객체로 만듬
+    // 응답 받은 데이터를 SiguDongModel 객체로 만듬
     final response = await http.get(uri, headers: headers);
 
     // 만약 200 OK가 아니면 에러를 던짐
     if (response.statusCode == 200) {
-      return SiguDong.fromJson(jsonDecode(response.body));
+      return SiGuDongModel.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('데이터 로드 실패');
     }

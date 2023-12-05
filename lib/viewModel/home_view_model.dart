@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:naemansan/models/geo_location.dart';
-import 'package:naemansan/models/naver_map_sigudong.dart';
-import 'package:naemansan/services/geolocator_service.dart';
-import 'package:naemansan/services/naver_map_siGuDong_service.dart';
+import 'package:naemansan/models/geolocation_model.dart';
+import 'package:naemansan/models/si_gu_dong_model.dart';
+import 'package:naemansan/services/geolocation_service.dart';
+import 'package:naemansan/services/si_gu_dong_service.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naver_map_plugin/naver_map_plugin.dart';
 
@@ -14,7 +14,7 @@ class HomeViewModel extends GetxController {
 
   // 현재 위치, 시구동 정보, 로딩 여부 변수
   GeoLocation? _currentLocation;
-  SiguDong? _naverMapData;
+  SiGuDongModel? _sigudongData;
   bool _isLoading = false;
 
   HomeViewModel() {
@@ -23,7 +23,7 @@ class HomeViewModel extends GetxController {
 
   // 현재 위치, 시구동 정보, 로딩 여부 변수의 getter
   GeoLocation? get currentLocation => _currentLocation;
-  SiguDong? get naverMapData => _naverMapData;
+  SiGuDongModel? get sigudongData => _sigudongData;
   bool get isLoading => _isLoading;
 
   // 현재 위치를 받아오는 함수
@@ -74,7 +74,7 @@ class HomeViewModel extends GetxController {
   Future<void> fetchNaverMapData() async {
     if (_currentLocation != null) {
       try {
-        _naverMapData = await _naverMapService.fetchData(
+        _sigudongData = await _naverMapService.fetchData(
           _currentLocation!.latitude,
           _currentLocation!.longitude,
         );

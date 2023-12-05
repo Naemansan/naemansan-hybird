@@ -1,5 +1,5 @@
 import 'package:geolocator/geolocator.dart';
-import 'package:naemansan/models/geo_location.dart';
+import 'package:naemansan/models/geolocation_model.dart';
 
 class GeolocatorService {
   // 현재 위치를 받아오는 함수

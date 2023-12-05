@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:naemansan/models/geo_location.dart';
+import 'package:naemansan/models/geolocation_model.dart';
 import 'package:naemansan/viewModel/home_view_model.dart';
 import 'package:naver_map_plugin/naver_map_plugin.dart';
 
@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
           if (viewModel.isLoading) {
             return const Center(child: CircularProgressIndicator());
           }
-          return Column(
+          return Stack(
             children: [
               Expanded(
                 child: NaverMap(
@@ -36,7 +36,18 @@ class HomeScreen extends StatelessWidget {
                   initLocationTrackingMode: LocationTrackingMode.values[1],
                 ),
               ),
-              Text(viewModel.naverMapData?.toString() ?? '위치 정보 불러오는 중...'),
+              Positioned(
+                bottom: 16, // Adjust the position as needed
+                left: 16, // Adjust the position as needed
+                child: Text(
+                  viewModel.sigudongData?.toString() ?? '위치 정보 불러오는 중...',
+                  style: const TextStyle(
+                    color: Colors.white, // Set the text color
+                    fontSize: 18, // Set the text font size
+                    fontWeight: FontWeight.bold, // Set the text font weight
+                  ),
+                ),
+              ),
             ],
           );
         },
