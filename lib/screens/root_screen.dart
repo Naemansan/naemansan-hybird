@@ -17,25 +17,22 @@ class RootScreen extends StatelessWidget {
     Get.put(CustomBottomNavigationBarController());
     return Container(
       color: ColorStyles.white,
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: ColorStyles.white,
-          body: Obx(() => IndexedStack(
-                index:
-                    CustomBottomNavigationBarController.to.selectedIndex.value,
-                children: [
-                  HomeScreen(),
-                  const CurationScreen(),
-                  const WalkingLogScreen(),
-                  const ProfileScreen(),
-                ],
-              )),
-          bottomNavigationBar: const Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              CustomBottomNavigationBar(),
-            ],
-          ),
+      child: Scaffold(
+        backgroundColor: ColorStyles.white,
+        body: Obx(() => IndexedStack(
+              index: CustomBottomNavigationBarController.to.selectedIndex.value,
+              children: const [
+                HomeScreen(),
+                CurationScreen(),
+                WalkingLogScreen(),
+                ProfileScreen(),
+              ],
+            )),
+        bottomNavigationBar: const Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CustomBottomNavigationBar(),
+          ],
         ),
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:naemansan/models/geolocation_model.dart';
+import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/viewModel/home_view_model.dart';
 import 'package:naver_map_plugin/naver_map_plugin.dart';
 
@@ -22,29 +23,62 @@ class HomeScreen extends StatelessWidget {
           }
           return Stack(
             children: [
-              Expanded(
-                child: NaverMap(
-                  scrollGestureEnable: false,
-                  zoomGestureEnable: false,
-                  mapType: MapType.Basic,
-                  pathOverlays: pathOverlays, // Your path overlays here
-                  initialCameraPosition: CameraPosition(
-                    target: viewModel.currentLocation?.toLatLng() ??
-                        const LatLng(37.3595704, 127.105399),
-                    zoom: 17,
-                  ),
-                  initLocationTrackingMode: LocationTrackingMode.values[1],
+              NaverMap(
+                scrollGestureEnable: false,
+                zoomGestureEnable: false,
+                mapType: MapType.Basic,
+                pathOverlays: pathOverlays, // Your path overlays here
+                initialCameraPosition: CameraPosition(
+                  target: viewModel.currentLocation?.toLatLng() ??
+                      const LatLng(37.3595704, 127.105399),
+                  zoom: 17,
                 ),
+                initLocationTrackingMode: LocationTrackingMode.values[1],
               ),
               Positioned(
-                bottom: 16, // Adjust the position as needed
-                left: 16, // Adjust the position as needed
-                child: Text(
-                  viewModel.sigudongData?.toString() ?? '위치 정보 불러오는 중...',
-                  style: const TextStyle(
-                    color: Colors.white, // Set the text color
-                    fontSize: 18, // Set the text font size
-                    fontWeight: FontWeight.bold, // Set the text font weight
+                bottom: 20,
+                left: 16,
+                right: 50,
+                child: Container(
+                  height: 112,
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(4),
+                    ),
+                    // border color
+                    border: Border.fromBorderSide(
+                      BorderSide(
+                        color: ColorStyles.main1,
+                        width: 2,
+                      ),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          viewModel.sigudongData?.toString() ?? '',
+                          style: const TextStyle(
+                            color: ColorStyles.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Text(
+                          viewModel.sigudongData?.toString() ?? '',
+                          style: const TextStyle(
+                            color: ColorStyles.gray5,
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.normal,
+                            fontSize: 14.0,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -61,4 +95,4 @@ extension on GeoLocation {
   LatLng toLatLng() => LatLng(latitude, longitude);
 }
 
-// si, gu, dong 정보를 담는 extends 
+// si, gu, dong 정보를 담는 extends
