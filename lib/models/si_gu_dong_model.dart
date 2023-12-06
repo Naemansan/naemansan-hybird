@@ -8,14 +8,12 @@ class SiGuDongModel {
 
   // json 데이터를 받아서 SiGuDongModel 객체를 만듬
   factory SiGuDongModel.fromJson(Map<String, dynamic> json) {
-    // var region = json["results"][1]['region'];
-    // return SiGuDongModel(
-    //   si: region['area1']['name'],
-    //   gu: region['area2']['name'],
-    //   dong: region['area3']['name'],
-    // );
-
-    return SiGuDongModel(si: "시", gu: "구", dong: "동");
+    var region = json["results"][1]['region'];
+    return SiGuDongModel(
+      si: region['area1']['name'],
+      gu: region['area2']['name'],
+      dong: region['area3']['name'],
+    );
   }
 
   @override

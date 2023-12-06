@@ -31,6 +31,12 @@ class FontStyles {
     height: 24 / 16,
   );
 
+  static const TextStyle semiBold12 = TextStyle(
+    fontSize: 12.0,
+    fontWeight: FontWeight.w600,
+    height: 16 / 12,
+  );
+
   static const TextStyle regular12 = TextStyle(
     fontSize: 12.0,
     fontWeight: FontWeight.w400,
