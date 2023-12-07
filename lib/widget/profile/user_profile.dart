@@ -2,16 +2,41 @@ import 'package:flutter/material.dart';
 import 'package:naemansan/models/user_profile_model.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
+import 'package:naemansan/widget/profile/follow_btn.dart';
 
-class UserProfile extends StatelessWidget {
+class UserProfile extends StatefulWidget {
+  final bool isOther;
   final UserProfileModel userProfile;
-  final List<String> followList;
-  const UserProfile(
-      {Key? key, required this.userProfile, required this.followList})
-      : super(key: key);
+
+  const UserProfile({
+    Key? key,
+    required this.userProfile,
+    required this.isOther,
+  }) : super(key: key);
+
+  @override
+  State<UserProfile> createState() => _UserProfileState();
+}
+
+class _UserProfileState extends State<UserProfile> {
+  String currentState = 'follow';
+
+  void onFollowBtnStateChanged(String newState) {
+    setState(() {
+      currentState = newState;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final followList = [
+      "팔로잉",
+      widget.userProfile.followingCount,
+      "·",
+      "팔로워",
+      widget.userProfile.followerCount
+    ];
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -34,29 +59,38 @@ class UserProfile extends StatelessWidget {
             ),
 
             //유저 정보
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  userProfile.name,
-                  style:
-                      FontStyles.semiBold20.copyWith(color: ColorStyles.black),
-                ),
-                Wrap(
-                  spacing: 4.0,
-                  children: followList.asMap().entries.map((element) {
-                    return Text(
-                      element.value,
-                      style: element.key % 3 == 1
-                          ? FontStyles.semiBold12
-                              .copyWith(color: ColorStyles.gray3)
-                          : FontStyles.regular12
-                              .copyWith(color: ColorStyles.gray3),
-                    );
-                  }).toList(),
-                ),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.userProfile.name,
+                    style: FontStyles.semiBold20
+                        .copyWith(color: ColorStyles.black),
+                  ),
+                  Wrap(
+                    spacing: 4.0,
+                    children: followList.asMap().entries.map((element) {
+                      return Text(
+                        element.value,
+                        style: element.key % 3 == 1
+                            ? FontStyles.semiBold12
+                                .copyWith(color: ColorStyles.gray3)
+                            : FontStyles.regular12
+                                .copyWith(color: ColorStyles.gray3),
+                      );
+                    }).toList(),
+                  ),
+                ],
+              ),
             ),
+
+            //팔로우 팔로잉버튼
+            Visibility(
+                visible: widget.isOther,
+                child: FollowBtn(
+                    currentState: currentState,
+                    onStateChanged: onFollowBtnStateChanged)) //팔로우 팔로잉 버튼
           ],
         ), //상단 설명
 
@@ -64,7 +98,7 @@ class UserProfile extends StatelessWidget {
         Container(
           padding: const EdgeInsets.fromLTRB(0, 8, 0, 12),
           child: Text(
-            userProfile.description,
+            widget.userProfile.description,
             style: FontStyles.regular16.copyWith(color: ColorStyles.black),
           ),
         ), //한줄 소개
@@ -72,7 +106,7 @@ class UserProfile extends StatelessWidget {
         //태그 정보
         Wrap(
           spacing: 4.0,
-          children: userProfile.tags.map((tag) {
+          children: widget.userProfile.tags.map((tag) {
             return Text(
               tag,
               style: FontStyles.semiBold12.copyWith(color: ColorStyles.gray3),

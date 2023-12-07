@@ -8,7 +8,8 @@ class ProfileViewModel extends GetxController {
   late List<FollowuserProfileModel> _followerList;
 
   ProfileViewModel() {
-    _userProfile = UserProfileModel("이름", "한줄소개", ["#태그1", "#태그2", "#태그3"]);
+    _userProfile =
+        UserProfileModel("이름", "한줄소개", ["#태그1", "#태그2", "#태그3"], "4", "3");
 
     _followingList = [
       FollowuserProfileModel(name: '팔로잉1', description: '한줄소개'),

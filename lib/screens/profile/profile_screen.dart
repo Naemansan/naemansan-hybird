@@ -29,13 +29,10 @@ class ProfileScreen extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
               child: Column(children: [
                 //유저 프로필 (상단)
-                UserProfile(userProfile: viewModel.userProfile, followList: [
-                  "팔로잉",
-                  viewModel.followingList.length.toString(),
-                  "·",
-                  "팔로워",
-                  viewModel.followerList.length.toString()
-                ]),
+                UserProfile(
+                  userProfile: viewModel.userProfile,
+                  isOther: false,
+                ),
 
                 //팔로잉 팔로워 보는 탭
                 Expanded(

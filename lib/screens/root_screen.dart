@@ -1,7 +1,7 @@
 import 'package:naemansan/screens/curation/curation_screen.dart';
 import 'package:naemansan/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+
 import 'package:get/get.dart';
 import 'package:naemansan/screens/walkingLog/walking_log_screen.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
