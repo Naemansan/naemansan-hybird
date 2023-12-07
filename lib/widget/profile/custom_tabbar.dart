@@ -22,7 +22,7 @@ class _CustomTabbar extends State<CustomTabbar> {
       children: [
         //탭바
         Container(
-          padding: const EdgeInsets.fromLTRB(16, 20, 16, 0),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           width: double.infinity,
           height: 68,
           child: ListView.builder(

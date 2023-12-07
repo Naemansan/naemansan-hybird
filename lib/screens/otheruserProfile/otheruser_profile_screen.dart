@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/viewModel/otheruser_profile_view_model.dart';
 import 'package:naemansan/widget/profile/user_profile.dart';
+import 'package:naemansan/widget/trail/trail_card_list.dart';
 
 class OtheruserProfile extends StatelessWidget {
   const OtheruserProfile({super.key});
@@ -30,11 +31,12 @@ class OtheruserProfile extends StatelessWidget {
                     isOther: true,
                   ),
                   Expanded(
-                      child: Container(
-                    width: double.infinity,
-                    color: Colors.red,
-                    padding: const EdgeInsets.fromLTRB(16, 24, 16, 0),
-                    child: Text("산책로 리스트"),
+                      child: SingleChildScrollView(
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: TrailCardList(),
+                    ),
                   ))
                 ]),
               );

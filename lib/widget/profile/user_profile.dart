@@ -38,7 +38,7 @@ class _UserProfileState extends State<UserProfile> {
     ];
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 20),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         //상단 설명
         Row(
