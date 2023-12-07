@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:naemansan/screens/otheruserProfile/otheruser_profile_screen.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
+import 'package:naemansan/widget/profile/follow_btn.dart';
 
 class FollowuserProfile extends StatefulWidget {
   // ignore: prefer_typing_uninitialized_variables
@@ -14,110 +16,70 @@ class FollowuserProfile extends StatefulWidget {
 
 class _FollowuserProfileState extends State<FollowuserProfile> {
   String currentState = 'follow';
+  void onFollowBtnStateChanged(String newState) {
+    setState(() {
+      currentState = newState;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.only(bottom: 20),
-      child: Row(
-        children: [
-          //프로필 사진
-          Container(
-            margin: const EdgeInsets.only(right: 4),
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-            ),
-            child: ClipOval(
-              child: Image.asset(
-                'assets/images/defaultProfile.png',
-                height: 36,
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const OtheruserProfile()));
+        },
+        child: Row(
+          children: [
+            //프로필 사진
+            Container(
+              margin: const EdgeInsets.only(right: 4),
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+              ),
+              child: ClipOval(
+                child: Image.asset(
+                  'assets/images/defaultProfile.png',
+                  height: 36,
+                ),
               ),
             ),
-          ),
 
-          //유저 정보
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.info.name,
-                  style:
-                      FontStyles.regular12.copyWith(color: ColorStyles.black),
+            //유저 정보
+            Expanded(
+              child: Container(
+                color: ColorStyles.white,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.info.name,
+                      style: FontStyles.regular12
+                          .copyWith(color: ColorStyles.black),
+                    ),
+                    Text(
+                      widget.info.description,
+                      style: FontStyles.regular12
+                          .copyWith(color: ColorStyles.gray3),
+                    ),
+                  ],
                 ),
-                Text(
-                  widget.info.description,
-                  style:
-                      FontStyles.regular12.copyWith(color: ColorStyles.gray3),
-                ),
-              ],
-            ),
-          ), //유저 정보
+              ),
+            ), //유저 정보
 
-          //팔로우 팔로잉 버튼
-          Visibility(
-            visible: widget.type == "following",
-            child: Container(
-              margin: const EdgeInsets.only(left: 4),
-              child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      if (currentState == "follow") {
-                        currentState = "unfollow";
-
-                        // ---
-                        print(widget.info.name + ' 언팔로우 api');
-                        // ---
-                      } else if (currentState == "unfollow") {
-                        currentState = "follow";
-
-                        // ---
-                        print(widget.info.name + ' 팔로우 api');
-                        // ---
-                      }
-                    });
-                  },
-                  child: currentState == "follow"
-                      ? (Container(
-                          width: 80,
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 8,
-                          ),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(32),
-                              border: Border.all(
-                                color: ColorStyles.gray1,
-                                width: 2,
-                              )),
-                          child: Center(
-                              child: Text(
-                            "팔로잉",
-                            style: FontStyles.semiBold12
-                                .copyWith(color: ColorStyles.gray1),
-                          )),
-                        ))
-                      : (Container(
-                          width: 80,
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 8,
-                          ),
-                          decoration: BoxDecoration(
-                              color: ColorStyles.main1,
-                              borderRadius: BorderRadius.circular(32),
-                              border: Border.all(
-                                color: ColorStyles.main1,
-                                width: 2,
-                              )),
-                          child: Center(
-                              child: Text(
-                            "팔로우",
-                            style: FontStyles.semiBold12
-                                .copyWith(color: ColorStyles.white),
-                          )),
-                        ))),
-            ),
-          ) //팔로우 팔로잉 버튼
-        ],
+            //팔로우 팔로잉 버튼
+            Visibility(
+                visible: widget.type == "following",
+                child: FollowBtn(
+                    currentState: currentState,
+                    onStateChanged: onFollowBtnStateChanged)) //팔로우 팔로잉 버튼
+          ],
+        ),
       ),
     );
   }

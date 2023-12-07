@@ -8,7 +8,8 @@ class ProfileViewModel extends GetxController {
   late List<FollowuserProfileModel> _followerList;
 
   ProfileViewModel() {
-    _userProfile = UserProfileModel("이름", "한줄소개", ["#태그1", "#태그2", "#태그3"]);
+    _userProfile =
+        UserProfileModel("이름", "한줄소개", ["#태그1", "#태그2", "#태그3"], "4", "3");
 
     _followingList = [
       FollowuserProfileModel(name: '팔로잉1', description: '한줄소개'),
@@ -20,6 +21,14 @@ class ProfileViewModel extends GetxController {
       FollowuserProfileModel(name: '팔로워2', description: '한줄소개'),
       FollowuserProfileModel(name: '팔로워3', description: '한줄소개'),
       FollowuserProfileModel(name: '팔로워4', description: '한줄소개'),
+      FollowuserProfileModel(name: '팔로워1', description: '한줄소개'),
+      FollowuserProfileModel(name: '팔로워2', description: '한줄소개'),
+      FollowuserProfileModel(name: '팔로워3', description: '한줄소개'),
+      FollowuserProfileModel(name: '팔로워4', description: '한줄소개'),
+      FollowuserProfileModel(name: '팔로워1', description: '한줄소개'),
+      FollowuserProfileModel(name: '팔로워2', description: '한줄소개'),
+      FollowuserProfileModel(name: '팔로워3', description: '한줄소개'),
+      FollowuserProfileModel(name: '팔로워4', description: '한줄소개'),
     ];
   }
 
@@ -27,10 +36,3 @@ class ProfileViewModel extends GetxController {
   List<FollowuserProfileModel> get followingList => _followingList;
   List<FollowuserProfileModel> get followerList => _followerList;
 }
-  // Future<void> followOtherUser(UserProfileModel user) async {
-  //   try {
-  //     print(user.name + "팔로우");
-  //   } catch (e) {
-  //     // Handle exceptions
-  //   }
-  // }
