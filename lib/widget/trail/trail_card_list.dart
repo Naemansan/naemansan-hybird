@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:naemansan/models/trail_card_model.dart';
 import 'package:naemansan/widget/trail/trail_card.dart';
 
 class TrailCardList extends StatelessWidget {
-  const TrailCardList({super.key});
+  final List<TrailCardModel> trailList;
+  const TrailCardList({super.key, required this.trailList});
 
   @override
   Widget build(BuildContext context) {
-    List<String> trailList = ["산책로", "산책로", "산책로 하나 더"];
     return Column(
-      children: trailList.map((trail) => TrailCard(name: trail)).toList(),
+      children: trailList
+          .map((trail) => TrailCard(
+                trailInfo: trail,
+              ))
+          .toList(),
     );
   }
 }

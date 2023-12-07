@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:naemansan/models/trail_card_model.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
-class TrailCard extends StatelessWidget {
-  final String name;
-  const TrailCard({super.key, required this.name});
+class TrailCard extends StatefulWidget {
+  final TrailCardModel trailInfo;
+  const TrailCard({super.key, required this.trailInfo});
 
   @override
+  State<TrailCard> createState() => _TrailCardState();
+}
+
+class _TrailCardState extends State<TrailCard> {
+  @override
   Widget build(BuildContext context) {
-    List<String> trailInfo = ["경기도 화성시 석우동", "·", "2,760m"];
-    List<String> tags = ["#1", "#2", "#3"];
+    final trailInfo = [
+      widget.trailInfo.location,
+      "·",
+      widget.trailInfo.distance
+    ];
+
     return SizedBox(
         width: double.infinity,
         child: Container(
@@ -33,11 +43,13 @@ class TrailCard extends StatelessWidget {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      //산책로 이름
                       Text(
-                        "팔정도 한바퀴",
+                        widget.trailInfo.name,
                         style: FontStyles.semiBold20
                             .copyWith(color: ColorStyles.black),
-                      ),
+                      ), //산책로 이름
+
                       //위치, 거리
                       Container(
                         padding: const EdgeInsets.only(bottom: 8),
@@ -61,7 +73,7 @@ class TrailCard extends StatelessWidget {
                               //태그들...
                               Wrap(
                                 spacing: 4.0,
-                                children: tags.map((element) {
+                                children: widget.trailInfo.tags.map((element) {
                                   return Text(
                                     element,
                                     style: FontStyles.regular12
@@ -83,7 +95,7 @@ class TrailCard extends StatelessWidget {
                                             height: 16),
                                         const SizedBox(width: 4),
                                         Text(
-                                          "6",
+                                          widget.trailInfo.momentCount,
                                           style: FontStyles.regular12.copyWith(
                                               color: ColorStyles.gray3),
                                         )
@@ -101,7 +113,7 @@ class TrailCard extends StatelessWidget {
                                             height: 16),
                                         const SizedBox(width: 4),
                                         Text(
-                                          "6",
+                                          widget.trailInfo.likeCount,
                                           style: FontStyles.regular12.copyWith(
                                               color: ColorStyles.gray3),
                                         )

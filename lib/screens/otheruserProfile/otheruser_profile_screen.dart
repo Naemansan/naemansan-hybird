@@ -35,7 +35,9 @@ class OtheruserProfile extends StatelessWidget {
                     child: Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: TrailCardList(),
+                      child: TrailCardList(
+                        trailList: viewModel.trailList,
+                      ),
                     ),
                   ))
                 ]),
