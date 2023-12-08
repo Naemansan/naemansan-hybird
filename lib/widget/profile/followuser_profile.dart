@@ -32,7 +32,7 @@ class _FollowuserProfileState extends State<FollowuserProfile> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => const OtheruserProfile()));
+                  builder: (context) => const OtheruserProfileScreen()));
         },
         child: Row(
           children: [

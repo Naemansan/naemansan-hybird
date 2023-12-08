@@ -29,14 +29,6 @@ class _UserProfileState extends State<UserProfile> {
 
   @override
   Widget build(BuildContext context) {
-    final followList = [
-      "팔로잉",
-      widget.userProfile.followingCount,
-      "·",
-      "팔로워",
-      widget.userProfile.followerCount
-    ];
-
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 20),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -70,7 +62,13 @@ class _UserProfileState extends State<UserProfile> {
                   ),
                   Wrap(
                     spacing: 4.0,
-                    children: followList.asMap().entries.map((element) {
+                    children: [
+                      "팔로잉",
+                      widget.userProfile.followingCount,
+                      "·",
+                      "팔로워",
+                      widget.userProfile.followerCount
+                    ].asMap().entries.map((element) {
                       return Text(
                         element.value,
                         style: element.key % 3 == 1
