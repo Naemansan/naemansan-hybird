@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:naemansan/models/user_profile_model.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
-import 'package:naemansan/widget/profile/follow_btn.dart';
+import 'package:naemansan/widget/myProfile/follow_btn.dart';
 
 class UserProfile extends StatefulWidget {
   final bool isOther;

@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 import 'package:naemansan/viewModel/profile_view_model.dart';
 
 import 'package:naemansan/widget/base/custom_tabbar.dart';
-import 'package:naemansan/widget/profile/followuser_porfile_list.dart';
-import 'package:naemansan/widget/profile/user_profile.dart';
+import 'package:naemansan/widget/myProfile/followuser_porfile_list.dart';
+import 'package:naemansan/widget/myProfile/user_profile.dart';
 
 class MyProfileScreen extends StatelessWidget {
   const MyProfileScreen({super.key});

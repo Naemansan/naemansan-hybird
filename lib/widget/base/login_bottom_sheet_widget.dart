@@ -22,9 +22,8 @@ class LoginBottomSheetWidget extends StatelessWidget {
       height: 230, // BottomSheet의 높이 설정
       padding: const EdgeInsets.fromLTRB(16, 36, 16, 16),
       decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(32))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:naemansan/screens/userProfile/user_profile_screen.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
-import 'package:naemansan/widget/profile/follow_btn.dart';
+import 'package:naemansan/widget/myProfile/follow_btn.dart';
 
 class FollowuserProfile extends StatefulWidget {
   // ignore: prefer_typing_uninitialized_variables

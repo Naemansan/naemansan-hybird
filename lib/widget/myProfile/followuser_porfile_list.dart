@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:naemansan/widget/profile/followuser_profile.dart';
+import 'package:naemansan/widget/myProfile/followuser_profile.dart';
 
 class FollowuserProfileList extends StatelessWidget {
   final List userList;

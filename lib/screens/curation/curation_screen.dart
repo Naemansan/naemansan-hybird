@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:naemansan/widget/base/custom_tabbar.dart';
+import 'package:naemansan/widget/curation/curationNear/curation_near.dart';
+import 'package:naemansan/widget/curation/curationPopular/curation_popular.dart';
 
 class CurationScreen extends StatelessWidget {
   const CurationScreen({super.key});
@@ -11,7 +13,7 @@ class CurationScreen extends StatelessWidget {
       child: CustomTabbar(
           tabs: ["주변 산책로", "인기 산책로"],
           rightTabs: [],
-          tabviews: [Text("주변산책로"), Text("인기산책로")]),
+          tabviews: [CurationNear(), CurationPopular()]),
     ));
   }
 }

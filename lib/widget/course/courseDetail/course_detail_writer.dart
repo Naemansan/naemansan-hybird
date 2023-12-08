@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
-import 'package:naemansan/widget/profile/follow_btn.dart';
+import 'package:naemansan/widget/myProfile/follow_btn.dart';
 
 class CourseDetailWriter extends StatefulWidget {
   final String writer;
