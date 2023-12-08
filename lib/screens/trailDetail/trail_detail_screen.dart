@@ -52,7 +52,8 @@ class TrailDetailScreen extends StatelessWidget {
                           description: viewModel.trailDetailInfo.description),
 
                       //모먼트
-                      TrailDetailMomentList()
+                      TrailDetailMomentList(
+                          momentList: viewModel.trailDetailInfo.momnetList)
                     ],
                   ),
                 ), //산책로 정보

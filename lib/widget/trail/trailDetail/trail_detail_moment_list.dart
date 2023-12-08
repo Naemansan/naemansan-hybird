@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:naemansan/models/moment_model.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 import 'package:naemansan/widget/moment/momentCard/moment_card.dart';
 
 class TrailDetailMomentList extends StatefulWidget {
-  const TrailDetailMomentList({super.key});
+  final List<MomentModel> momentList;
+  const TrailDetailMomentList({super.key, required this.momentList});
 
   @override
   State<TrailDetailMomentList> createState() => _TrailDetailMomentListState();
 }
 
 class _TrailDetailMomentListState extends State<TrailDetailMomentList> {
+  int currentMoment = 0;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,7 +37,7 @@ class _TrailDetailMomentListState extends State<TrailDetailMomentList> {
                     width: 8,
                   ),
                   Text(
-                    "6",
+                    widget.momentList.length.toString(),
                     style:
                         FontStyles.regular12.copyWith(color: ColorStyles.gray3),
                   ),
@@ -43,17 +47,50 @@ class _TrailDetailMomentListState extends State<TrailDetailMomentList> {
             // 타이틀
 
             //모먼트 리스트
-            Container(
+            SizedBox(
               width: double.infinity,
               child: SingleChildScrollView(
                 clipBehavior: Clip.none,
                 scrollDirection: Axis.horizontal,
-                child: Wrap(
-                  spacing: 12,
-                  children: [1, 2, 3, 4].map((element) {
-                    return MomentCard();
-                  }).toList(),
+                child: Column(
+                  children: [
+                    Wrap(
+                      spacing: 12,
+                      children:
+                          widget.momentList.asMap().entries.map((element) {
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              currentMoment = element.key;
+                            });
+                          },
+                          child: Opacity(
+                            opacity: currentMoment == element.key ? 1 : 0.4,
+                            child: MomentCard(
+                              momentInfo: element.value,
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ],
                 ),
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              margin: const EdgeInsets.only(top: 12),
+              padding: const EdgeInsets.fromLTRB(12, 12, 12, 20),
+              decoration: BoxDecoration(
+                  color: ColorStyles.gray0,
+                  borderRadius: BorderRadius.circular(4),
+                  border: Border.all(
+                    color: ColorStyles.gray0,
+                    width: 2,
+                  )),
+              child: Text(
+                widget.momentList[currentMoment].context,
+                style: FontStyles.regular16.copyWith(color: ColorStyles.black),
               ),
             ),
 

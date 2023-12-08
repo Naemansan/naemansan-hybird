@@ -1,3 +1,5 @@
+import 'package:naemansan/models/moment_model.dart';
+
 class TrailDetailModel {
   final String name;
   final String location;
@@ -10,6 +12,7 @@ class TrailDetailModel {
   final String writer;
   final String date;
 
+  final List<MomentModel> momnetList;
   TrailDetailModel(this.name, this.location, this.distance, this.tags,
-      this.description, this.writer, this.date);
+      this.description, this.writer, this.date, this.momnetList);
 }

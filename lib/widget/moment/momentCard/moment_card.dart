@@ -1,19 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:naemansan/models/moment_model.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
 class MomentCard extends StatelessWidget {
-  const MomentCard({super.key});
+  final MomentModel momentInfo;
+  const MomentCard({super.key, required this.momentInfo});
 
   @override
   Widget build(BuildContext context) {
+    Color getEmotionColor(String emotion) {
+      switch (emotion) {
+        case "Joy":
+          return ColorStyles.emotionJoy;
+        case "Com":
+          return ColorStyles.emotionCom;
+        case "Sur":
+          return ColorStyles.emotionSur;
+        case "Sad":
+          return ColorStyles.emotionSad;
+        case "Boolan":
+          return ColorStyles.emotionBoolan;
+        case "Hurt":
+          return ColorStyles.emotionHurt;
+
+        default:
+          return ColorStyles.black;
+      }
+    }
+
     return Container(
       width: 120,
       height: 160,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: ColorStyles.emotionSad,
+        color: getEmotionColor(momentInfo.emotion),
         borderRadius: BorderRadius.circular(4.0),
       ),
       child: Column(
@@ -27,16 +49,16 @@ class MomentCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("11/23",
+                  Text(momentInfo.date,
                       style: FontStyles.semiBold16
                           .copyWith(color: ColorStyles.white)),
-                  Text("2023",
+                  Text(momentInfo.year,
                       style: FontStyles.semiBold12
                           .copyWith(color: ColorStyles.white)),
                 ],
               ),
               SvgPicture.asset(
-                'assets/icons/moment.svg',
+                'assets/icons/weather${momentInfo.weather}.svg',
                 height: 24,
                 colorFilter: const ColorFilter.mode(
                     ColorStyles.white, BlendMode.srcATop),
@@ -44,8 +66,9 @@ class MomentCard extends StatelessWidget {
             ],
           ),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("산책로이름 입니다dkdkdkkdkdkdk",
+              Text(momentInfo.trailName,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   style:
@@ -69,7 +92,7 @@ class MomentCard extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                    child: Text("제작자이름입dkdkdkdk.",
+                    child: Text(momentInfo.userName,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                         style: FontStyles.regular12
