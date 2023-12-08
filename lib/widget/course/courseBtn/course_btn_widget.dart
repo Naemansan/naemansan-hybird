@@ -71,25 +71,16 @@ class CourseBtnWidget extends StatelessWidget {
               const SizedBox(height: 8),
               Row(
                 children: [
-                  Text(
-                    "#${course.keywords[0].keyword}",
-                    style: FontStyles.regular12.copyWith(
-                      color: ColorStyles.gray3,
-                    ),
-                  ),
-                  const SizedBox(width: 4),
-                  Text(
-                    "#${course.keywords[1].keyword}",
-                    style: FontStyles.regular12.copyWith(
-                      color: ColorStyles.gray3,
-                    ),
-                  ),
-                  const SizedBox(width: 4),
-                  Text(
-                    "#${course.keywords[2].keyword}",
-                    style: FontStyles.regular12.copyWith(
-                      color: ColorStyles.gray3,
-                    ),
+                  Wrap(
+                    spacing: 4.0,
+                    children: course.keywords.map((element) {
+                      return Text(
+                        "#${element.keyword}",
+                        style: FontStyles.regular12.copyWith(
+                          color: ColorStyles.gray3,
+                        ),
+                      );
+                    }).toList(),
                   ),
                 ],
               )

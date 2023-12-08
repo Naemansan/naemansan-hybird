@@ -34,7 +34,7 @@ class UserProfileScreen extends StatelessWidget {
                     child: Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: CourseCardList(
+                      child: CourseOverviewList(
                         courseList: viewModel.courseList,
                       ),
                     ),

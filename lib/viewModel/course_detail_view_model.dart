@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:naemansan/models/course_card_model.dart';
+
 import 'package:naemansan/models/moment_model.dart';
 import 'package:naemansan/models/near_course_model.dart';
 import 'package:naemansan/models/spot_model.dart';

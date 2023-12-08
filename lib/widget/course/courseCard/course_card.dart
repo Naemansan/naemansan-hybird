@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:naemansan/models/course_card_model.dart';
-import 'package:naemansan/screens/courseDetail/course_detail_screen.dart';
+import 'package:naemansan/models/course_overview_model.dart';
+
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
-class CourseCard extends StatefulWidget {
-  final CourseCardModel courseInfo;
-  const CourseCard({super.key, required this.courseInfo});
+class CourseOverview extends StatefulWidget {
+  final CourseOverviewModel courseInfo;
+  const CourseOverview({super.key, required this.courseInfo});
 
   @override
-  State<CourseCard> createState() => _CourseCardState();
+  State<CourseOverview> createState() => _CourseOverviewState();
 }
 
-class _CourseCardState extends State<CourseCard> {
+class _CourseOverviewState extends State<CourseOverview> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -45,7 +45,7 @@ class _CourseCardState extends State<CourseCard> {
                       children: [
                         //산책로 이름
                         Text(
-                          widget.courseInfo.name,
+                          widget.courseInfo.title,
                           style: FontStyles.semiBold20
                               .copyWith(color: ColorStyles.black),
                         ), //산책로 이름
@@ -56,7 +56,7 @@ class _CourseCardState extends State<CourseCard> {
                           child: Wrap(
                             spacing: 4.0,
                             children: [
-                              widget.courseInfo.location,
+                              widget.courseInfo.siGuDong,
                               "·",
                               widget.courseInfo.distance
                             ].map((element) {
@@ -78,9 +78,9 @@ class _CourseCardState extends State<CourseCard> {
                                 Wrap(
                                   spacing: 4.0,
                                   children:
-                                      widget.courseInfo.tags.map((element) {
+                                      widget.courseInfo.keywords.map((element) {
                                     return Text(
-                                      element,
+                                      '#${element.keyword}',
                                       style: FontStyles.regular12
                                           .copyWith(color: ColorStyles.gray3),
                                     );
