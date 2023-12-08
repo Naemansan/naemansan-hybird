@@ -9,8 +9,7 @@ class UserProfileViewModel extends GetxController {
   late List<CourseOverviewModel> _courseList;
 
   UserProfileViewModel() {
-    _otheruserProfile =
-        UserProfileModel("다른 유저", "한줄소개", ["#1", "#2"], "4", "3");
+    _otheruserProfile = UserProfileModel("다른 유저", "한줄소개", ["1", "2"], "4", "3");
     _courseList = [
       CourseOverviewModel(
           id: 1,

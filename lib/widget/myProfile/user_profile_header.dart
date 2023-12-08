@@ -4,21 +4,21 @@ import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 import 'package:naemansan/widget/myProfile/follow_btn.dart';
 
-class UserProfile extends StatefulWidget {
+class UserProfileHeader extends StatefulWidget {
   final bool isOther;
   final UserProfileModel userProfile;
 
-  const UserProfile({
+  const UserProfileHeader({
     Key? key,
     required this.userProfile,
     required this.isOther,
   }) : super(key: key);
 
   @override
-  State<UserProfile> createState() => _UserProfileState();
+  State<UserProfileHeader> createState() => _UserProfileState();
 }
 
-class _UserProfileState extends State<UserProfile> {
+class _UserProfileState extends State<UserProfileHeader> {
   String currentState = 'follow';
 
   void onFollowBtnStateChanged(String newState) {
@@ -106,7 +106,7 @@ class _UserProfileState extends State<UserProfile> {
           spacing: 4.0,
           children: widget.userProfile.tags.map((tag) {
             return Text(
-              tag,
+              "#$tag",
               style: FontStyles.semiBold12.copyWith(color: ColorStyles.gray3),
             );
           }).toList(),

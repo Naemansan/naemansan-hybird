@@ -7,7 +7,7 @@ import 'package:naemansan/viewModel/profile_view_model.dart';
 
 import 'package:naemansan/widget/base/custom_tabbar.dart';
 import 'package:naemansan/widget/myProfile/followuser_porfile_list.dart';
-import 'package:naemansan/widget/myProfile/user_profile.dart';
+import 'package:naemansan/widget/myProfile/user_profile_header.dart';
 
 class MyProfileScreen extends StatelessWidget {
   const MyProfileScreen({super.key});
@@ -29,7 +29,7 @@ class MyProfileScreen extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
               child: Column(children: [
                 //유저 프로필 (상단)
-                UserProfile(
+                UserProfileHeader(
                   userProfile: viewModel.userProfile,
                   isOther: false,
                 ),

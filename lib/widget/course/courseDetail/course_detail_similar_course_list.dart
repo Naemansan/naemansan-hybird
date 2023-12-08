@@ -67,7 +67,7 @@ class CourseDetailSimilarCourseList extends StatelessWidget {
                                 ]),
                             onCourseTap: (courseIndex) {
                               // 코스 카드 선택 시 해당 코스 화면으로 이동한다.
-                              print(courseIndex);
+
                               Get.toNamed("/courseDetail/$courseIndex");
                             }),
                         //수정필요
