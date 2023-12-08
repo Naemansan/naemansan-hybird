@@ -16,12 +16,6 @@ class TrailCard extends StatefulWidget {
 class _TrailCardState extends State<TrailCard> {
   @override
   Widget build(BuildContext context) {
-    final trailInfo = [
-      widget.trailInfo.location,
-      "·",
-      widget.trailInfo.distance
-    ];
-
     return GestureDetector(
       onTap: () {
         Navigator.push(context,
@@ -61,7 +55,11 @@ class _TrailCardState extends State<TrailCard> {
                           padding: const EdgeInsets.only(bottom: 8),
                           child: Wrap(
                             spacing: 4.0,
-                            children: trailInfo.map((element) {
+                            children: [
+                              widget.trailInfo.location,
+                              "·",
+                              widget.trailInfo.distance
+                            ].map((element) {
                               return Text(element,
                                   style: FontStyles.regular16.copyWith(
                                     color: ColorStyles.black,

@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:naemansan/utilities/style/color_styles.dart';
+import 'package:naemansan/utilities/style/font_styles.dart';
 
 class TrailDetailDescription extends StatelessWidget {
-  const TrailDetailDescription({super.key});
+  final String description;
+  const TrailDetailDescription({super.key, required this.description});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.orange,
       width: double.infinity,
       padding: const EdgeInsets.only(bottom: 8),
-      child: Text("소개~"),
+      child: Text(
+        description,
+        style: FontStyles.regular16.copyWith(color: ColorStyles.black),
+      ),
     );
   }
 }

@@ -23,45 +23,57 @@ class TrailDetailScreen extends StatelessWidget {
       body: GetBuilder<TrailDetailViewModel>(
         init: viewModel,
         builder: (viewModel) {
-          return Container(
-            width: double.infinity,
-            color: Colors.red,
-            child: Column(children: [
-              //썸네일
-              Container(
-                color: Colors.amber,
-                height: 180,
-              ), //썸네일
+          return SingleChildScrollView(
+            child: SizedBox(
+              width: double.infinity,
+              child: Column(children: [
+                //썸네일
+                Container(
+                  color: Colors.amber,
+                  height: 180,
+                ), //썸네일
 
-              //산책로 정보
-              Container(
-                padding: const EdgeInsets.fromLTRB(16, 20, 16, 20),
-                child: Column(
-                  children: [
-                    TrailDetailInfo(),
-                    TrailDetailWriter(),
-                    TrailDetailDescription(),
-                    TrailDetailMomentList()
-                  ],
-                ),
-              ), //산책로 정보
+                //산책로 정보
+                Container(
+                  padding: const EdgeInsets.fromLTRB(16, 20, 16, 20),
+                  child: Column(
+                    children: [
+                      TrailDetailInfo(
+                          name: viewModel.trailDetailInfo.name,
+                          location: viewModel.trailDetailInfo.location,
+                          distance: viewModel.trailDetailInfo.distance,
+                          tags: viewModel.trailDetailInfo.tags),
 
-              //구분선
-              Container(
-                height: 8,
-                width: double.infinity,
-                color: ColorStyles.gray0,
-              ), //구분선
+                      //작성자
+                      TrailDetailWriter(),
 
-              Container(
-                padding: const EdgeInsets.fromLTRB(16, 20, 16, 40),
-                width: double.infinity,
-                child: Column(children: [
-                  TrailDetailSpotList(),
-                  TrailDetailSimilarTrail()
-                ]),
-              )
-            ]),
+                      //소개
+                      TrailDetailDescription(
+                          description: viewModel.trailDetailInfo.description),
+
+                      //모먼트
+                      TrailDetailMomentList()
+                    ],
+                  ),
+                ), //산책로 정보
+
+                //구분선
+                Container(
+                  height: 8,
+                  width: double.infinity,
+                  color: ColorStyles.gray0,
+                ), //구분선
+
+                Container(
+                  padding: const EdgeInsets.fromLTRB(16, 20, 16, 40),
+                  width: double.infinity,
+                  child: Column(children: [
+                    TrailDetailSpotList(),
+                    TrailDetailSimilarTrail()
+                  ]),
+                )
+              ]),
+            ),
           );
         },
       ),
