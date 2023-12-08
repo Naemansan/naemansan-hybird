@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:naemansan/models/near_course_model.dart';
 import 'package:naemansan/viewModel/course_view_model.dart';
 import 'package:naemansan/viewModel/home_view_model.dart';
+import 'package:naemansan/widget/home/course_start_btn_widget.dart';
 import 'package:naemansan/widget/home/near_course_btn_widget.dart';
 import 'package:naver_map_plugin/naver_map_plugin.dart';
 
@@ -17,11 +18,19 @@ class HomeScreen extends StatelessWidget {
 
     // 스크롤 이벤트 리스너를 설정한다. 현재 가장 보이는 코스 카드에 따라 지도의 경로를 업데이트한다.
     homeViewModel.scrollController.addListener(() {
-      int mostVisibleIndex = homeViewModel.getMostVisibleCardIndex(
-          courseController.course.value!.courses.length);
-      Course mostVisibleCourse =
-          courseController.course.value!.courses[mostVisibleIndex];
-      homeViewModel.updatePathOverlays(mostVisibleCourse.locations);
+      if (courseController.course.value?.courses.isNotEmpty ?? false) {
+        // 가장 많이 보이는 카드의 인덱스 가져오기
+        int mostVisibleIndex = homeViewModel.getMostVisibleCardIndex(
+            courseController.course.value!.courses.length + 1);
+
+        if (mostVisibleIndex > 0) {
+          // 0번째 요소를 건너뜀
+          Course mostVisibleCourse =
+              courseController.course.value!.courses[mostVisibleIndex - 1];
+          // 경로 업데이트
+          homeViewModel.updatePathOverlays(mostVisibleCourse.locations);
+        }
+      }
     });
 
     return Scaffold(
@@ -74,19 +83,27 @@ class HomeScreen extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         controller: homeViewModel.scrollController,
                         itemBuilder: (context, index) {
+                          // 0번째 카드는 코스 시작 버튼
+                          if (index == 0) {
+                            return CourseStartBtnWidget();
+                          }
+                          // 다른 인덱스에는 코스 목록을 표시한다.
+                          // 첫 번째 버튼을 고려하여 실제 코스 목록 인덱스를 조정한다.
+                          int courseIndex = index - 1;
                           return SizedBox(
                             width: 320,
                             child: CourseCardWidget(
-                                onCourseTap: (id) {
+                                onCourseTap: (courseIndex) {
                                   // 코스 카드 선택 시 해당 코스 화면으로 이동한다.
-                                  Get.toNamed("/course/$id");
+                                  Get.toNamed("/course/$courseIndex");
                                 },
-                                course: courses.courses[index]),
+                                course: courses.courses[courseIndex]),
                           );
                         },
+                        // 코스 카드 사이에 간격
                         separatorBuilder: (context, index) =>
                             const SizedBox(width: 16),
-                        itemCount: courses.courses.length,
+                        itemCount: courses.courses.length + 1,
                       ),
                     );
                   },
