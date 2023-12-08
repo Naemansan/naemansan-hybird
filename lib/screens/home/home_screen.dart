@@ -1,40 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:naemansan/models/geolocation_model.dart';
 import 'package:naemansan/models/near_course_model.dart';
-import 'package:naemansan/utilities/style/color_styles.dart';
-import 'package:naemansan/utilities/style/font_styles.dart';
 import 'package:naemansan/viewModel/course_view_model.dart';
 import 'package:naemansan/viewModel/home_view_model.dart';
-import 'package:naemansan/widget/home/course_start_btn_widget.dart';
 import 'package:naemansan/widget/home/near_course_btn_widget.dart';
 import 'package:naver_map_plugin/naver_map_plugin.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  final scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
     // 홈 화면에 HomeViewModel 연결
     final HomeViewModel homeViewModel = Get.put(HomeViewModel());
     final CourseController courseController = Get.put(CourseController());
-    int getMostVisibleCardIndex() {
-      double cardWidth = 320.0;
-      double currentScroll = scrollController.offset;
 
-      int index = (currentScroll / cardWidth).round();
-      return index.clamp(0, courseController.course.value!.courses.length - 1);
-    }
-
-    scrollController.addListener(() {
-      int mostVisibleIndex = getMostVisibleCardIndex();
+    homeViewModel.scrollController.addListener(() {
+      int mostVisibleIndex = homeViewModel.getMostVisibleCardIndex(
+          courseController.course.value!.courses.length);
       Course mostVisibleCourse =
           courseController.course.value!.courses[mostVisibleIndex];
       homeViewModel.updatePathOverlays(mostVisibleCourse.locations);
@@ -82,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 120,
                       child: ListView.separated(
                         scrollDirection: Axis.horizontal,
-                        controller: scrollController,
+                        controller: homeViewModel.scrollController,
                         itemBuilder: (context, index) {
                           return SizedBox(
                             width: 320,
