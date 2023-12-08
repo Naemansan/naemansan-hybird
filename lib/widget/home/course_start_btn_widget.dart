@@ -12,6 +12,7 @@ class CourseStartBtnWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("courseData is empty");
     return InkWell(
       onTap: () {
         // CourseWalking 화면으로 이동
@@ -19,6 +20,7 @@ class CourseStartBtnWidget extends StatelessWidget {
       },
       child: Container(
         height: 112,
+        width: 320,
         decoration: const BoxDecoration(
           color: ColorStyles.main1,
           borderRadius: BorderRadius.all(
