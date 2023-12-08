@@ -1,3 +1,4 @@
+import 'package:naemansan/screens/course/course_walking.dart';
 import 'package:naemansan/screens/root_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       getPages: [
         GetPage(name: '/', page: () => const RootScreen()),
+        GetPage(name: '/course/walking', page: () => const CourseWalking()),
       ],
     );
   }
