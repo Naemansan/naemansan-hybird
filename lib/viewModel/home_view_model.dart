@@ -46,10 +46,50 @@ class HomeViewModel extends GetxController {
   // 임시 더미데이터로 패스 오버레이 리스트 생성
   Set<PathOverlay> createPathOverlays() {
     Set<PathOverlay> pathOverlays = {};
+    // 더미 1
+    pathOverlays.add(
+      PathOverlay(
+        PathOverlayId("팔정도 한바퀴"),
+        [
+          const LatLng(37.55905356536202, 127.00033312353234),
+          const LatLng(37.55929595808703, 127.00037335666757),
+          const LatLng(37.55950220390754, 127.000451140729),
+          const LatLng(37.55957024364062, 127.00067108186822),
+          const LatLng(37.559766156821595, 127.00080260449865),
+          const LatLng(37.560045979501844, 127.00086248649693),
+          const LatLng(37.560422098031914, 127.00094988935628),
+          const LatLng(37.560763763504944, 127.00109481811523),
+          const LatLng(37.56073718551571, 127.00100559439653),
+        ],
+        width: 12,
+        color: ColorStyles.main2,
+        outlineColor: Colors.transparent,
+      ),
+    );
 
     pathOverlays.add(
       PathOverlay(
-        PathOverlayId("dummy"),
+        PathOverlayId("장충동 두바퀴"),
+        [
+          const LatLng(37.55905356536202, 127.00033312353234),
+          const LatLng(37.55929595808703, 127.00037335666757),
+          const LatLng(37.55950220390754, 127.000451140729),
+          const LatLng(37.55957024364062, 127.00067108186822),
+          const LatLng(37.559766156821595, 127.00080260449865),
+          const LatLng(37.560045979501844, 127.00086248649693),
+          const LatLng(37.560422098031914, 127.00094988935628),
+          const LatLng(37.560763763504944, 127.00109481811523),
+          const LatLng(37.56073718551571, 127.00100559439653),
+        ],
+        width: 12,
+        color: ColorStyles.main2,
+        outlineColor: Colors.transparent,
+      ),
+    );
+    // 더미 3
+    pathOverlays.add(
+      PathOverlay(
+        PathOverlayId("서찬 세바퀴"),
         [
           const LatLng(37.55905356536202, 127.00033312353234),
           const LatLng(37.55929595808703, 127.00037335666757),

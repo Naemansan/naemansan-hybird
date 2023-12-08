@@ -14,6 +14,7 @@ class GeoLocation {
       longitude: position.longitude,
     );
   }
+
   // 문자열 출력
   @override
   String toString() =>
