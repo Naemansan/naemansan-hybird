@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:naemansan/models/geolocation_model.dart';
+import 'package:naemansan/models/near_course_model.dart';
 import 'package:naemansan/models/si_gu_dong_model.dart';
 import 'package:naemansan/services/geolocation_service.dart';
 import 'package:naemansan/services/si_gu_dong_service.dart';
@@ -8,9 +9,9 @@ import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naver_map_plugin/naver_map_plugin.dart';
 
 class HomeViewModel extends GetxController {
-  // GeolocatorService, SiGuDongService 객체 생성
   final GeolocatorService _geolocatorService = GeolocatorService();
   final SiGuDongService _naverMapService = SiGuDongService();
+  var pathOverlays = Rx<Set<PathOverlay>>({});
 
   // 현재 위치, 시구동 정보, 로딩 여부 변수
   GeoLocation? _currentLocation;
@@ -19,6 +20,10 @@ class HomeViewModel extends GetxController {
 
   HomeViewModel() {
     loadCurrentLocation();
+  }
+  void updatePathOverlays(List<Location> locations) {
+    Set<PathOverlay> newOverlays = createPathOverlays(locations);
+    pathOverlays.value = newOverlays; // Update the Rx variable
   }
 
   // 현재 위치, 시구동 정보, 로딩 여부 변수의 getter
@@ -44,63 +49,19 @@ class HomeViewModel extends GetxController {
   }
 
   // 임시 더미데이터로 패스 오버레이 리스트 생성
-  Set<PathOverlay> createPathOverlays() {
+  Set<PathOverlay> createPathOverlays(List<Location> locations) {
     Set<PathOverlay> pathOverlays = {};
-    // 더미 1
-    pathOverlays.add(
-      PathOverlay(
-        PathOverlayId("팔정도 한바퀴"),
-        [
-          const LatLng(37.55905356536202, 127.00033312353234),
-          const LatLng(37.55929595808703, 127.00037335666757),
-          const LatLng(37.55950220390754, 127.000451140729),
-          const LatLng(37.55957024364062, 127.00067108186822),
-          const LatLng(37.559766156821595, 127.00080260449865),
-          const LatLng(37.560045979501844, 127.00086248649693),
-          const LatLng(37.560422098031914, 127.00094988935628),
-          const LatLng(37.560763763504944, 127.00109481811523),
-          const LatLng(37.56073718551571, 127.00100559439653),
-        ],
-        width: 12,
-        color: ColorStyles.main2,
-        outlineColor: Colors.transparent,
-      ),
-    );
+
+    // Convert Location objects to LatLng and create PathOverlay
+    List<LatLng> latLngList = locations
+        .map((location) => LatLng(location.latitude, location.longitude))
+        .toList();
 
     pathOverlays.add(
       PathOverlay(
-        PathOverlayId("장충동 두바퀴"),
-        [
-          const LatLng(37.55905356536202, 127.00033312353234),
-          const LatLng(37.55929595808703, 127.00037335666757),
-          const LatLng(37.55950220390754, 127.000451140729),
-          const LatLng(37.55957024364062, 127.00067108186822),
-          const LatLng(37.559766156821595, 127.00080260449865),
-          const LatLng(37.560045979501844, 127.00086248649693),
-          const LatLng(37.560422098031914, 127.00094988935628),
-          const LatLng(37.560763763504944, 127.00109481811523),
-          const LatLng(37.56073718551571, 127.00100559439653),
-        ],
-        width: 12,
-        color: ColorStyles.main2,
-        outlineColor: Colors.transparent,
-      ),
-    );
-    // 더미 3
-    pathOverlays.add(
-      PathOverlay(
-        PathOverlayId("서찬 세바퀴"),
-        [
-          const LatLng(37.55905356536202, 127.00033312353234),
-          const LatLng(37.55929595808703, 127.00037335666757),
-          const LatLng(37.55950220390754, 127.000451140729),
-          const LatLng(37.55957024364062, 127.00067108186822),
-          const LatLng(37.559766156821595, 127.00080260449865),
-          const LatLng(37.560045979501844, 127.00086248649693),
-          const LatLng(37.560422098031914, 127.00094988935628),
-          const LatLng(37.560763763504944, 127.00109481811523),
-          const LatLng(37.56073718551571, 127.00100559439653),
-        ],
+        PathOverlayId(
+            "Your Title Here"), // Use a unique identifier or course title
+        latLngList,
         width: 12,
         color: ColorStyles.main2,
         outlineColor: Colors.transparent,

@@ -1,4 +1,5 @@
 import 'package:geolocator/geolocator.dart';
+import 'package:naver_map_plugin/naver_map_plugin.dart';
 
 class GeoLocation {
   // 위도, 경도
@@ -19,4 +20,7 @@ class GeoLocation {
   @override
   String toString() =>
       'GeoLocation(Latitude: $latitude, Longitude: $longitude)';
+
+  // LatLng 객체로 변환
+  LatLng toLatLng() => LatLng(latitude, longitude);
 }

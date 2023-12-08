@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:naver_map_plugin/naver_map_plugin.dart';
+
 class NearCourseListModel {
   final List<Course> courses;
 
@@ -13,6 +15,7 @@ class NearCourseListModel {
 }
 
 class Course {
+  final int id;
   final String title;
   final String siGuDong;
   final String distance;
@@ -20,6 +23,7 @@ class Course {
   final List<Location> locations;
 
   Course({
+    required this.id,
     required this.title,
     required this.siGuDong,
     required this.distance,
@@ -32,6 +36,7 @@ class Course {
     var locationsJson = json['locations'] as List;
 
     return Course(
+      id: json['id'],
       title: json['title'],
       siGuDong: json['siGuDong'],
       distance: json['distance'],
@@ -39,21 +44,27 @@ class Course {
       locations: locationsJson.map((l) => Location.fromJson(l)).toList(),
     );
   }
+  // toLatLng
+  // Location 객체를 LatLng 객체로 변환하는 함수
+  List<LatLng> toLatLng() {
+    return locations.map((l) => LatLng(l.latitude, l.longitude)).toList();
+  }
 }
 
 class Keyword {
+  final int id;
   final String keyword;
 
-  Keyword({required this.keyword});
+  Keyword({required this.id, required this.keyword});
 
   factory Keyword.fromJson(Map<String, dynamic> json) {
     return Keyword(
+      id: json['id'],
       keyword: json['keyword'],
     );
   }
 }
 
-// ㅇㅜㅣㅊㅣ
 class Location {
   final double latitude;
   final double longitude;
