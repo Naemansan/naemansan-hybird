@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:naemansan/models/keyword_model.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
@@ -7,14 +8,14 @@ class CourseDetailInfo extends StatelessWidget {
   final String name;
   final String location;
   final String distance;
-  final List<String> tags;
+  final List<KeywordModel> keywords;
 
   const CourseDetailInfo(
       {super.key,
       required this.name,
       required this.location,
       required this.distance,
-      required this.tags});
+      required this.keywords});
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +47,9 @@ class CourseDetailInfo extends StatelessWidget {
         //태그
         Wrap(
           spacing: 4.0,
-          children: tags.map((element) {
+          children: keywords.map((element) {
             return Text(
-              element,
+              element.keyword,
               style: FontStyles.regular12.copyWith(color: ColorStyles.gray3),
             );
           }).toList(),

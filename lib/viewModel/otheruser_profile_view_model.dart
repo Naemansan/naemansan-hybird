@@ -22,8 +22,8 @@ class UserProfileViewModel extends GetxController {
             KeywordModel(id: 1, keyword: "@"),
             KeywordModel(id: 1, keyword: "@")
           ],
-          momentCount: "1",
-          likeCount: "2")
+          momentCount: 1,
+          likeCount: 2)
     ];
   }
 

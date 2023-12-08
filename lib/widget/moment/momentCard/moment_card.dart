@@ -68,7 +68,7 @@ class MomentCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(momentInfo.courseName,
+              Text(momentInfo.courseTitle,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   style:

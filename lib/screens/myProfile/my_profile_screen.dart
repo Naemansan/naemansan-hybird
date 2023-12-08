@@ -5,7 +5,7 @@ import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:get/get.dart';
 import 'package:naemansan/viewModel/profile_view_model.dart';
 
-import 'package:naemansan/widget/profile/custom_tabbar.dart';
+import 'package:naemansan/widget/base/custom_tabbar.dart';
 import 'package:naemansan/widget/profile/followuser_porfile_list.dart';
 import 'package:naemansan/widget/profile/user_profile.dart';
 
@@ -38,6 +38,7 @@ class MyProfileScreen extends StatelessWidget {
                 Expanded(
                   child: CustomTabbar(
                     tabs: const ["팔로잉", "팔로워"],
+                    rightTabs: [],
                     tabviews: [
                       FollowuserProfileList(
                         userList: viewModel.followingList,

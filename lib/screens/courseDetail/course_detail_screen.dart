@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
-import 'package:naemansan/utilities/style/font_styles.dart';
+
 import 'package:naemansan/viewModel/course_detail_view_model.dart';
 import 'package:naemansan/widget/course/courseDetail/course_detail_description.dart';
 import 'package:naemansan/widget/course/courseDetail/course_detail_info.dart';
@@ -41,24 +41,25 @@ class CourseDetailScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       CourseDetailInfo(
-                          name: viewModel.courseDetailInfo.name,
-                          location: viewModel.courseDetailInfo.location,
+                          name: viewModel.courseDetailInfo.title,
+                          location: viewModel.courseDetailInfo.siGuDong,
                           distance: viewModel.courseDetailInfo.distance,
-                          tags: viewModel.courseDetailInfo.tags),
+                          keywords: viewModel.courseDetailInfo.keywords),
 
                       //작성자
                       CourseDetailWriter(
-                        writer: viewModel.courseDetailInfo.writer,
+                        writer: viewModel.courseDetailInfo.writerName,
                         date: viewModel.courseDetailInfo.date,
                       ),
 
                       //소개
                       CourseDetailDescription(
-                          description: viewModel.courseDetailInfo.description),
+                          description: viewModel
+                              .courseDetailInfo.descriptionCourseOverview),
 
                       //모먼트
                       CourseDetailMomentList(
-                          momentList: viewModel.courseDetailInfo.momnetList)
+                          momentList: viewModel.courseDetailInfo.momentList)
                     ],
                   ),
                 ), //산책로 정보

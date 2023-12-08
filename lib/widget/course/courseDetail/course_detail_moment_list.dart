@@ -89,7 +89,7 @@ class _CourseDetailMomentListState extends State<CourseDetailMomentList> {
                     width: 2,
                   )),
               child: Text(
-                widget.momentList[currentMoment].context,
+                widget.momentList[currentMoment].content,
                 style: FontStyles.regular16.copyWith(color: ColorStyles.black),
               ),
             ),

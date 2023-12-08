@@ -100,7 +100,8 @@ class _CourseOverviewState extends State<CourseOverview> {
                                               height: 16),
                                           const SizedBox(width: 4),
                                           Text(
-                                            widget.courseInfo.momentCount,
+                                            widget.courseInfo.momentCount
+                                                .toString(),
                                             style: FontStyles.regular12
                                                 .copyWith(
                                                     color: ColorStyles.gray3),
@@ -119,7 +120,8 @@ class _CourseOverviewState extends State<CourseOverview> {
                                               height: 16),
                                           const SizedBox(width: 4),
                                           Text(
-                                            widget.courseInfo.likeCount,
+                                            widget.courseInfo.likeCount
+                                                .toString(),
                                             style: FontStyles.regular12
                                                 .copyWith(
                                                     color: ColorStyles.gray3),

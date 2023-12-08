@@ -46,7 +46,7 @@ class _SpotCardState extends State<SpotCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.spotInfo.name,
+                      widget.spotInfo.title,
                       style: FontStyles.regular12
                           .copyWith(color: ColorStyles.black),
                     ),
@@ -80,7 +80,7 @@ class _SpotCardState extends State<SpotCard> {
 
           //내용
           Text(
-            widget.spotInfo.content,
+            widget.spotInfo.description,
             style: FontStyles.regular16.copyWith(color: ColorStyles.black),
           ),
           //내용

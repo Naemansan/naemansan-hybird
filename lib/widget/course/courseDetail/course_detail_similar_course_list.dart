@@ -1,12 +1,14 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:naemansan/models/course_overview_model.dart';
 import 'package:naemansan/models/near_course_model.dart';
+
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 import 'package:naemansan/widget/course/courseBtn/course_btn_widget.dart';
 
 class CourseDetailSimilarCourseList extends StatelessWidget {
-  final List<Course> similarCourseList;
+  final List<CourseOverviewModel> similarCourseList;
   const CourseDetailSimilarCourseList(
       {super.key, required this.similarCourseList});
 
@@ -49,12 +51,26 @@ class CourseDetailSimilarCourseList extends StatelessWidget {
                     children: similarCourseList.map((element) {
                       return SizedBox(
                         width: 320,
+
+                        //수정필요
                         child: CourseBtnWidget(
-                            course: element,
+                            course: Course(
+                                id: element.id,
+                                title: element.title,
+                                siGuDong: element.siGuDong,
+                                distance: element.distance,
+                                keywords: [
+                                  Keyword(id: 1, keyword: "2")
+                                ],
+                                locations: [
+                                  Location(latitude: 1, longitude: 2)
+                                ]),
                             onCourseTap: (courseIndex) {
                               // 코스 카드 선택 시 해당 코스 화면으로 이동한다.
+                              print(courseIndex);
                               Get.toNamed("/courseDetail/$courseIndex");
                             }),
+                        //수정필요
                       );
                     }).toList()),
               ),

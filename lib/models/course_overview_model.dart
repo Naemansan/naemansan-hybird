@@ -7,8 +7,8 @@ class CourseOverviewModel {
   final String distance;
   final List<KeywordModel> keywords;
 
-  final String momentCount;
-  final String likeCount;
+  final int momentCount;
+  final int likeCount;
 
   CourseOverviewModel(
       {required this.id,

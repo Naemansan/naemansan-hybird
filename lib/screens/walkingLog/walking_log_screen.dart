@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:naemansan/widget/base/custom_tabbar.dart';
 
 class WalkingLogScreen extends StatelessWidget {
   const WalkingLogScreen({super.key});
@@ -6,9 +7,11 @@ class WalkingLogScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: Text("WalkingLog"),
-      ),
-    );
+        body: SafeArea(
+      child: CustomTabbar(
+          tabs: ["산책로", "모먼트"],
+          rightTabs: ["좋아요"],
+          tabviews: [Text("산책로"), Text("모먼트"), Text("좋아요")]),
+    ));
   }
 }
