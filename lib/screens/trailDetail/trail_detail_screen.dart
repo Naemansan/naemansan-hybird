@@ -7,7 +7,8 @@ import 'package:naemansan/widget/trail/trailDetail/trail_detail_description.dart
 import 'package:naemansan/widget/trail/trailDetail/trail_detail_info.dart';
 
 import 'package:naemansan/widget/trail/trailDetail/trail_detail_moment_list.dart';
-import 'package:naemansan/widget/trail/trailDetail/trail_detail_similar_trail.dart';
+
+import 'package:naemansan/widget/trail/trailDetail/trail_detail_similar_trail_list.dart';
 import 'package:naemansan/widget/trail/trailDetail/trail_detail_spot_list.dart';
 import 'package:naemansan/widget/trail/trailDetail/trail_detail_writer.dart';
 
@@ -24,7 +25,8 @@ class TrailDetailScreen extends StatelessWidget {
         init: viewModel,
         builder: (viewModel) {
           return SingleChildScrollView(
-            child: SizedBox(
+            child: Container(
+              color: ColorStyles.white,
               width: double.infinity,
               child: Column(children: [
                 //썸네일
@@ -75,7 +77,7 @@ class TrailDetailScreen extends StatelessWidget {
                     TrailDetailSpotList(
                       spotList: viewModel.trailDetailInfo.spotList,
                     ),
-                    TrailDetailSimilarTrail()
+                    TrailDetailSimilarTrailList(),
                   ]),
                 )
               ]),
