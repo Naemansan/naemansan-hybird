@@ -5,13 +5,15 @@ import 'package:naemansan/utilities/style/font_styles.dart';
 
 class CourseCardWidget extends StatelessWidget {
   final Course course;
+  final Function(int) onCourseTap;
 
-  const CourseCardWidget({super.key, required this.course});
+  const CourseCardWidget(
+      {super.key, required this.course, required this.onCourseTap});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () => onCourseTap(course.id),
       child: Container(
         height: 120,
         decoration: BoxDecoration(
