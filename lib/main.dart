@@ -1,5 +1,6 @@
 import 'package:naemansan/screens/course/course_walking.dart';
 import 'package:naemansan/screens/courseDetail/course_detail_screen.dart';
+import 'package:naemansan/screens/myProfile/my_profile_edit_screen.dart';
 import 'package:naemansan/screens/root_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -53,6 +54,8 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: '/userProfile/:userId',
             page: () => const UserProfileScreen()),
+        GetPage(
+            name: '/myProfileEdit', page: () => const MyProfileEditScreen()),
       ],
     );
   }

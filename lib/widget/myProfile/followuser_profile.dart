@@ -50,23 +50,20 @@ class _FollowuserProfileState extends State<FollowuserProfile> {
 
             //유저 정보
             Expanded(
-              child: Container(
-                color: ColorStyles.white,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.info.name,
-                      style: FontStyles.regular12
-                          .copyWith(color: ColorStyles.black),
-                    ),
-                    Text(
-                      widget.info.description,
-                      style: FontStyles.regular12
-                          .copyWith(color: ColorStyles.gray3),
-                    ),
-                  ],
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.info.name,
+                    style:
+                        FontStyles.regular12.copyWith(color: ColorStyles.black),
+                  ),
+                  Text(
+                    widget.info.description,
+                    style:
+                        FontStyles.regular12.copyWith(color: ColorStyles.gray3),
+                  ),
+                ],
               ),
             ), //유저 정보
 

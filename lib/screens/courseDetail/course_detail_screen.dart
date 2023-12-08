@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 
 import 'package:naemansan/viewModel/course_detail_view_model.dart';
+import 'package:naemansan/widget/base/custom_appbar.dart';
 import 'package:naemansan/widget/course/courseDetail/course_detail_description.dart';
 import 'package:naemansan/widget/course/courseDetail/course_detail_info.dart';
 
@@ -20,7 +21,16 @@ class CourseDetailScreen extends StatelessWidget {
     final CourseDetailViewModel viewModel = Get.put(CourseDetailViewModel());
 
     return Scaffold(
-      appBar: AppBar(),
+      //앱바...
+      appBar: const PreferredSize(
+          preferredSize: Size.fromHeight(48),
+          child: CustomAppbar(
+            leftIcon: "left",
+            rightIcon: null,
+            content: '',
+          )),
+      //앱바...
+
       body: GetBuilder<CourseDetailViewModel>(
         init: viewModel,
         builder: (viewModel) {
