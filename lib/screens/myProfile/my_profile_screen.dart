@@ -9,8 +9,8 @@ import 'package:naemansan/widget/profile/custom_tabbar.dart';
 import 'package:naemansan/widget/profile/followuser_porfile_list.dart';
 import 'package:naemansan/widget/profile/user_profile.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+class MyProfileScreen extends StatelessWidget {
+  const MyProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

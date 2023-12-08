@@ -95,7 +95,7 @@ class HomeScreen extends StatelessWidget {
                             child: CourseBtnWidget(
                                 onCourseTap: (courseIndex) {
                                   // 코스 카드 선택 시 해당 코스 화면으로 이동한다.
-                                  Get.toNamed("/course/$courseIndex");
+                                  Get.toNamed("/courseDetail/$courseIndex");
                                 },
                                 course: courses.courses[courseIndex]),
                           );

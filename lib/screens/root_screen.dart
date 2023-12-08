@@ -1,5 +1,5 @@
 import 'package:naemansan/screens/curation/curation_screen.dart';
-import 'package:naemansan/screens/profile/profile_screen.dart';
+import 'package:naemansan/screens/myProfile/my_profile_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -25,7 +25,7 @@ class RootScreen extends StatelessWidget {
                 HomeScreen(),
                 const CurationScreen(),
                 const WalkingLogScreen(),
-                const ProfileScreen(),
+                const MyProfileScreen(),
               ],
             )),
         bottomNavigationBar: const Column(

@@ -3,11 +3,11 @@ import 'package:naemansan/models/course_card_model.dart';
 
 import 'package:naemansan/models/user_profile_model.dart';
 
-class OtheruserProfileViewModel extends GetxController {
+class UserProfileViewModel extends GetxController {
   late UserProfileModel _otheruserProfile;
   late List<CourseCardModel> _courseList;
 
-  OtheruserProfileViewModel() {
+  UserProfileViewModel() {
     _otheruserProfile =
         UserProfileModel("다른 유저", "한줄소개", ["#1", "#2"], "4", "3");
     _courseList = [

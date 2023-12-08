@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:naemansan/screens/otheruserProfile/otheruser_profile_screen.dart';
+import 'package:get/get.dart';
+import 'package:naemansan/screens/userProfile/user_profile_screen.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 import 'package:naemansan/widget/profile/follow_btn.dart';
@@ -29,10 +30,7 @@ class _FollowuserProfileState extends State<FollowuserProfile> {
       margin: const EdgeInsets.only(bottom: 20),
       child: InkWell(
         onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const OtheruserProfileScreen()));
+          Get.toNamed("/userProfile/1");
         },
         child: Row(
           children: [

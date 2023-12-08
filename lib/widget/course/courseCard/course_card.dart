@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:naemansan/models/course_card_model.dart';
 import 'package:naemansan/screens/courseDetail/course_detail_screen.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
@@ -18,10 +19,7 @@ class _CourseCardState extends State<CourseCard> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const CourseDetailScreen()));
+        Get.toNamed("/courseDetail/1");
       },
       child: SizedBox(
           width: double.infinity,
