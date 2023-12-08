@@ -77,7 +77,10 @@ class CourseDetailScreen extends StatelessWidget {
                     CourseDetailSpotList(
                       spotList: viewModel.courseDetailInfo.spotList,
                     ),
-                    CourseDetailSimilarCourseList(),
+                    CourseDetailSimilarCourseList(
+                      similarCourseList:
+                          viewModel.courseDetailInfo.similarCourseList,
+                    ),
                   ]),
                 )
               ]),

@@ -1,4 +1,5 @@
 import 'package:naemansan/models/moment_model.dart';
+import 'package:naemansan/models/near_course_model.dart';
 import 'package:naemansan/models/spot_model.dart';
 
 class CourseDetailModel {
@@ -17,6 +18,17 @@ class CourseDetailModel {
 
   final List<SpotModel> spotList;
 
-  CourseDetailModel(this.name, this.location, this.distance, this.tags,
-      this.description, this.writer, this.date, this.momnetList, this.spotList);
+  final List<Course> similarCourseList;
+
+  CourseDetailModel(
+      this.name,
+      this.location,
+      this.distance,
+      this.tags,
+      this.description,
+      this.writer,
+      this.date,
+      this.momnetList,
+      this.spotList,
+      this.similarCourseList);
 }

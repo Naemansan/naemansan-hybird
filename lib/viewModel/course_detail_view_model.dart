@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
+import 'package:naemansan/models/course_card_model.dart';
 import 'package:naemansan/models/moment_model.dart';
+import 'package:naemansan/models/near_course_model.dart';
 import 'package:naemansan/models/spot_model.dart';
 import 'package:naemansan/models/course_detail_model.dart';
 
@@ -33,6 +35,47 @@ class CourseDetailViewModel extends GetxController {
         [
           SpotModel("스팟1", "Cafe", null, "헐..."),
           SpotModel("스팟2", "Nature", "1", "헐...")
+        ],
+        [
+          Course(
+              id: 1,
+              title: "타이틀",
+              siGuDong: "화성시동탄반석로",
+              distance: "1,234m",
+              keywords: [
+                Keyword(id: 1, keyword: "123"),
+                Keyword(id: 1, keyword: "123"),
+                Keyword(id: 1, keyword: "123")
+              ],
+              locations: [
+                Location(latitude: 12.0, longitude: 34.0),
+              ]),
+          Course(
+              id: 2,
+              title: "타이틀2",
+              siGuDong: "화성시동탄반석로",
+              distance: "1,234m",
+              keywords: [
+                Keyword(id: 1, keyword: "123"),
+                Keyword(id: 1, keyword: "123"),
+                Keyword(id: 1, keyword: "123")
+              ],
+              locations: [
+                Location(latitude: 12.0, longitude: 34.0),
+              ]),
+          Course(
+              id: 3,
+              title: "타이틀2",
+              siGuDong: "화성시동탄반석로",
+              distance: "1,234m",
+              keywords: [
+                Keyword(id: 1, keyword: "123"),
+                Keyword(id: 1, keyword: "123"),
+                Keyword(id: 1, keyword: "123")
+              ],
+              locations: [
+                Location(latitude: 12.0, longitude: 34.0),
+              ])
         ]);
   }
   CourseDetailModel get courseDetailInfo => _courseDetailInfo;
