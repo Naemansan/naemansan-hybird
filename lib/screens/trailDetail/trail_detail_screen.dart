@@ -29,7 +29,7 @@ class TrailDetailScreen extends StatelessWidget {
               child: Column(children: [
                 //썸네일
                 Container(
-                  color: Colors.amber,
+                  color: ColorStyles.gray2,
                   height: 180,
                 ), //썸네일
 
@@ -45,7 +45,10 @@ class TrailDetailScreen extends StatelessWidget {
                           tags: viewModel.trailDetailInfo.tags),
 
                       //작성자
-                      TrailDetailWriter(),
+                      TrailDetailWriter(
+                        writer: viewModel.trailDetailInfo.writer,
+                        date: viewModel.trailDetailInfo.date,
+                      ),
 
                       //소개
                       TrailDetailDescription(
