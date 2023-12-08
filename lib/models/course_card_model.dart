@@ -1,4 +1,4 @@
-class TrailCardModel {
+class CourseCardModel {
   final String name;
   final String location;
   final String distance;
@@ -7,6 +7,6 @@ class TrailCardModel {
   final String momentCount;
   final String likeCount;
 
-  TrailCardModel(this.name, this.location, this.distance, this.tags,
+  CourseCardModel(this.name, this.location, this.distance, this.tags,
       this.momentCount, this.likeCount);
 }

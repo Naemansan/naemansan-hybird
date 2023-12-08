@@ -5,15 +5,15 @@ import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 import 'package:naemansan/widget/spot/spot_card.dart';
 
-class TrailDetailSpotList extends StatefulWidget {
+class CourseDetailSpotList extends StatefulWidget {
   final List<SpotModel> spotList;
-  const TrailDetailSpotList({super.key, required this.spotList});
+  const CourseDetailSpotList({super.key, required this.spotList});
 
   @override
-  State<TrailDetailSpotList> createState() => _TrailDetailSpotListState();
+  State<CourseDetailSpotList> createState() => _CourseDetailSpotListState();
 }
 
-class _TrailDetailSpotListState extends State<TrailDetailSpotList> {
+class _CourseDetailSpotListState extends State<CourseDetailSpotList> {
   @override
   Widget build(BuildContext context) {
     return Container(

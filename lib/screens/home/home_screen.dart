@@ -4,7 +4,7 @@ import 'package:naemansan/models/near_course_model.dart';
 import 'package:naemansan/viewModel/course_view_model.dart';
 import 'package:naemansan/viewModel/home_view_model.dart';
 import 'package:naemansan/widget/home/course_start_btn_widget.dart';
-import 'package:naemansan/widget/home/near_course_btn_widget.dart';
+import 'package:naemansan/widget/course/courseBtn/near_course_btn_widget.dart';
 import 'package:naver_map_plugin/naver_map_plugin.dart';
 
 class HomeScreen extends StatelessWidget {

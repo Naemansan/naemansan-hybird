@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
 import 'package:naemansan/models/moment_model.dart';
 import 'package:naemansan/models/spot_model.dart';
-import 'package:naemansan/models/trail_detail_model.dart';
+import 'package:naemansan/models/course_detail_model.dart';
 
-class TrailDetailViewModel extends GetxController {
-  late TrailDetailModel _trailDetailInfo;
-  TrailDetailViewModel() {
-    _trailDetailInfo = TrailDetailModel(
+class CourseDetailViewModel extends GetxController {
+  late CourseDetailModel _courseDetailInfo;
+  CourseDetailViewModel() {
+    _courseDetailInfo = CourseDetailModel(
         "산책로",
         "경기도 화성시 동탄반석로",
         "1,234m",
@@ -35,5 +35,5 @@ class TrailDetailViewModel extends GetxController {
           SpotModel("스팟2", "Nature", "1", "헐...")
         ]);
   }
-  TrailDetailModel get trailDetailInfo => _trailDetailInfo;
+  CourseDetailModel get courseDetailInfo => _courseDetailInfo;
 }

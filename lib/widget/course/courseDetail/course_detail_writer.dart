@@ -3,17 +3,17 @@ import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 import 'package:naemansan/widget/profile/follow_btn.dart';
 
-class TrailDetailWriter extends StatefulWidget {
+class CourseDetailWriter extends StatefulWidget {
   final String writer;
   final String date;
-  const TrailDetailWriter(
+  const CourseDetailWriter(
       {super.key, required this.writer, required this.date});
 
   @override
-  State<TrailDetailWriter> createState() => _TrailDetailWriterState();
+  State<CourseDetailWriter> createState() => _CourseDetailWriterState();
 }
 
-class _TrailDetailWriterState extends State<TrailDetailWriter> {
+class _CourseDetailWriterState extends State<CourseDetailWriter> {
   String currentState = 'follow';
 
   void onFollowBtnStateChanged(String newState) {

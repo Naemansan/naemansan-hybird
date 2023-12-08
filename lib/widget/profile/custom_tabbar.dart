@@ -29,7 +29,7 @@ class _CustomTabbar extends State<CustomTabbar> {
               scrollDirection: Axis.horizontal,
               itemCount: widget.tabs.length,
               itemBuilder: (context, index) {
-                return GestureDetector(
+                return InkWell(
                   onTap: () {
                     setState(() {
                       current = index;

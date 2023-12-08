@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
-class TrailDetailInfo extends StatelessWidget {
+class CourseDetailInfo extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
   final String name;
   final String location;
   final String distance;
   final List<String> tags;
 
-  const TrailDetailInfo(
+  const CourseDetailInfo(
       {super.key,
       required this.name,
       required this.location,

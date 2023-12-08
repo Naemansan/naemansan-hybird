@@ -4,15 +4,15 @@ import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 import 'package:naemansan/widget/moment/momentCard/moment_card.dart';
 
-class TrailDetailMomentList extends StatefulWidget {
+class CourseDetailMomentList extends StatefulWidget {
   final List<MomentModel> momentList;
-  const TrailDetailMomentList({super.key, required this.momentList});
+  const CourseDetailMomentList({super.key, required this.momentList});
 
   @override
-  State<TrailDetailMomentList> createState() => _TrailDetailMomentListState();
+  State<CourseDetailMomentList> createState() => _CourseDetailMomentListState();
 }
 
-class _TrailDetailMomentListState extends State<TrailDetailMomentList> {
+class _CourseDetailMomentListState extends State<CourseDetailMomentList> {
   int currentMoment = 0;
 
   @override
@@ -58,7 +58,7 @@ class _TrailDetailMomentListState extends State<TrailDetailMomentList> {
                       spacing: 12,
                       children:
                           widget.momentList.asMap().entries.map((element) {
-                        return GestureDetector(
+                        return InkWell(
                           onTap: () {
                             setState(() {
                               currentMoment = element.key;

@@ -27,7 +27,7 @@ class _FollowuserProfileState extends State<FollowuserProfile> {
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.only(bottom: 20),
-      child: GestureDetector(
+      child: InkWell(
         onTap: () {
           Navigator.push(
               context,

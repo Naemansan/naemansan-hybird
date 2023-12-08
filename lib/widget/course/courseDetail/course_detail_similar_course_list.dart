@@ -2,8 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
-class TrailDetailSimilarTrailList extends StatelessWidget {
-  const TrailDetailSimilarTrailList({super.key});
+class CourseDetailSimilarCourseList extends StatelessWidget {
+  const CourseDetailSimilarCourseList({super.key});
 
   @override
   Widget build(BuildContext context) {

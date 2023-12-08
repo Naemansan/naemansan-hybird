@@ -17,7 +17,7 @@ class _FollowBtnState extends State<FollowBtn> {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(left: 4),
-      child: GestureDetector(
+      child: InkWell(
           onTap: () {
             setState(() {
               if (widget.currentState == "follow") {

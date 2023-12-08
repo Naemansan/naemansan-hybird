@@ -1,25 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:naemansan/models/trail_card_model.dart';
-import 'package:naemansan/screens/trailDetail/trail_detail_screen.dart';
+import 'package:naemansan/models/course_card_model.dart';
+import 'package:naemansan/screens/courseDetail/course_detail_screen.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
-class TrailCard extends StatefulWidget {
-  final TrailCardModel trailInfo;
-  const TrailCard({super.key, required this.trailInfo});
+class CourseCard extends StatefulWidget {
+  final CourseCardModel courseInfo;
+  const CourseCard({super.key, required this.courseInfo});
 
   @override
-  State<TrailCard> createState() => _TrailCardState();
+  State<CourseCard> createState() => _CourseCardState();
 }
 
-class _TrailCardState extends State<TrailCard> {
+class _CourseCardState extends State<CourseCard> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const TrailDetailScreen()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const CourseDetailScreen()));
       },
       child: SizedBox(
           width: double.infinity,
@@ -45,7 +47,7 @@ class _TrailCardState extends State<TrailCard> {
                       children: [
                         //산책로 이름
                         Text(
-                          widget.trailInfo.name,
+                          widget.courseInfo.name,
                           style: FontStyles.semiBold20
                               .copyWith(color: ColorStyles.black),
                         ), //산책로 이름
@@ -56,9 +58,9 @@ class _TrailCardState extends State<TrailCard> {
                           child: Wrap(
                             spacing: 4.0,
                             children: [
-                              widget.trailInfo.location,
+                              widget.courseInfo.location,
                               "·",
-                              widget.trailInfo.distance
+                              widget.courseInfo.distance
                             ].map((element) {
                               return Text(element,
                                   style: FontStyles.regular16.copyWith(
@@ -78,7 +80,7 @@ class _TrailCardState extends State<TrailCard> {
                                 Wrap(
                                   spacing: 4.0,
                                   children:
-                                      widget.trailInfo.tags.map((element) {
+                                      widget.courseInfo.tags.map((element) {
                                     return Text(
                                       element,
                                       style: FontStyles.regular12
@@ -100,7 +102,7 @@ class _TrailCardState extends State<TrailCard> {
                                               height: 16),
                                           const SizedBox(width: 4),
                                           Text(
-                                            widget.trailInfo.momentCount,
+                                            widget.courseInfo.momentCount,
                                             style: FontStyles.regular12
                                                 .copyWith(
                                                     color: ColorStyles.gray3),
@@ -119,7 +121,7 @@ class _TrailCardState extends State<TrailCard> {
                                               height: 16),
                                           const SizedBox(width: 4),
                                           Text(
-                                            widget.trailInfo.likeCount,
+                                            widget.courseInfo.likeCount,
                                             style: FontStyles.regular12
                                                 .copyWith(
                                                     color: ColorStyles.gray3),

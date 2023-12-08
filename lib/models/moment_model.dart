@@ -6,11 +6,11 @@ class MomentModel {
 
   final String emotion;
 
-  final String trailName;
+  final String courseName;
   final String userName;
 
   final String context;
 
-  MomentModel(this.date, this.year, this.weather, this.emotion, this.trailName,
+  MomentModel(this.date, this.year, this.weather, this.emotion, this.courseName,
       this.userName, this.context);
 }
