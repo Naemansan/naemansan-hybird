@@ -65,7 +65,7 @@ class _TrailDetailMomentListState extends State<TrailDetailMomentList> {
                             });
                           },
                           child: Opacity(
-                            opacity: currentMoment == element.key ? 1 : 0.4,
+                            opacity: currentMoment == element.key ? 1 : 0.3,
                             child: MomentCard(
                               momentInfo: element.value,
                             ),

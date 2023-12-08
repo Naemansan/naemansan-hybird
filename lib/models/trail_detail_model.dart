@@ -1,4 +1,5 @@
 import 'package:naemansan/models/moment_model.dart';
+import 'package:naemansan/models/spot_model.dart';
 
 class TrailDetailModel {
   final String name;
@@ -13,6 +14,9 @@ class TrailDetailModel {
   final String date;
 
   final List<MomentModel> momnetList;
+
+  final List<SpotModel> spotList;
+
   TrailDetailModel(this.name, this.location, this.distance, this.tags,
-      this.description, this.writer, this.date, this.momnetList);
+      this.description, this.writer, this.date, this.momnetList, this.spotList);
 }
