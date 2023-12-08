@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:naver_map_plugin/naver_map_plugin.dart';
 
 class NearCourseListModel {
@@ -45,7 +43,7 @@ class Course {
     );
   }
   // toLatLng
-  // Location 객체를 LatLng 객체로 변환하는 함수
+  // Location 객체를 cccs
   List<LatLng> toLatLng() {
     return locations.map((l) => LatLng(l.latitude, l.longitude)).toList();
   }
