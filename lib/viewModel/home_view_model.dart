@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:naemansan/models/geolocation_model.dart';
+import 'package:naemansan/models/near_course_model.dart';
 import 'package:naemansan/models/si_gu_dong_model.dart';
 import 'package:naemansan/services/geolocation_service.dart';
 import 'package:naemansan/services/si_gu_dong_service.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
+import 'package:naemansan/viewModel/course_view_model.dart';
 import 'package:naver_map_plugin/naver_map_plugin.dart';
 
 class HomeViewModel extends GetxController {
-  // GeolocatorService, SiGuDongService 객체 생성
+  // 홈 스크롤 컨트롤러
+  final ScrollController scrollController = ScrollController();
+
+  // 위치 정보, 시구동 정보, 로딩 여부 변수
   final GeolocatorService _geolocatorService = GeolocatorService();
-  final SiGuDongService _naverMapService = SiGuDongService();
+  // 시구동 정보를 받아오는 서비스
+  final SiGuDongService _siGuDong = SiGuDongService();
+  var pathOverlays = Rx<Set<PathOverlay>>({});
 
   // 현재 위치, 시구동 정보, 로딩 여부 변수
   GeoLocation? _currentLocation;
@@ -20,11 +27,37 @@ class HomeViewModel extends GetxController {
   HomeViewModel() {
     loadCurrentLocation();
   }
+  // 현재 위치 업데이트 함수
+  void updatePathOverlays(List<Location> locations) {
+    Set<PathOverlay> newOverlays = createPathOverlays(locations);
+    pathOverlays.value = newOverlays; // Update the Rx variable
+  }
 
   // 현재 위치, 시구동 정보, 로딩 여부 변수의 getter
   GeoLocation? get currentLocation => _currentLocation;
   SiGuDongModel? get sigudongData => _sigudongData;
   bool get isLoading => _isLoading;
+
+  // 홈 스크롤 컨트롤러 초기화
+  void initScrollListener(CourseController courseController) {
+    scrollController.addListener(() {
+      if (courseController.course.value?.courses.isNotEmpty ?? false) {
+        int mostVisibleIndex = getMostVisibleCardIndex(
+            courseController.course.value!.courses.length);
+        Course mostVisibleCourse =
+            courseController.course.value!.courses[mostVisibleIndex];
+        updatePathOverlays(mostVisibleCourse.locations);
+      }
+    });
+  }
+
+// 가장 많이 보이는 카드의 인덱스를 반환하는 함수
+  int getMostVisibleCardIndex(int itemCount) {
+    double cardWidth = 320.0;
+    double currentScroll = scrollController.offset;
+    int index = (currentScroll / cardWidth).round();
+    return index.clamp(0, itemCount - 1);
+  }
 
   // 현재 위치를 받아오는 함수
   void loadCurrentLocation() async {
@@ -44,23 +77,19 @@ class HomeViewModel extends GetxController {
   }
 
   // 임시 더미데이터로 패스 오버레이 리스트 생성
-  Set<PathOverlay> createPathOverlays() {
+  Set<PathOverlay> createPathOverlays(List<Location> locations) {
     Set<PathOverlay> pathOverlays = {};
+
+    // Convert Location objects to LatLng and create PathOverlay
+    List<LatLng> latLngList = locations
+        .map((location) => LatLng(location.latitude, location.longitude))
+        .toList();
 
     pathOverlays.add(
       PathOverlay(
-        PathOverlayId("dummy"),
-        [
-          const LatLng(37.55905356536202, 127.00033312353234),
-          const LatLng(37.55929595808703, 127.00037335666757),
-          const LatLng(37.55950220390754, 127.000451140729),
-          const LatLng(37.55957024364062, 127.00067108186822),
-          const LatLng(37.559766156821595, 127.00080260449865),
-          const LatLng(37.560045979501844, 127.00086248649693),
-          const LatLng(37.560422098031914, 127.00094988935628),
-          const LatLng(37.560763763504944, 127.00109481811523),
-          const LatLng(37.56073718551571, 127.00100559439653),
-        ],
+        PathOverlayId(
+            "Your Title Here"), // Use a unique identifier or course title
+        latLngList,
         width: 12,
         color: ColorStyles.main2,
         outlineColor: Colors.transparent,
@@ -74,7 +103,7 @@ class HomeViewModel extends GetxController {
   Future<void> fetchNaverMapData() async {
     if (_currentLocation != null) {
       try {
-        _sigudongData = await _naverMapService.fetchData(
+        _sigudongData = await _siGuDong.fetchData(
           _currentLocation!.latitude,
           _currentLocation!.longitude,
         );
@@ -83,5 +112,20 @@ class HomeViewModel extends GetxController {
         // Handle exceptions
       }
     }
+  }
+
+  // 홈 스크롤 컨트롤러 초기화
+  @override
+  void onInit() {
+    super.onInit();
+    final courseController = Get.put(CourseController());
+    initScrollListener(courseController);
+  }
+
+// 홈 스크롤 컨트롤러 종료
+  @override
+  void onClose() {
+    scrollController.dispose();
+    super.onClose();
   }
 }

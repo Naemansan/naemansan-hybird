@@ -21,11 +21,11 @@ class RootScreen extends StatelessWidget {
         backgroundColor: ColorStyles.white,
         body: Obx(() => IndexedStack(
               index: CustomBottomNavigationBarController.to.selectedIndex.value,
-              children: const [
+              children: [
                 HomeScreen(),
-                CurationScreen(),
-                WalkingLogScreen(),
-                ProfileScreen(),
+                const CurationScreen(),
+                const WalkingLogScreen(),
+                const ProfileScreen(),
               ],
             )),
         bottomNavigationBar: const Column(
