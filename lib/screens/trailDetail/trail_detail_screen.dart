@@ -69,10 +69,12 @@ class TrailDetailScreen extends StatelessWidget {
                 ), //구분선
 
                 Container(
-                  padding: const EdgeInsets.fromLTRB(16, 20, 16, 40),
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 40),
                   width: double.infinity,
                   child: Column(children: [
-                    TrailDetailSpotList(),
+                    TrailDetailSpotList(
+                      spotList: viewModel.trailDetailInfo.spotList,
+                    ),
                     TrailDetailSimilarTrail()
                   ]),
                 )

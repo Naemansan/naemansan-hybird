@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:naemansan/models/moment_model.dart';
+import 'package:naemansan/models/spot_model.dart';
 import 'package:naemansan/models/trail_detail_model.dart';
 
 class TrailDetailViewModel extends GetxController {
@@ -28,6 +29,10 @@ class TrailDetailViewModel extends GetxController {
               "좋네요... 그만하고싶다."),
           MomentModel("11/24", "2023", "Rain", "Com", "산책로", "모멘트 작성자 2",
               "좋네요... 그만하고싶다좋네요... 그만하고싶다좋네요... 그만하고싶다좋네요... 그만하고싶다좋네요... 그만하고싶다좋네요... 그만하고싶다좋네요... 그만하고싶다."),
+        ],
+        [
+          SpotModel("스팟1", "Cafe", null, "헐..."),
+          SpotModel("스팟2", "Nature", "1", "헐...")
         ]);
   }
   TrailDetailModel get trailDetailInfo => _trailDetailInfo;
