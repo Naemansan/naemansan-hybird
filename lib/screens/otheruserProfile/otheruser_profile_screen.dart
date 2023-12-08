@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/viewModel/otheruser_profile_view_model.dart';
 import 'package:naemansan/widget/profile/user_profile.dart';
-import 'package:naemansan/widget/trail/trail_card_list.dart';
+import 'package:naemansan/widget/trail/trailCard/trail_card_list.dart';
 
-class OtheruserProfile extends StatelessWidget {
-  const OtheruserProfile({super.key});
+class OtheruserProfileScreen extends StatelessWidget {
+  const OtheruserProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

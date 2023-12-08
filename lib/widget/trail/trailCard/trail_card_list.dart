@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:naemansan/models/trail_card_model.dart';
-import 'package:naemansan/widget/trail/trail_card.dart';
+import 'package:naemansan/widget/trail/trailCard/trail_card.dart';
 
 class TrailCardList extends StatelessWidget {
   final List<TrailCardModel> trailList;
