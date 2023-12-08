@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:naemansan/models/course_overview_model.dart';
-import 'package:naemansan/models/keyword_model.dart';
 
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
-import 'package:naemansan/widget/common/keyword_btn.dart';
 import 'package:naemansan/widget/course/courseCard/course_card_list.dart';
+import 'package:naemansan/models/course_overview_model.dart';
 
-class CurationNear extends StatefulWidget {
-  const CurationNear({super.key});
+import 'package:naemansan/models/keyword_model.dart';
+import 'package:naemansan/widget/common/keyword_btn.dart';
+
+class CurationPopularCourse extends StatefulWidget {
+  const CurationPopularCourse({super.key});
 
   @override
-  State<CurationNear> createState() => _CurationNearState();
+  State<CurationPopularCourse> createState() => _CurationPopularCourseState();
 }
 
-class _CurationNearState extends State<CurationNear> {
+class _CurationPopularCourseState extends State<CurationPopularCourse> {
   var currentSelect = [];
 
   //^:dummy
@@ -65,18 +66,11 @@ class _CurationNearState extends State<CurationNear> {
       children: [
         //타이틀
         Container(
+          width: double.infinity,
           padding: const EdgeInsets.fromLTRB(4, 4, 4, 16),
-          child: Row(
-            children: [
-              Text(
-                "^:장소",
-                style: FontStyles.semiBold20.copyWith(color: ColorStyles.main1),
-              ),
-              Text(
-                "의 산책로",
-                style: FontStyles.semiBold20.copyWith(color: ColorStyles.black),
-              ),
-            ],
+          child: Text(
+            "전국의 다양한 산책로",
+            style: FontStyles.semiBold20.copyWith(color: ColorStyles.black),
           ),
         ), //타이틀
 
