@@ -3,11 +3,11 @@ import 'package:naemansan/models/near_course_model.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
-class CourseCardWidget extends StatelessWidget {
+class CourseBtnWidget extends StatelessWidget {
   final Course course;
   final Function(int) onCourseTap;
 
-  const CourseCardWidget(
+  const CourseBtnWidget(
       {super.key, required this.course, required this.onCourseTap});
 
   @override
