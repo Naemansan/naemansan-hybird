@@ -61,6 +61,19 @@ class Keyword {
       keyword: json['keyword'],
     );
   }
+
+// keyword 10개
+// 1. 일상속 여유
+// 2. 평온한 힐링
+// 3. 자연과 함께
+// 4. 활기찬 분위기
+// 5. 감성충만
+// 6. 도심풍경
+// 7. 새로운 모험
+// 8.고즈넉한 무드
+// 9. 강길을 따라
+// 10. 일상의 재발견
+// full Keyword List
 }
 
 class Location {

@@ -42,8 +42,10 @@ class HomeViewModel extends GetxController {
   void initScrollListener(CourseController courseController) {
     scrollController.addListener(() {
       if (courseController.course.value?.courses.isNotEmpty ?? false) {
+        // 가장 많이 보이는 카드의 인덱스 가져오기
         int mostVisibleIndex = getMostVisibleCardIndex(
-            courseController.course.value!.courses.length);
+                courseController.course.value!.courses.length) -
+            1;
         Course mostVisibleCourse =
             courseController.course.value!.courses[mostVisibleIndex];
         updatePathOverlays(mostVisibleCourse.locations);
@@ -56,7 +58,7 @@ class HomeViewModel extends GetxController {
     double cardWidth = 320.0;
     double currentScroll = scrollController.offset;
     int index = (currentScroll / cardWidth).round();
-    return index.clamp(0, itemCount - 1);
+    return index.clamp(1, itemCount); // 0이 아닌 1부터 시작하도록 조정
   }
 
   // 현재 위치를 받아오는 함수
