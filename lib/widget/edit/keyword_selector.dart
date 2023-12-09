@@ -9,12 +9,17 @@ class KeywordSelector extends StatefulWidget {
   final String label;
   final String placeholder;
   final String snackMessage;
+  final List<int> currentSelect;
+
+  final VoidCallback onChanged;
 
   const KeywordSelector({
     super.key,
     required this.label,
     required this.placeholder,
     required this.snackMessage,
+    required this.currentSelect,
+    required this.onChanged,
   });
 
   @override
@@ -22,8 +27,6 @@ class KeywordSelector extends StatefulWidget {
 }
 
 class _KeywordSelectorState extends State<KeywordSelector> {
-  var currentSelect = [];
-
   @override
   Widget build(BuildContext context) {
     final keywords = [
@@ -75,18 +78,20 @@ class _KeywordSelectorState extends State<KeywordSelector> {
                   .asMap()
                   .entries
                   .map((element) => KeywordBtn(
-                      isSelected: currentSelect.contains((element.key)),
+                      isSelected: widget.currentSelect.contains((element.key)),
                       content: element.value,
                       onBtnTap: () {
                         setState(() {
-                          if (currentSelect.contains(element.key)) {
-                            currentSelect.remove(element.key);
+                          if (widget.currentSelect.contains(element.key)) {
+                            widget.currentSelect.remove(element.key);
+                            widget.onChanged();
                           } else {
-                            if (currentSelect.length >= 3) {
+                            if (widget.currentSelect.length >= 3) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                   customSnackbar(widget.snackMessage));
                             } else {
-                              currentSelect.add(element.key);
+                              widget.currentSelect.add(element.key);
+                              widget.onChanged();
                             }
                           }
                         });

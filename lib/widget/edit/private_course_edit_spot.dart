@@ -6,15 +6,16 @@ import 'package:naemansan/widget/common/alret/custom_snackbar.dart';
 import 'package:naemansan/widget/spot/spot_card.dart';
 
 class PrivateCourseEditSpot extends StatefulWidget {
-  const PrivateCourseEditSpot({super.key});
+  final List<int> currentSelect;
+  final VoidCallback onChanged;
+  const PrivateCourseEditSpot(
+      {super.key, required this.onChanged, required this.currentSelect});
 
   @override
   State<PrivateCourseEditSpot> createState() => _PrivateCourseEditSpotState();
 }
 
 class _PrivateCourseEditSpotState extends State<PrivateCourseEditSpot> {
-  var currentSelect = [];
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -70,17 +71,19 @@ class _PrivateCourseEditSpotState extends State<PrivateCourseEditSpot> {
                 .entries
                 .map((element) => SpotCard(
                       spotInfo: element.value,
-                      isSelected: currentSelect.contains(element.key),
+                      isSelected: widget.currentSelect.contains(element.key),
                       onTap: () {
                         setState(() {
-                          if (currentSelect.contains(element.key)) {
-                            currentSelect.remove(element.key);
+                          if (widget.currentSelect.contains(element.key)) {
+                            widget.currentSelect.remove(element.key);
+                            widget.onChanged();
                           } else {
-                            if (currentSelect.length >= 3) {
+                            if (widget.currentSelect.length >= 3) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                   customSnackbar("스팟은 5개까지 선택 가능합니다!"));
                             } else {
-                              currentSelect.add(element.key);
+                              widget.currentSelect.add(element.key);
+                              widget.onChanged();
                             }
                           }
                         });
