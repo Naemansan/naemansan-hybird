@@ -1,6 +1,8 @@
 import 'package:naemansan/screens/course/course_walking_screen.dart';
 import 'package:naemansan/screens/courseDetail/course_detail_screen.dart';
 import 'package:naemansan/screens/courseDetail/private_course_detail_screen.dart';
+import 'package:naemansan/screens/courseDetail/private_course_edit_screen.dart';
+import 'package:naemansan/screens/courseDetail/private_course_publish_screen.dart';
 import 'package:naemansan/screens/myProfile/my_profile_edit_screen.dart';
 import 'package:naemansan/screens/root_screen.dart';
 import 'package:flutter/material.dart';
@@ -49,12 +51,23 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/', page: () => const RootScreen()),
         GetPage(
             name: '/course/walking', page: () => const CourseWalkingScreen()),
+
+        //산책로
         GetPage(
             name: '/courseDetail/:courseId',
             page: () => const CourseDetailScreen()),
+
         GetPage(
             name: '/privateCourseDetail/:courseId',
             page: () => const PrivateCourseDetailScreen()),
+        GetPage(
+            name: '/privateCourseEdit/:courseId',
+            page: () => const PrivateCourseEditScreen()),
+        GetPage(
+            name: '/privateCoursePublish/:courseId',
+            page: () => const PrivateCoursePublishScreen()),
+
+        //프로필
         GetPage(
             name: '/userProfile/:userId',
             page: () => const UserProfileScreen()),
