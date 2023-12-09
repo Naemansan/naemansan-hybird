@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:naemansan/models/course_overview_model.dart';
 import 'package:naemansan/models/keyword_model.dart';
+import 'package:naemansan/utilities/keyword_list.dart';
 
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
@@ -50,19 +51,6 @@ class _CurationNearState extends State<CurationNear> {
 
   @override
   Widget build(BuildContext context) {
-    final keywords = [
-      "일상속 여유",
-      '평온한 힐링',
-      '자연과 함께',
-      '활기찬 분위기',
-      '감성충만',
-      '도심풍경',
-      '새로운 모험',
-      '고즈넉한 무드',
-      "강길을 따라",
-      "일상의 재발견",
-    ];
-
     return Column(
       children: [
         //타이틀
@@ -90,7 +78,7 @@ class _CurationNearState extends State<CurationNear> {
             clipBehavior: Clip.none,
             scrollDirection: Axis.horizontal,
             child: Row(
-                children: keywords
+                children: KeywordConfig.keywordList
                     .asMap()
                     .entries
                     .map((element) => KeywordBtn(
