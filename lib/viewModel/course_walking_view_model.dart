@@ -17,34 +17,60 @@ class CourseWalkingViewModel extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _isLoading = true; // Set loading to true initially
-    // Request current location permissions and set initial location
+    _isLoading = true;
+    // 현재 위치를 받아옴
     determinePosition().then((Position position) {
-      // Set loading to false when location is obtained
       _isLoading = false;
-      // Add the current location to the path
       addInitialLocationToPath(position);
     }).catchError((e) {
-      // Handle error, perhaps set a flag to show an error message
       _isLoading = false;
     });
-
-    // If you don't want to wait for `determinePosition`, uncomment the following line
-    // to add a default initial position to the path:
-    // addInitialLocationToPath(Position(latitude: 37.3595704, longitude: 127.105399));
   }
 
-  // Add initial location to the path
+  // 스팟 이름 설명 카테고리 인덱스
+  var selectedIndex = Rx<int?>(null);
+
+  var spotName = ''.obs;
+  var spotDescription = ''.obs;
+
+  // 폼이 유효한지 확인하는 getter
+  bool get isFormValid =>
+      spotName.isNotEmpty &&
+      spotDescription.isNotEmpty &&
+      selectedIndex.value != null;
+
+  // 카테고리 아이콘 선택
+  void selectSpotIcon(int index) {
+    selectedIndex.value = index;
+  }
+
+  // 스팟 등록 함수
+  void registerSpot(String name, String description) {
+    // 등록 알고리즘
+    // ..
+    // 등록 후 폼 초기화
+    spotName.value = '';
+    spotDescription.value = '';
+    selectedIndex.value = null;
+  }
+
+  // 유저가 입력한 스팟 이름과 설명을 업데이트하는 함수
+  void updateName(String name) {
+    spotName.value = name;
+  }
+
+  void updateDescription(String description) {
+    spotDescription.value = description;
+  }
+
+  // 산책 시작 처음 위치를 경로에 추가
   void addInitialLocationToPath(Position position) {
     var initialPoint = LatLng(position.latitude, position.longitude);
-    // Add the initial position twice to start the path
     latLngList.addAll([initialPoint, initialPoint]);
-
-    // Update the PathOverlay
     updatePathOverlay();
   }
 
-  // Function to create and update the path overlay
+  // 업데이트 경로
   void updatePathOverlay() {
     if (latLngList.length > 1) {
       var newPathOverlay = PathOverlay(
@@ -59,7 +85,7 @@ class CourseWalkingViewModel extends GetxController {
     }
   }
 
-// 현재 위치를 경로에 추가하는 함수
+  // 산책 중 현재 위치를 경로에 추가
   void addLocationToPath(Position position) {
     var newPoint = LatLng(position.latitude, position.longitude);
     //새 위치를 경로에 추가

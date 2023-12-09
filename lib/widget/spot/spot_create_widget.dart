@@ -4,25 +4,23 @@ import 'package:get/get.dart';
 import 'package:naemansan/utilities/spot_icon_list.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
-import 'package:naemansan/viewModel/walking/course_spot_create_view_model.dart';
+import 'package:naemansan/viewModel/course_walking_view_model.dart';
+import 'package:naemansan/viewModel/image_capture_view_model.dart';
 
 class SpotCreateWidget extends StatelessWidget {
-  final CourseSpotCreateViewModel spotCreateViewModel =
-      Get.put(CourseSpotCreateViewModel());
+  final CourseWalkingViewModel spotCreateViewModel =
+      Get.find<CourseWalkingViewModel>();
+  final imageviewModel = Get.put(ImageCaptureViewModel());
 
   SpotCreateWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // TextEditingControllers should be initialized here if they are being used
-    // Otherwise, you can use the `spotCreateViewModel` to directly handle the input changes
     final TextEditingController nameController = TextEditingController();
     final TextEditingController descriptionController = TextEditingController();
 
-    // Reactively enabling the submit button
     final RxBool isSubmitEnabled = false.obs;
 
-    // Observing the text changes to enable or disable the submit button
     void checkFormValid() {
       final isNameFilled = nameController.text.trim().isNotEmpty;
       final isDescriptionFilled = descriptionController.text.trim().isNotEmpty;
@@ -77,6 +75,21 @@ class SpotCreateWidget extends StatelessWidget {
           style: FontStyles.regular16.copyWith(color: ColorStyles.gray3),
         ),
         const SizedBox(height: 16),
+        // 이미지 박스
+        Obx(() => Container(
+              color: ColorStyles.gray0,
+              width: double.infinity,
+              height: 200,
+              child: imageviewModel.imageFile.value == null
+                  ? IconButton(
+                      icon: const Icon(Icons.add_a_photo,
+                          color: ColorStyles.gray3),
+                      onPressed: imageviewModel.pickImageFromCamera,
+                    )
+                  : Image.file(imageviewModel.imageFile.value!,
+                      fit: BoxFit.cover),
+            )),
+        const SizedBox(height: 20),
       ],
     );
   }
@@ -116,7 +129,7 @@ class SpotCreateWidget extends StatelessWidget {
   }
 
 // 스팟 카테고리를 선택하는 부분
-  Widget _buildCategorySection(CourseSpotCreateViewModel viewModel) {
+  Widget _buildCategorySection(CourseWalkingViewModel viewModel) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -156,7 +169,12 @@ class SpotCreateWidget extends StatelessWidget {
                       IconConfig.iconPaths[index],
                       width: 48,
                       height: 48,
-                      color: isSelected ? ColorStyles.white : ColorStyles.main1,
+                      colorFilter: ColorFilter.mode(
+                        isSelected
+                            ? ColorStyles.white
+                            : ColorStyles.main1, // 선택된 경우와 그렇지 않은 경우에 적용할 색상
+                        BlendMode.srcIn, // Blend mode
+                      ),
                     ),
                   ),
                 );
@@ -167,8 +185,8 @@ class SpotCreateWidget extends StatelessWidget {
   }
 
 //취소, 스팟 등록하기 버튼
-  Widget _buildButtonRow(BuildContext context,
-      CourseSpotCreateViewModel viewModel, bool isEnabled) {
+  Widget _buildButtonRow(
+      BuildContext context, CourseWalkingViewModel viewModel, bool isEnabled) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -209,12 +227,10 @@ class SpotCreateWidget extends StatelessWidget {
               style: TextButton.styleFrom(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(4)),
-                backgroundColor: isEnabled
-                    ? ColorStyles.main1
-                    : ColorStyles.gray0, // Grey out if disabled
-                foregroundColor: isEnabled
-                    ? ColorStyles.white
-                    : ColorStyles.gray3, // Grey out text if disabled
+                backgroundColor:
+                    isEnabled ? ColorStyles.main1 : ColorStyles.gray0,
+                foregroundColor:
+                    isEnabled ? ColorStyles.white : ColorStyles.gray3,
               ),
               child: Center(
                 child: Padding(
