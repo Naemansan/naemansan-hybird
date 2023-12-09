@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:naemansan/method/get_scale_width.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 
 import 'package:naemansan/viewModel/course_detail_view_model.dart';
@@ -40,9 +41,13 @@ class CourseDetailScreen extends StatelessWidget {
               width: double.infinity,
               child: Column(children: [
                 //썸네일
-                Container(
-                  color: ColorStyles.gray2,
-                  height: 180,
+                SizedBox(
+                  width: double.infinity,
+                  height: getScaleWidth(context) * 180,
+                  child: Image.asset(
+                    fit: BoxFit.cover,
+                    'assets/images/defaultImage.png',
+                  ),
                 ), //썸네일
 
                 //산책로 정보

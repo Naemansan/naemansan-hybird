@@ -101,7 +101,7 @@ class _CurationPopularCourseState extends State<CurationPopularCourse> {
                     .toList()),
           ),
         ), //태그 선택
-        CourseOverviewList(courseList: courseList)
+        CourseCardList(courseList: courseList)
       ],
     );
   }

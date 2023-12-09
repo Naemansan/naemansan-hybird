@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:naemansan/method/get_scale_width.dart';
 import 'package:naemansan/models/spot_model.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
@@ -66,16 +67,18 @@ class _SpotCardState extends State<SpotCard> {
           Visibility(
             visible: widget.spotInfo.thumbnail != null,
             child: Container(
-              margin: const EdgeInsets.only(bottom: 12),
+              width: double.infinity,
+              height: getScaleWidth(context) * 200,
+              margin: const EdgeInsets.only(right: 4),
               decoration: BoxDecoration(
-                color: ColorStyles.gray2,
                 borderRadius: BorderRadius.circular(4),
               ),
-              width: double.infinity,
-              height: 200,
+              child: Image.asset(
+                'assets/images/defaultImage.png',
+                height: 32,
+              ),
             ),
           ),
-
           //썸네일
 
           //내용

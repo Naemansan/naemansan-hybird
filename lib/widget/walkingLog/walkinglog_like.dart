@@ -35,6 +35,6 @@ class WalkingLogLike extends StatelessWidget {
           momentCount: 1,
           likeCount: 2)
     ];
-    return CourseOverviewList(courseList: courseList);
+    return CourseCardList(courseList: courseList);
   }
 }

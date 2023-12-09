@@ -7,15 +7,10 @@ import 'package:naemansan/models/course_overview_model.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
-class CourseCard extends StatefulWidget {
+class PrivateCourseCard extends StatelessWidget {
   final CourseOverviewModel courseInfo;
-  const CourseCard({super.key, required this.courseInfo});
+  const PrivateCourseCard({super.key, required this.courseInfo});
 
-  @override
-  State<CourseCard> createState() => _CourseCardState();
-}
-
-class _CourseCardState extends State<CourseCard> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -33,18 +28,28 @@ class _CourseCardState extends State<CourseCard> {
               children: [
                 //썸네일
                 Container(
-                  width: double.infinity,
-                  height: getScaleWidth(context) * 180,
-                  margin: const EdgeInsets.only(right: 4),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  child: Image.asset(
-                    'assets/images/defaultImage.png',
-                    height: 32,
-                  ),
-                ), //썸네일
-
+                    width: double.infinity,
+                    height: getScaleWidth(context) * 180,
+                    margin: const EdgeInsets.only(right: 4),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Stack(
+                      children: [
+                        Image.asset(
+                          'assets/images/defaultImage.png',
+                          fit: BoxFit.cover,
+                        ),
+                        Positioned(
+                          top: 0, // 상단 여백 조절
+                          right: 0, // 우측 여백 조절
+                          child: Image.asset(
+                            'assets/images/privateCourseLabel.png',
+                            height: 84 * getScaleWidth(context),
+                          ),
+                        )
+                      ],
+                    )),
                 //정보부분
                 Container(
                   width: double.infinity,
@@ -54,7 +59,7 @@ class _CourseCardState extends State<CourseCard> {
                       children: [
                         //산책로 이름
                         Text(
-                          widget.courseInfo.title,
+                          courseInfo.title,
                           style: FontStyles.semiBold20
                               .copyWith(color: ColorStyles.black),
                         ), //산책로 이름
@@ -65,9 +70,9 @@ class _CourseCardState extends State<CourseCard> {
                           child: Wrap(
                             spacing: 4.0,
                             children: [
-                              widget.courseInfo.siGuDong,
+                              courseInfo.siGuDong,
                               "·",
-                              widget.courseInfo.distance
+                              courseInfo.distance
                             ].map((element) {
                               return Text(element,
                                   style: FontStyles.regular16.copyWith(
@@ -77,7 +82,7 @@ class _CourseCardState extends State<CourseCard> {
                           ),
                         ), //위치, 거리
 
-                        //태그, 좋아요, 모먼트 개수
+                        //태그,모먼트 개수
                         SizedBox(
                           width: double.infinity,
                           child: Row(
@@ -86,8 +91,7 @@ class _CourseCardState extends State<CourseCard> {
                                 //태그들...
                                 Wrap(
                                   spacing: 4.0,
-                                  children:
-                                      widget.courseInfo.keywords.map((element) {
+                                  children: courseInfo.keywords.map((element) {
                                     return Text(
                                       '#${element.keyword}',
                                       style: FontStyles.regular12
@@ -109,8 +113,7 @@ class _CourseCardState extends State<CourseCard> {
                                               height: 16),
                                           const SizedBox(width: 4),
                                           Text(
-                                            widget.courseInfo.momentCount
-                                                .toString(),
+                                            courseInfo.momentCount.toString(),
                                             style: FontStyles.regular12
                                                 .copyWith(
                                                     color: ColorStyles.gray3),
@@ -118,26 +121,6 @@ class _CourseCardState extends State<CourseCard> {
                                         ],
                                       ),
                                     ), //모먼트
-
-                                    //하트
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 8),
-                                      child: Row(
-                                        children: [
-                                          SvgPicture.asset(
-                                              'assets/icons/heartStroke.svg',
-                                              height: 16),
-                                          const SizedBox(width: 4),
-                                          Text(
-                                            widget.courseInfo.likeCount
-                                                .toString(),
-                                            style: FontStyles.regular12
-                                                .copyWith(
-                                                    color: ColorStyles.gray3),
-                                          )
-                                        ],
-                                      ),
-                                    ),
                                   ],
                                 ) //하트
                               ]),

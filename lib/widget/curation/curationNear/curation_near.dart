@@ -107,7 +107,7 @@ class _CurationNearState extends State<CurationNear> {
                     .toList()),
           ),
         ), //태그 선택
-        CourseOverviewList(courseList: courseList)
+        CourseCardList(courseList: courseList)
       ],
     );
   }

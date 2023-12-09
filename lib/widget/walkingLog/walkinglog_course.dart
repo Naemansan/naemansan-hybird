@@ -75,7 +75,7 @@ class _WalkingLogCourseState extends State<WalkingLogCourse> {
                     .toList()),
           ),
         ), //태그 선택
-        CourseOverviewList(courseList: courseList)
+        CourseCardList(courseList: courseList)
       ],
     );
   }
