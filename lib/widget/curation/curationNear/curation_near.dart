@@ -5,7 +5,7 @@ import 'package:naemansan/models/keyword_model.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
-import 'package:naemansan/widget/common/keyword_btn.dart';
+import 'package:naemansan/widget/common/button/keyword_btn.dart';
 import 'package:naemansan/widget/course/courseCard/course_card_list.dart';
 
 class CurationNear extends StatefulWidget {
