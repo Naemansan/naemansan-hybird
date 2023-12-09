@@ -5,18 +5,19 @@ import 'package:naemansan/utilities/style/font_styles.dart';
 class SolidButton extends StatelessWidget {
   final String content;
   final bool isActive;
-  final VoidCallback onTab;
+  final VoidCallback onTap;
+
   const SolidButton(
       {super.key,
       required this.content,
       required this.isActive,
-      required this.onTab});
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Flexible(
       child: InkWell(
-        onTap: onTab,
+        onTap: onTap,
         child: Container(
           decoration: BoxDecoration(
               color: isActive ? ColorStyles.main1 : ColorStyles.gray0,

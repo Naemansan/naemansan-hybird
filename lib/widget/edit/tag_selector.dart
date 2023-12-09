@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:naemansan/utilities/tag_list.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
 import 'package:naemansan/widget/common/alret/custom_snackbar.dart';
-import 'package:naemansan/widget/common/button/keyword_btn.dart';
+import 'package:naemansan/widget/common/button/tag_btn.dart';
 
-class KeywordSelector extends StatefulWidget {
+class TagSelector extends StatefulWidget {
   final String label;
   final String placeholder;
   final String snackMessage;
@@ -13,7 +14,7 @@ class KeywordSelector extends StatefulWidget {
 
   final VoidCallback onChanged;
 
-  const KeywordSelector({
+  const TagSelector({
     super.key,
     required this.label,
     required this.placeholder,
@@ -23,25 +24,12 @@ class KeywordSelector extends StatefulWidget {
   });
 
   @override
-  State<KeywordSelector> createState() => _KeywordSelectorState();
+  State<TagSelector> createState() => _TagSelectorState();
 }
 
-class _KeywordSelectorState extends State<KeywordSelector> {
+class _TagSelectorState extends State<TagSelector> {
   @override
   Widget build(BuildContext context) {
-    final keywords = [
-      "일상속 여유",
-      '평온한 힐링',
-      '자연과 함께',
-      '활기찬 분위기',
-      '감성충만',
-      '도심풍경',
-      '새로운 모험',
-      '고즈넉한 무드',
-      "강길을 따라",
-      "일상의 재발견",
-    ];
-
     return //태그 선택
         SizedBox(
       width: double.infinity,
@@ -74,10 +62,10 @@ class _KeywordSelectorState extends State<KeywordSelector> {
           ),
           Wrap(
               runSpacing: 8,
-              children: keywords
+              children: TagConfig.tagList
                   .asMap()
                   .entries
-                  .map((element) => KeywordBtn(
+                  .map((element) => TagBtn(
                       isSelected: widget.currentSelect.contains((element.key)),
                       content: element.value,
                       onBtnTap: () {

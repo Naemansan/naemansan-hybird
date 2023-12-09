@@ -7,11 +7,16 @@ import 'package:naemansan/widget/common/button/bottom_button.dart';
 import 'package:naemansan/widget/common/button/solid_button.dart';
 
 import 'package:naemansan/widget/edit/custom_textfield.dart';
-import 'package:naemansan/widget/edit/keyword_selector.dart';
+import 'package:naemansan/widget/edit/tag_selector.dart';
 import 'package:naemansan/widget/edit/private_course_edit_spot.dart';
 
 class PrivateCourseEditInfo extends StatefulWidget {
-  const PrivateCourseEditInfo({super.key});
+  final String type;
+
+  const PrivateCourseEditInfo({
+    super.key,
+    required this.type,
+  });
 
   @override
   State<PrivateCourseEditInfo> createState() => _PrivateCourseEditInfoState();
@@ -19,7 +24,7 @@ class PrivateCourseEditInfo extends StatefulWidget {
 
 class _PrivateCourseEditInfoState extends State<PrivateCourseEditInfo> {
   bool isFormValid = false;
-  List<int> currentKeywordSelect = [];
+  List<int> currentTagSelect = [];
   List<int> currentSpotSelect = [];
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
@@ -29,13 +34,11 @@ class _PrivateCourseEditInfoState extends State<PrivateCourseEditInfo> {
     void checkFormValid() {
       final isTitleFiled = titleController.text.trim().isNotEmpty;
       final isDescriptionFilled = descriptionController.text.trim().isNotEmpty;
-      final isKeyword =
-          currentKeywordSelect.length < 4 && currentKeywordSelect.isNotEmpty;
+      final isTag = currentTagSelect.length < 4 && currentTagSelect.isNotEmpty;
       final isSpot = currentSpotSelect.length < 6;
-      print(isFormValid);
+
       setState(() {
-        isFormValid =
-            isTitleFiled && isDescriptionFilled && isKeyword && isSpot;
+        isFormValid = isTitleFiled && isDescriptionFilled && isTag && isSpot;
       });
 
       return;
@@ -100,11 +103,11 @@ class _PrivateCourseEditInfoState extends State<PrivateCourseEditInfo> {
                             height: 20,
                           ),
 
-                          KeywordSelector(
+                          TagSelector(
                             label: "태그",
                             placeholder: "최대 3개의 태그를 지정할 수 있어요!",
                             snackMessage: "태그는 최대 3개까지 선택 가능합니다.",
-                            currentSelect: currentKeywordSelect,
+                            currentSelect: currentTagSelect,
                             onChanged: checkFormValid,
                           )
                         ],
@@ -131,10 +134,15 @@ class _PrivateCourseEditInfoState extends State<PrivateCourseEditInfo> {
         ),
         bottomNavigationBar: BottomButton(
           buttonList: [
-            SolidButton(
-                content: "정보 저장하기",
-                isActive: isFormValid,
-                onTab: () => print("^:산책로 수정완료"))
+            widget.type == "publish"
+                ? SolidButton(
+                    content: "산책로 공개하기",
+                    isActive: isFormValid,
+                    onTap: () => print("^:산책로 공개"))
+                : SolidButton(
+                    content: "정보 저장하기",
+                    isActive: isFormValid,
+                    onTap: () => print("^:산책로 저장"))
           ],
         ));
   }

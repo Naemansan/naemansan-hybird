@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:naemansan/utilities/emotion_list.dart';
 
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
@@ -12,26 +13,6 @@ class MomentDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color getEmotionColor(String emotion) {
-      switch (emotion) {
-        case "Joy":
-          return ColorStyles.emotionJoy;
-        case "Com":
-          return ColorStyles.emotionCom;
-        case "Sur":
-          return ColorStyles.emotionSur;
-        case "Sad":
-          return ColorStyles.emotionSad;
-        case "Boolan":
-          return ColorStyles.emotionBoolan;
-        case "Hurt":
-          return ColorStyles.emotionHurt;
-
-        default:
-          return ColorStyles.black;
-      }
-    }
-
     return InkWell(
       onTap: () => {Get.toNamed("/courseDetail/${momentInfo.courseId}")},
       child: Column(
@@ -39,7 +20,7 @@ class MomentDetail extends StatelessWidget {
           //모먼트 상단 정보
           Container(
             decoration: BoxDecoration(
-              color: getEmotionColor(momentInfo.emotion),
+              color: EmotionConfig.getEmotionColor(momentInfo.emotion),
               borderRadius: BorderRadius.circular(4.0),
             ),
             width: double.infinity,

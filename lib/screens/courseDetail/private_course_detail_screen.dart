@@ -62,7 +62,7 @@ class PrivateCourseDetailScreen extends StatelessWidget {
                             name: viewModel.courseDetailInfo.title,
                             location: viewModel.courseDetailInfo.siGuDong,
                             distance: viewModel.courseDetailInfo.distance,
-                            keywords: viewModel.courseDetailInfo.keywords),
+                            tags: viewModel.courseDetailInfo.tags),
 
                         //소개
                         CourseDetailDescription(
@@ -103,7 +103,7 @@ class PrivateCourseDetailScreen extends StatelessWidget {
             SolidButton(
                 content: "산책로 공개하기",
                 isActive: true,
-                onTab: () => Get.toNamed("/privateCoursePublish/1"))
+                onTap: () => Get.toNamed("/privateCoursePublish/1"))
           ],
         ));
   }

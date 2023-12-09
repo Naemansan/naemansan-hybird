@@ -6,13 +6,13 @@ import 'package:naemansan/utilities/style/font_styles.dart';
 class LikeButton extends StatelessWidget {
   final String likeNum;
   final bool isLiked;
-  final VoidCallback onTab;
+  final VoidCallback onTap;
 
   const LikeButton(
       {super.key,
       required this.likeNum,
       required this.isLiked,
-      required this.onTab});
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class LikeButton extends StatelessWidget {
       width: 44,
       height: double.infinity,
       child: InkWell(
-        onTap: onTab,
+        onTap: onTap,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

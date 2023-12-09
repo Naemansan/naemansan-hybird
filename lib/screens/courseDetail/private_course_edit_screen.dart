@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:naemansan/method/get_scale_width.dart';
-import 'package:naemansan/utilities/style/color_styles.dart';
-
 import 'package:naemansan/widget/base/custom_appbar.dart';
 
 import 'package:naemansan/widget/edit/private_course_edit_info.dart';
@@ -12,9 +9,9 @@ class PrivateCourseEditScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       //앱바...
-      appBar: const PreferredSize(
+      appBar: PreferredSize(
           preferredSize: Size.fromHeight(48),
           child: CustomAppbar(
             leftIcon: "left",
@@ -25,7 +22,9 @@ class PrivateCourseEditScreen extends StatelessWidget {
 
       body:
           //산책로 정보
-          PrivateCourseEditInfo(),
+          PrivateCourseEditInfo(
+        type: "edit",
+      ),
     );
   }
 }

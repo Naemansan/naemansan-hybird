@@ -59,8 +59,8 @@ class CourseDetailSimilarCourseList extends StatelessWidget {
                                 title: element.title,
                                 siGuDong: element.siGuDong,
                                 distance: element.distance,
-                                keywords: [
-                                  Keyword(id: 1, keyword: "2")
+                                tags: [
+                                  Tag(id: 1, tag: "2")
                                 ],
                                 locations: [
                                   Location(latitude: 1, longitude: 2)

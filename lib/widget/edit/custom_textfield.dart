@@ -5,7 +5,7 @@ import 'package:naemansan/utilities/style/font_styles.dart';
 class CustomTextfield extends StatefulWidget {
   final String label;
   final String placeholder;
-  final double height;
+  final double? height;
   final int maxLength;
   final int maxLine;
 
@@ -15,7 +15,7 @@ class CustomTextfield extends StatefulWidget {
       {super.key,
       required this.label,
       required this.placeholder,
-      required this.height,
+      this.height,
       required this.maxLine,
       required this.maxLength,
       required this.controller});

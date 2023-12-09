@@ -73,9 +73,9 @@ class CourseBtnWidget extends StatelessWidget {
                 children: [
                   Wrap(
                     spacing: 4.0,
-                    children: course.keywords.map((element) {
+                    children: course.tags.map((element) {
                       return Text(
-                        "#${element.keyword}",
+                        "#${element.tag}",
                         style: FontStyles.regular12.copyWith(
                           color: ColorStyles.gray3,
                         ),

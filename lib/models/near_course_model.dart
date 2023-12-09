@@ -17,7 +17,7 @@ class Course {
   final String title;
   final String siGuDong;
   final String distance;
-  final List<Keyword> keywords;
+  final List<Tag> tags;
   final List<Location> locations;
 
   Course({
@@ -25,12 +25,12 @@ class Course {
     required this.title,
     required this.siGuDong,
     required this.distance,
-    required this.keywords,
+    required this.tags,
     required this.locations,
   });
 
   factory Course.fromJson(Map<String, dynamic> json) {
-    var keywordsJson = json['keywords'] as List;
+    var tagsJson = json['tags'] as List;
     var locationsJson = json['locations'] as List;
 
     return Course(
@@ -38,7 +38,7 @@ class Course {
       title: json['title'],
       siGuDong: json['siGuDong'],
       distance: json['distance'],
-      keywords: keywordsJson.map((k) => Keyword.fromJson(k)).toList(),
+      tags: tagsJson.map((k) => Tag.fromJson(k)).toList(),
       locations: locationsJson.map((l) => Location.fromJson(l)).toList(),
     );
   }
@@ -49,20 +49,20 @@ class Course {
   }
 }
 
-class Keyword {
+class Tag {
   final int id;
-  final String keyword;
+  final String tag;
 
-  Keyword({required this.id, required this.keyword});
+  Tag({required this.id, required this.tag});
 
-  factory Keyword.fromJson(Map<String, dynamic> json) {
-    return Keyword(
+  factory Tag.fromJson(Map<String, dynamic> json) {
+    return Tag(
       id: json['id'],
-      keyword: json['keyword'],
+      tag: json['tag'],
     );
   }
 
-// keyword 10개
+// tag 10개
 // 1. 일상속 여유
 // 2. 평온한 힐링
 // 3. 자연과 함께
@@ -73,7 +73,7 @@ class Keyword {
 // 8.고즈넉한 무드
 // 9. 강길을 따라
 // 10. 일상의 재발견
-// full Keyword List
+// full Tag List
 }
 
 class Location {
