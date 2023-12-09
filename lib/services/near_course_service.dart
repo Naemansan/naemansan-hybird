@@ -11,18 +11,18 @@ class NearCourseService {
           "title": "동대 자취촌",
           "siGuDong": "서울특별시 중구 동호로",
           "distance": "2,347m",
-          "keywords": [
+          "tags": [
             {
               "id": 1,
-              "keyword": "평온하고 고요한",
+              "tag": "평온하고 고요한",
             },
             {
               "id": 2,
-              "keyword": "일상속 여유",
+              "tag": "일상속 여유",
             },
             {
               "id": 3,
-              "keyword": "자연과 함께",
+              "tag": "자연과 함께",
             }
           ],
           "locations": [
@@ -43,18 +43,18 @@ class NearCourseService {
           "title": "동국대 거쳐서 충무로 가기",
           "siGuDong": "서울특별시 중구 충무로 3가",
           "distance": "2,147m",
-          "keywords": [
+          "tags": [
             {
               "id": 1,
-              "keyword": "힐링",
+              "tag": "힐링",
             },
             {
               "id": 10,
-              "keyword": "중구",
+              "tag": "중구",
             },
             {
               "id": 5,
-              "keyword": "지하철",
+              "tag": "지하철",
             }
           ],
           "locations": [
@@ -81,18 +81,18 @@ class NearCourseService {
           "title": "필동관 가는길",
           "siGuDong": "서울특별시 중구 동호로",
           "distance": "107m",
-          "keywords": [
+          "tags": [
             {
               "id": 4,
-              "keyword": "하이",
+              "tag": "하이",
             },
             {
               "id": 6,
-              "keyword": "랄라",
+              "tag": "랄라",
             },
             {
               "id": 9,
-              "keyword": "바보",
+              "tag": "바보",
             }
           ],
           "locations": [

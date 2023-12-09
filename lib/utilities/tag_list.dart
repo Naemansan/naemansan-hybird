@@ -1,6 +1,6 @@
-class KeywordConfig {
-  static const keywordLength = 10;
-  static const keywordList = [
+class TagConfig {
+  static const tagLength = 10;
+  static const tagList = [
     "일상속 여유", //1
     '평온한 힐링', //2
     '자연과 함께', //3

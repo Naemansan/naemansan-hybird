@@ -13,7 +13,7 @@ class UserViewModel extends GetxController {
     deviceToken: '',
     nickname: '',
     bio: '',
-    keywords: Keyword(id: 0, keyword: ''),
+    tags: Tag(id: 0, tag: ''),
     profileImageUrl: '',
     following: [],
     followers: [],
@@ -32,11 +32,11 @@ class UserViewModel extends GetxController {
   }
 
   // 닉네임, 한 줄 소개, 키워드를 업데이트하는 메소드
-  void updateUserInfo(String nickname, String bio, Keyword keywords) {
+  void updateUserInfo(String nickname, String bio, Tag tags) {
     user.update((val) {
       val?.nickname = nickname;
       val?.bio = bio;
-      val?.keywords = keywords;
+      val?.tags = tags;
     });
   }
 

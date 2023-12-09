@@ -62,7 +62,7 @@ class PrivateCourseDetailScreen extends StatelessWidget {
                             name: viewModel.courseDetailInfo.title,
                             location: viewModel.courseDetailInfo.siGuDong,
                             distance: viewModel.courseDetailInfo.distance,
-                            keywords: viewModel.courseDetailInfo.keywords),
+                            tags: viewModel.courseDetailInfo.tags),
 
                         //소개
                         CourseDetailDescription(

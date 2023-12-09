@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:naemansan/utilities/keyword_list.dart';
+import 'package:naemansan/utilities/tag_list.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
 import 'package:naemansan/widget/common/alret/custom_snackbar.dart';
-import 'package:naemansan/widget/common/button/keyword_btn.dart';
+import 'package:naemansan/widget/common/button/tag_btn.dart';
 
-class KeywordSelector extends StatefulWidget {
+class TagSelector extends StatefulWidget {
   final String label;
   final String placeholder;
   final String snackMessage;
@@ -14,7 +14,7 @@ class KeywordSelector extends StatefulWidget {
 
   final VoidCallback onChanged;
 
-  const KeywordSelector({
+  const TagSelector({
     super.key,
     required this.label,
     required this.placeholder,
@@ -24,10 +24,10 @@ class KeywordSelector extends StatefulWidget {
   });
 
   @override
-  State<KeywordSelector> createState() => _KeywordSelectorState();
+  State<TagSelector> createState() => _TagSelectorState();
 }
 
-class _KeywordSelectorState extends State<KeywordSelector> {
+class _TagSelectorState extends State<TagSelector> {
   @override
   Widget build(BuildContext context) {
     return //태그 선택
@@ -62,10 +62,10 @@ class _KeywordSelectorState extends State<KeywordSelector> {
           ),
           Wrap(
               runSpacing: 8,
-              children: KeywordConfig.keywordList
+              children: TagConfig.tagList
                   .asMap()
                   .entries
-                  .map((element) => KeywordBtn(
+                  .map((element) => TagBtn(
                       isSelected: widget.currentSelect.contains((element.key)),
                       content: element.value,
                       onBtnTap: () {

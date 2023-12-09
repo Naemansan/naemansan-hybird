@@ -1,11 +1,11 @@
-import 'package:naemansan/models/keyword_model.dart';
+import 'package:naemansan/models/tag_model.dart';
 
 class CourseOverviewModel {
   final int id;
   final String title;
   final String siGuDong;
   final String distance;
-  final List<KeywordModel> keywords;
+  final List<TagModel> tags;
 
   final int momentCount;
   final int likeCount;
@@ -17,23 +17,21 @@ class CourseOverviewModel {
     required this.title,
     required this.siGuDong,
     required this.distance,
-    required this.keywords,
+    required this.tags,
     required this.momentCount,
     required this.likeCount,
     required this.isPublished,
   });
 
   factory CourseOverviewModel.fromJson(Map<String, dynamic> json) {
-    var keywordsJson = json['keywords'] as List;
+    var tagsJson = json['tags'] as List;
 
     return CourseOverviewModel(
         id: json['id'],
         title: json['title'],
         siGuDong: json['siGuDong'],
         distance: json['distance'],
-        keywords: keywordsJson
-            .map((element) => KeywordModel.fromJson(element))
-            .toList(),
+        tags: tagsJson.map((element) => TagModel.fromJson(element)).toList(),
         momentCount: json['momentCount'],
         likeCount: json['likeCount'],
         isPublished: true);

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:naemansan/widget/common/button/bottom_button.dart';
 import 'package:naemansan/widget/common/button/solid_button.dart';
 import 'package:naemansan/widget/edit/custom_textfield.dart';
-import 'package:naemansan/widget/edit/keyword_selector.dart';
+import 'package:naemansan/widget/edit/tag_selector.dart';
 
 class MyProfileEdit extends StatefulWidget {
   const MyProfileEdit({super.key});
@@ -14,7 +14,7 @@ class MyProfileEdit extends StatefulWidget {
 
 class _MyProfileEditState extends State<MyProfileEdit> {
   bool isFormValid = false;
-  List<int> currentKeywordSelect = [];
+  List<int> currentTagSelect = [];
 
   final TextEditingController nicknameController = TextEditingController();
   final TextEditingController bioController = TextEditingController();
@@ -23,11 +23,10 @@ class _MyProfileEditState extends State<MyProfileEdit> {
     void checkFormValid() {
       final isNicknameFiled = nicknameController.text.trim().isNotEmpty;
       final isBioFiled = bioController.text.trim().isNotEmpty;
-      final isKeyword =
-          currentKeywordSelect.length < 4 && currentKeywordSelect.isNotEmpty;
+      final isTag = currentTagSelect.length < 4 && currentTagSelect.isNotEmpty;
 
       setState(() {
-        isFormValid = isNicknameFiled && isBioFiled && isKeyword;
+        isFormValid = isNicknameFiled && isBioFiled && isTag;
       });
 
       return;
@@ -63,11 +62,11 @@ class _MyProfileEditState extends State<MyProfileEdit> {
                 maxLength: 100,
                 controller: bioController),
 
-            KeywordSelector(
+            TagSelector(
               label: "관심 키워드",
               placeholder: "최대 3개의 관심 태그를 지정할 수 있어요!",
               snackMessage: "관심 태그는 최대 3개까지 선택 가능합니다.",
-              currentSelect: currentKeywordSelect,
+              currentSelect: currentTagSelect,
               onChanged: checkFormValid,
             )
           ],

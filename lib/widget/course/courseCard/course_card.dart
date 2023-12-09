@@ -81,9 +81,9 @@ class CourseCard extends StatelessWidget {
                                 //태그들...
                                 Wrap(
                                   spacing: 4.0,
-                                  children: courseInfo.keywords.map((element) {
+                                  children: courseInfo.tags.map((element) {
                                     return Text(
-                                      '#${element.keyword}',
+                                      '#${element.tag}',
                                       style: FontStyles.regular12
                                           .copyWith(color: ColorStyles.gray3),
                                     );

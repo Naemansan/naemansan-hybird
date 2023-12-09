@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:naemansan/models/course_overview_model.dart';
-import 'package:naemansan/models/keyword_model.dart';
+import 'package:naemansan/models/tag_model.dart';
 import 'package:naemansan/models/moment_model.dart';
 
 import 'package:naemansan/models/spot_model.dart';
@@ -14,10 +14,10 @@ class CourseDetailViewModel extends GetxController {
         title: "산책로1",
         siGuDong: "경기도화성시동탄반석로",
         distance: "1,234m",
-        keywords: [
-          KeywordModel(id: 1, keyword: "123"),
-          KeywordModel(id: 1, keyword: "123"),
-          KeywordModel(id: 1, keyword: "123")
+        tags: [
+          TagModel(id: 1, tag: "123"),
+          TagModel(id: 1, tag: "123"),
+          TagModel(id: 1, tag: "123")
         ],
         descriptionCourseOverview: "1111",
         date: "2023/12/23",
@@ -69,10 +69,10 @@ class CourseDetailViewModel extends GetxController {
               title: "산책로1",
               siGuDong: "경기도 화성시 석우동",
               distance: "1,234m",
-              keywords: [
-                KeywordModel(id: 1, keyword: "@"),
-                KeywordModel(id: 1, keyword: "@"),
-                KeywordModel(id: 1, keyword: "@")
+              tags: [
+                TagModel(id: 1, tag: "@"),
+                TagModel(id: 1, tag: "@"),
+                TagModel(id: 1, tag: "@")
               ],
               momentCount: 1,
               likeCount: 2,
@@ -82,10 +82,10 @@ class CourseDetailViewModel extends GetxController {
               title: "산책로2",
               siGuDong: "경기도 화성시 석우동",
               distance: "1,234m",
-              keywords: [
-                KeywordModel(id: 1, keyword: "@"),
-                KeywordModel(id: 1, keyword: "@"),
-                KeywordModel(id: 1, keyword: "@")
+              tags: [
+                TagModel(id: 1, tag: "@"),
+                TagModel(id: 1, tag: "@"),
+                TagModel(id: 1, tag: "@")
               ],
               momentCount: 1,
               likeCount: 2,

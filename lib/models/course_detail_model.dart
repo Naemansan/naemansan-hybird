@@ -1,5 +1,5 @@
 import 'package:naemansan/models/course_overview_model.dart';
-import 'package:naemansan/models/keyword_model.dart';
+import 'package:naemansan/models/tag_model.dart';
 import 'package:naemansan/models/moment_model.dart';
 
 import 'package:naemansan/models/spot_model.dart';
@@ -10,7 +10,7 @@ class CourseDetailModel {
   final String title;
   final String siGuDong;
   final String distance;
-  final List<KeywordModel> keywords;
+  final List<TagModel> tags;
 
   final String descriptionCourseOverview;
 
@@ -31,7 +31,7 @@ class CourseDetailModel {
       required this.title,
       required this.siGuDong,
       required this.distance,
-      required this.keywords,
+      required this.tags,
       required this.descriptionCourseOverview,
       required this.date,
       required this.writerId,

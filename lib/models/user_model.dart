@@ -5,7 +5,7 @@ class User {
   String deviceToken;
   String nickname;
   String bio;
-  Keyword keywords;
+  Tag tags;
   String profileImageUrl;
   List<String> following; // 팔로잉 사용자 ID 목록
   List<String> followers; // 팔로워 사용자 ID 목록
@@ -15,7 +15,7 @@ class User {
     required this.deviceToken,
     required this.nickname,
     required this.bio,
-    required this.keywords,
+    required this.tags,
     required this.profileImageUrl,
     required this.following,
     required this.followers,
@@ -28,7 +28,7 @@ class User {
       deviceToken: json['deviceToken'] ?? '',
       nickname: json['nickname'] ?? '',
       bio: json['bio'] ?? '',
-      keywords: Keyword.fromJson(json['keywords']),
+      tags: Tag.fromJson(json['tags']),
       profileImageUrl: json['profileImageUrl'] ?? '',
       following: List<String>.from(json['following'] ?? []),
       followers: List<String>.from(json['followers'] ?? []),
@@ -42,7 +42,7 @@ class User {
       'deviceToken': deviceToken,
       'nickname': nickname,
       'bio': bio,
-      'keywords': keywords,
+      'tags': tags,
       'profileImageUrl': profileImageUrl,
       'following': following,
       'followers': followers,

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:naemansan/models/course_overview_model.dart';
-import 'package:naemansan/models/keyword_model.dart';
-import 'package:naemansan/utilities/keyword_list.dart';
+import 'package:naemansan/models/tag_model.dart';
+import 'package:naemansan/utilities/tag_list.dart';
 
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
-import 'package:naemansan/widget/common/button/keyword_btn.dart';
+import 'package:naemansan/widget/common/button/tag_btn.dart';
 import 'package:naemansan/widget/course/courseCard/course_card_list.dart';
 
 class CurationNear extends StatefulWidget {
@@ -26,10 +26,10 @@ class _CurationNearState extends State<CurationNear> {
         title: "산책로1",
         siGuDong: "경기도 화성시 석우동",
         distance: "1,234m",
-        keywords: [
-          KeywordModel(id: 1, keyword: "@"),
-          KeywordModel(id: 1, keyword: "@"),
-          KeywordModel(id: 1, keyword: "@")
+        tags: [
+          TagModel(id: 1, tag: "@"),
+          TagModel(id: 1, tag: "@"),
+          TagModel(id: 1, tag: "@")
         ],
         momentCount: 1,
         likeCount: 2,
@@ -39,10 +39,10 @@ class _CurationNearState extends State<CurationNear> {
         title: "산책로1",
         siGuDong: "경기도 화성시 석우동",
         distance: "1,234m",
-        keywords: [
-          KeywordModel(id: 1, keyword: "@"),
-          KeywordModel(id: 1, keyword: "@"),
-          KeywordModel(id: 1, keyword: "@")
+        tags: [
+          TagModel(id: 1, tag: "@"),
+          TagModel(id: 1, tag: "@"),
+          TagModel(id: 1, tag: "@")
         ],
         momentCount: 1,
         likeCount: 2,
@@ -78,10 +78,10 @@ class _CurationNearState extends State<CurationNear> {
             clipBehavior: Clip.none,
             scrollDirection: Axis.horizontal,
             child: Row(
-                children: KeywordConfig.keywordList
+                children: TagConfig.tagList
                     .asMap()
                     .entries
-                    .map((element) => KeywordBtn(
+                    .map((element) => TagBtn(
                         isSelected: (currentSelect.contains((element.key))),
                         content: element.value,
                         onBtnTap: () {

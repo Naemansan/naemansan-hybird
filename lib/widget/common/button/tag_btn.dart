@@ -3,23 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
-class KeywordBtn extends StatefulWidget {
+class TagBtn extends StatefulWidget {
   final bool isSelected;
   final String content;
 
   final Function() onBtnTap;
 
-  const KeywordBtn(
+  const TagBtn(
       {super.key,
       required this.isSelected,
       required this.content,
       required this.onBtnTap});
 
   @override
-  State<KeywordBtn> createState() => _KeywordBtnState();
+  State<TagBtn> createState() => _TagBtnState();
 }
 
-class _KeywordBtnState extends State<KeywordBtn> {
+class _TagBtnState extends State<TagBtn> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
