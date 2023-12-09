@@ -15,7 +15,7 @@ dependencies:
         sdk: flutter
     collection: any
     cupertino_icons: ^1.0.2
-    flutter_native_splash: ^2.3.2
+    flutter_native_splash: ^2.3.8
     flutter_dotenv: ^5.1.0
     flutter_launcher_icons: ^0.13.1
     get: ^4.6.6
@@ -25,6 +25,8 @@ dependencies:
     naver_map_plugin:
         git: https://github.com/LBSTECH/naver_map_plugin
     http: ^1.1.2
+    image_picker: ^1.0.4
+    permission_handler: ^11.1.0
 dev_dependencies:
     flutter_test:
         sdk: flutter
