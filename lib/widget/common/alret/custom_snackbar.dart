@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
-SnackBar customSnackba(String content) {
+SnackBar customSnackbar(String content) {
   return SnackBar(
     width: double.infinity,
     padding: const EdgeInsets.symmetric(vertical: 12),

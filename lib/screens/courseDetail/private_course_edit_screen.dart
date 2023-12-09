@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:naemansan/method/get_scale_width.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
-import 'package:naemansan/utilities/style/font_styles.dart';
+
 import 'package:naemansan/viewModel/home_view_model.dart';
 import 'package:naemansan/widget/base/custom_appbar.dart';
-import 'package:naemansan/widget/edit/custom_textfield.dart';
-import 'package:naemansan/widget/edit/keyword_selector.dart';
+import 'package:naemansan/widget/common/button/bottom_button.dart';
+import 'package:naemansan/widget/common/button/solid_button.dart';
+
 import 'package:naemansan/widget/edit/private_course_edit_info.dart';
 
 class PrivateCourseEditScreen extends StatelessWidget {
@@ -47,6 +48,14 @@ class PrivateCourseEditScreen extends StatelessWidget {
                   ],
                 )),
           );
-        }));
+        }),
+        bottomNavigationBar: BottomButton(
+          buttonList: [
+            SolidButton(
+                content: "정보 저장하기",
+                isActive: true,
+                onTab: () => print("^:산책로 수정완료"))
+          ],
+        ));
   }
 }
