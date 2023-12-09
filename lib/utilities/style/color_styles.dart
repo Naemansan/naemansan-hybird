@@ -19,10 +19,10 @@ class ColorStyles {
   static const Color gray0 = Color(0xFFF4F6FA);
 
   // emotion Color
+  static const Color emotionFlutter = Color(0xFFFF9F76);
   static const Color emotionJoy = Color(0xFFFFE2B6);
   static const Color emotionCom = Color(0xFFFFDF81);
   static const Color emotionSur = Color(0xFFD4DD81);
   static const Color emotionSad = Color(0xFF93B5B5);
   static const Color emotionBoolan = Color(0xFFAFC5D1);
-  static const Color emotionHurt = Color(0xFFD1E0E5);
 }

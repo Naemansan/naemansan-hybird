@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:naemansan/models/moment_model.dart';
+import 'package:naemansan/utilities/emotion_list.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
@@ -10,32 +11,12 @@ class MomentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color getEmotionColor(String emotion) {
-      switch (emotion) {
-        case "Joy":
-          return ColorStyles.emotionJoy;
-        case "Com":
-          return ColorStyles.emotionCom;
-        case "Sur":
-          return ColorStyles.emotionSur;
-        case "Sad":
-          return ColorStyles.emotionSad;
-        case "Boolan":
-          return ColorStyles.emotionBoolan;
-        case "Hurt":
-          return ColorStyles.emotionHurt;
-
-        default:
-          return ColorStyles.black;
-      }
-    }
-
     return Container(
       width: 120,
       height: 160,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: getEmotionColor(momentInfo.emotion),
+        color: EmotionConfig.getEmotionColor(momentInfo.emotion),
         borderRadius: BorderRadius.circular(4.0),
       ),
       child: Column(
