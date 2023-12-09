@@ -37,7 +37,7 @@ class _PrivateCourseEditInfoState extends State<PrivateCourseEditInfo> {
       final isKeyword =
           currentKeywordSelect.length < 4 && currentKeywordSelect.isNotEmpty;
       final isSpot = currentSpotSelect.length < 6;
-      print(isFormValid);
+
       setState(() {
         isFormValid =
             isTitleFiled && isDescriptionFilled && isKeyword && isSpot;

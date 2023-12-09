@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:naemansan/method/get_scale_width.dart';
-import 'package:naemansan/utilities/style/color_styles.dart';
-
 import 'package:naemansan/widget/base/custom_appbar.dart';
 
 import 'package:naemansan/widget/edit/private_course_edit_info.dart';
