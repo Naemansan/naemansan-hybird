@@ -15,7 +15,7 @@ class PrivateCourseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.toNamed("/courseDetail/1");
+        Get.toNamed("/privateCourseDetail/${courseInfo.id}");
       },
       child: SizedBox(
           width: double.infinity,

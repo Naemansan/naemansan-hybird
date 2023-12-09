@@ -14,8 +14,8 @@ import 'package:naemansan/widget/course/courseDetail/course_detail_similar_cours
 import 'package:naemansan/widget/course/courseDetail/course_detail_spot_list.dart';
 import 'package:naemansan/widget/course/courseDetail/course_detail_writer.dart';
 
-class CourseDetailScreen extends StatelessWidget {
-  const CourseDetailScreen({super.key});
+class PrivateCourseDetailScreen extends StatelessWidget {
+  const PrivateCourseDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -61,12 +61,6 @@ class CourseDetailScreen extends StatelessWidget {
                           distance: viewModel.courseDetailInfo.distance,
                           keywords: viewModel.courseDetailInfo.keywords),
 
-                      //작성자
-                      CourseDetailWriter(
-                        writer: viewModel.courseDetailInfo.writerName,
-                        date: viewModel.courseDetailInfo.date,
-                      ),
-
                       //소개
                       CourseDetailDescription(
                           description: viewModel
@@ -93,12 +87,6 @@ class CourseDetailScreen extends StatelessWidget {
                     //스팟 리스트
                     CourseDetailSpotList(
                       spotList: viewModel.courseDetailInfo.spotList,
-                    ),
-
-                    //유사 산책로 리스트
-                    CourseDetailSimilarCourseList(
-                      similarCourseList:
-                          viewModel.courseDetailInfo.similarCourseList,
                     ),
                   ]),
                 )

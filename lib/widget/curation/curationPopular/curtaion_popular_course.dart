@@ -32,7 +32,8 @@ class _CurationPopularCourseState extends State<CurationPopularCourse> {
           KeywordModel(id: 1, keyword: "@")
         ],
         momentCount: 1,
-        likeCount: 2),
+        likeCount: 2,
+        isPublished: true),
     CourseOverviewModel(
         id: 1,
         title: "산책로1",
@@ -44,7 +45,8 @@ class _CurationPopularCourseState extends State<CurationPopularCourse> {
           KeywordModel(id: 1, keyword: "@")
         ],
         momentCount: 1,
-        likeCount: 2)
+        likeCount: 2,
+        isPublished: true)
   ];
 
   @override

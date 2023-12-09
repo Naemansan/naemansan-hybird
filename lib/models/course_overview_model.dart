@@ -10,14 +10,18 @@ class CourseOverviewModel {
   final int momentCount;
   final int likeCount;
 
-  CourseOverviewModel(
-      {required this.id,
-      required this.title,
-      required this.siGuDong,
-      required this.distance,
-      required this.keywords,
-      required this.momentCount,
-      required this.likeCount});
+  final bool isPublished;
+
+  CourseOverviewModel({
+    required this.id,
+    required this.title,
+    required this.siGuDong,
+    required this.distance,
+    required this.keywords,
+    required this.momentCount,
+    required this.likeCount,
+    required this.isPublished,
+  });
 
   factory CourseOverviewModel.fromJson(Map<String, dynamic> json) {
     var keywordsJson = json['keywords'] as List;
@@ -31,6 +35,7 @@ class CourseOverviewModel {
             .map((element) => KeywordModel.fromJson(element))
             .toList(),
         momentCount: json['momentCount'],
-        likeCount: json['likeCount']);
+        likeCount: json['likeCount'],
+        isPublished: true);
   }
 }

@@ -7,20 +7,15 @@ import 'package:naemansan/models/course_overview_model.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
-class CourseCard extends StatefulWidget {
+class CourseCard extends StatelessWidget {
   final CourseOverviewModel courseInfo;
   const CourseCard({super.key, required this.courseInfo});
 
   @override
-  State<CourseCard> createState() => _CourseCardState();
-}
-
-class _CourseCardState extends State<CourseCard> {
-  @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.toNamed("/courseDetail/1");
+        Get.toNamed("/courseDetail/${courseInfo.id}");
       },
       child: SizedBox(
           width: double.infinity,
@@ -54,7 +49,7 @@ class _CourseCardState extends State<CourseCard> {
                       children: [
                         //산책로 이름
                         Text(
-                          widget.courseInfo.title,
+                          courseInfo.title,
                           style: FontStyles.semiBold20
                               .copyWith(color: ColorStyles.black),
                         ), //산책로 이름
@@ -65,9 +60,9 @@ class _CourseCardState extends State<CourseCard> {
                           child: Wrap(
                             spacing: 4.0,
                             children: [
-                              widget.courseInfo.siGuDong,
+                              courseInfo.siGuDong,
                               "·",
-                              widget.courseInfo.distance
+                              courseInfo.distance
                             ].map((element) {
                               return Text(element,
                                   style: FontStyles.regular16.copyWith(
@@ -86,8 +81,7 @@ class _CourseCardState extends State<CourseCard> {
                                 //태그들...
                                 Wrap(
                                   spacing: 4.0,
-                                  children:
-                                      widget.courseInfo.keywords.map((element) {
+                                  children: courseInfo.keywords.map((element) {
                                     return Text(
                                       '#${element.keyword}',
                                       style: FontStyles.regular12
@@ -109,8 +103,7 @@ class _CourseCardState extends State<CourseCard> {
                                               height: 16),
                                           const SizedBox(width: 4),
                                           Text(
-                                            widget.courseInfo.momentCount
-                                                .toString(),
+                                            courseInfo.momentCount.toString(),
                                             style: FontStyles.regular12
                                                 .copyWith(
                                                     color: ColorStyles.gray3),
@@ -129,8 +122,7 @@ class _CourseCardState extends State<CourseCard> {
                                               height: 16),
                                           const SizedBox(width: 4),
                                           Text(
-                                            widget.courseInfo.likeCount
-                                                .toString(),
+                                            courseInfo.likeCount.toString(),
                                             style: FontStyles.regular12
                                                 .copyWith(
                                                     color: ColorStyles.gray3),

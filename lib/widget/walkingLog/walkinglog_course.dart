@@ -31,7 +31,8 @@ class _WalkingLogCourseState extends State<WalkingLogCourse> {
           KeywordModel(id: 1, keyword: "@")
         ],
         momentCount: 1,
-        likeCount: 2),
+        likeCount: 2,
+        isPublished: true),
     CourseOverviewModel(
         id: 1,
         title: "산책로1",
@@ -43,7 +44,8 @@ class _WalkingLogCourseState extends State<WalkingLogCourse> {
           KeywordModel(id: 1, keyword: "@")
         ],
         momentCount: 1,
-        likeCount: 2)
+        likeCount: 2,
+        isPublished: false)
   ];
 
   @override
@@ -67,7 +69,6 @@ class _WalkingLogCourseState extends State<WalkingLogCourse> {
                         isSelected: (currentSelect == element.key),
                         content: element.value,
                         onBtnTap: () {
-                          //선택시 서치에 포함됨
                           setState(() {
                             currentSelect = element.key;
                           });
@@ -75,6 +76,7 @@ class _WalkingLogCourseState extends State<WalkingLogCourse> {
                     .toList()),
           ),
         ), //태그 선택
+
         CourseCardList(courseList: courseList)
       ],
     );
