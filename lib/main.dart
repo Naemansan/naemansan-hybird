@@ -1,4 +1,6 @@
 import 'package:naemansan/screens/course/course_walking.dart';
+import 'package:naemansan/screens/courseDetail/course_detail_screen.dart';
+import 'package:naemansan/screens/myProfile/my_profile_edit_screen.dart';
 import 'package:naemansan/screens/root_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -6,6 +8,8 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:naemansan/screens/userProfile/user_profile_screen.dart';
+
 import 'package:naemansan/utilities/style/color_styles.dart';
 
 void main() async {
@@ -44,6 +48,14 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/', page: () => const RootScreen()),
         GetPage(name: '/course/walking', page: () => const CourseWalking()),
+        GetPage(
+            name: '/courseDetail/:courseId',
+            page: () => const CourseDetailScreen()),
+        GetPage(
+            name: '/userProfile/:userId',
+            page: () => const UserProfileScreen()),
+        GetPage(
+            name: '/myProfileEdit', page: () => const MyProfileEditScreen()),
       ],
     );
   }

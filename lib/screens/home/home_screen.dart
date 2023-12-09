@@ -4,7 +4,7 @@ import 'package:naemansan/models/near_course_model.dart';
 import 'package:naemansan/viewModel/course_view_model.dart';
 import 'package:naemansan/viewModel/home_view_model.dart';
 import 'package:naemansan/widget/home/course_start_btn_widget.dart';
-import 'package:naemansan/widget/home/near_course_btn_widget.dart';
+import 'package:naemansan/widget/course/courseBtn/course_btn_widget.dart';
 import 'package:naver_map_plugin/naver_map_plugin.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -76,7 +76,7 @@ class HomeScreen extends StatelessWidget {
                         child: const Text("코스가 없습니다."),
                       );
                     }
-                    // 코스 카드를 리스트로 표시한다. 각 카드는 CourseCardWidget으로 구성된다.
+                    // 코스 카드를 리스트로 표시한다. 각 카드는 CourseBtnWidget으로 구성된다.
                     return SizedBox(
                       height: 120,
                       child: ListView.separated(
@@ -92,10 +92,10 @@ class HomeScreen extends StatelessWidget {
                           int courseIndex = index - 1;
                           return SizedBox(
                             width: 320,
-                            child: CourseCardWidget(
+                            child: CourseBtnWidget(
                                 onCourseTap: (courseIndex) {
                                   // 코스 카드 선택 시 해당 코스 화면으로 이동한다.
-                                  Get.toNamed("/course/$courseIndex");
+                                  Get.toNamed("/courseDetail/$courseIndex");
                                 },
                                 course: courses.courses[courseIndex]),
                           );

@@ -1,11 +1,17 @@
 class SpotModel {
-  final String name;
+  final int id;
+
+  final String title;
   final String category;
 
-  // ignore: prefer_typing_uninitialized_variables
-  final thumbnail;
+  final String? thumbnail;
 
-  final String content;
+  final String description;
 
-  SpotModel(this.name, this.category, this.thumbnail, this.content);
+  SpotModel(
+      {required this.id,
+      required this.title,
+      required this.category,
+      required this.description,
+      required this.thumbnail});
 }
