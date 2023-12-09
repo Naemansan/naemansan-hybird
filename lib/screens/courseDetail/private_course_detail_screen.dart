@@ -6,19 +6,18 @@ import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/viewModel/course_detail_view_model.dart';
 import 'package:naemansan/widget/base/custom_appbar.dart';
 import 'package:naemansan/widget/common/button/bottom_button.dart';
-import 'package:naemansan/widget/common/button/like_button.dart';
+
 import 'package:naemansan/widget/common/button/solid_button.dart';
+
 import 'package:naemansan/widget/course/courseDetail/course_detail_description.dart';
 import 'package:naemansan/widget/course/courseDetail/course_detail_info.dart';
 
 import 'package:naemansan/widget/course/courseDetail/course_detail_moment_list.dart';
 
-import 'package:naemansan/widget/course/courseDetail/course_detail_similar_course_list.dart';
 import 'package:naemansan/widget/course/courseDetail/course_detail_spot_list.dart';
-import 'package:naemansan/widget/course/courseDetail/course_detail_writer.dart';
 
-class CourseDetailScreen extends StatelessWidget {
-  const CourseDetailScreen({super.key});
+class PrivateCourseDetailScreen extends StatelessWidget {
+  const PrivateCourseDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +25,12 @@ class CourseDetailScreen extends StatelessWidget {
 
     return Scaffold(
         //앱바...
-        appBar: const PreferredSize(
-            preferredSize: Size.fromHeight(48),
+        appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(48),
             child: CustomAppbar(
               leftIcon: "left",
-              rightIcon: null,
+              rightIcon: "edit",
+              rightLink: "/privateCourseEdit/${viewModel.courseDetailInfo.id}",
               content: '',
             )),
         //앱바...
@@ -64,12 +64,6 @@ class CourseDetailScreen extends StatelessWidget {
                             distance: viewModel.courseDetailInfo.distance,
                             keywords: viewModel.courseDetailInfo.keywords),
 
-                        //작성자
-                        CourseDetailWriter(
-                          writer: viewModel.courseDetailInfo.writerName,
-                          date: viewModel.courseDetailInfo.date,
-                        ),
-
                         //소개
                         CourseDetailDescription(
                             description: viewModel
@@ -97,12 +91,6 @@ class CourseDetailScreen extends StatelessWidget {
                       CourseDetailSpotList(
                         spotList: viewModel.courseDetailInfo.spotList,
                       ),
-
-                      //유사 산책로 리스트
-                      CourseDetailSimilarCourseList(
-                        similarCourseList:
-                            viewModel.courseDetailInfo.similarCourseList,
-                      ),
                     ]),
                   )
                 ]),
@@ -112,13 +100,10 @@ class CourseDetailScreen extends StatelessWidget {
         ),
         bottomNavigationBar: BottomButton(
           buttonList: [
-            LikeButton(
-                likeNum: "11", isLiked: true, onTab: () => print("좋아요~")),
-            const SizedBox(width: 8),
             SolidButton(
-                content: "산책로 걷기",
+                content: "산책로 공개하기",
                 isActive: true,
-                onTab: () => print("^:산책로 걷기"))
+                onTab: () => Get.toNamed("/privateCoursePublish/1"))
           ],
         ));
   }

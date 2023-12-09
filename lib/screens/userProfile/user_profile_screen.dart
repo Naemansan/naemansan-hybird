@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/viewModel/otheruser_profile_view_model.dart';
 import 'package:naemansan/widget/base/custom_appbar.dart';
-import 'package:naemansan/widget/myProfile/user_profile_header.dart';
 import 'package:naemansan/widget/course/courseCard/course_card_list.dart';
+import 'package:naemansan/widget/myProfile/user_profile_header.dart';
 
 class UserProfileScreen extends StatelessWidget {
   const UserProfileScreen({super.key});
@@ -41,7 +40,7 @@ class UserProfileScreen extends StatelessWidget {
                     child: Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: CourseOverviewList(
+                      child: CourseCardList(
                         courseList: viewModel.courseList,
                       ),
                     ),

@@ -75,7 +75,8 @@ class CourseDetailViewModel extends GetxController {
                 KeywordModel(id: 1, keyword: "@")
               ],
               momentCount: 1,
-              likeCount: 2),
+              likeCount: 2,
+              isPublished: true),
           CourseOverviewModel(
               id: 1,
               title: "산책로2",
@@ -87,7 +88,8 @@ class CourseDetailViewModel extends GetxController {
                 KeywordModel(id: 1, keyword: "@")
               ],
               momentCount: 1,
-              likeCount: 2)
+              likeCount: 2,
+              isPublished: true)
         ]);
   }
   CourseDetailModel get courseDetailInfo => _courseDetailInfo;

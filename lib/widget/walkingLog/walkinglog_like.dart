@@ -21,7 +21,8 @@ class WalkingLogLike extends StatelessWidget {
             KeywordModel(id: 1, keyword: "@")
           ],
           momentCount: 1,
-          likeCount: 2),
+          likeCount: 2,
+          isPublished: true),
       CourseOverviewModel(
           id: 1,
           title: "산책로1",
@@ -33,8 +34,9 @@ class WalkingLogLike extends StatelessWidget {
             KeywordModel(id: 1, keyword: "@")
           ],
           momentCount: 1,
-          likeCount: 2)
+          likeCount: 2,
+          isPublished: true)
     ];
-    return CourseOverviewList(courseList: courseList);
+    return CourseCardList(courseList: courseList);
   }
 }
