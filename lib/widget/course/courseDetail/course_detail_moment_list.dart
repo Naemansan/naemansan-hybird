@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:naemansan/models/moment_model.dart';
+import 'package:naemansan/utilities/emotion_list.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 import 'package:naemansan/widget/moment/momentCard/moment_card.dart';
@@ -26,21 +27,56 @@ class _CourseDetailMomentListState extends State<CourseDetailMomentList> {
             // 타이틀
             Container(
               padding: const EdgeInsets.fromLTRB(4, 4, 4, 16),
-              child: Row(
+              child: Column(
                 children: [
-                  Text(
-                    "모먼트",
-                    style: FontStyles.semiBold20
-                        .copyWith(color: ColorStyles.black),
+                  Row(
+                    children: [
+                      Text(
+                        "모먼트",
+                        style: FontStyles.semiBold20
+                            .copyWith(color: ColorStyles.black),
+                      ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        widget.momentList.length.toString(),
+                        style: FontStyles.regular12
+                            .copyWith(color: ColorStyles.gray3),
+                      ),
+                    ],
                   ),
                   const SizedBox(
-                    width: 8,
+                    height: 8,
                   ),
-                  Text(
-                    widget.momentList.length.toString(),
-                    style:
-                        FontStyles.regular12.copyWith(color: ColorStyles.gray3),
-                  ),
+                  Row(children: [
+                    Wrap(
+                      direction: Axis.horizontal,
+                      spacing: 8.0, // 가로 간격 조절
+                      children: EmotionConfig.emotionList
+                          .map((element) => Row(
+                                children: [
+                                  Container(
+                                    width: 12,
+                                    height: 12,
+                                    decoration: BoxDecoration(
+                                        color: element.color,
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(12))),
+                                  ),
+                                  const SizedBox(
+                                    width: 4,
+                                  ),
+                                  Text(
+                                    element.kor,
+                                    style: FontStyles.regular10
+                                        .copyWith(color: ColorStyles.gray3),
+                                  )
+                                ],
+                              ))
+                          .toList(),
+                    ),
+                  ]),
                 ],
               ),
             ),
