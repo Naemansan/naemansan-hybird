@@ -1,4 +1,4 @@
-import 'package:naemansan/screens/course/course_walking.dart';
+import 'package:naemansan/screens/course/course_walking_screen.dart';
 import 'package:naemansan/screens/courseDetail/course_detail_screen.dart';
 import 'package:naemansan/screens/myProfile/my_profile_edit_screen.dart';
 import 'package:naemansan/screens/root_screen.dart';
@@ -21,7 +21,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     // Remove splash
@@ -47,7 +46,8 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       getPages: [
         GetPage(name: '/', page: () => const RootScreen()),
-        GetPage(name: '/course/walking', page: () => const CourseWalking()),
+        GetPage(
+            name: '/course/walking', page: () => const CourseWalkingScreen()),
         GetPage(
             name: '/courseDetail/:courseId',
             page: () => const CourseDetailScreen()),
