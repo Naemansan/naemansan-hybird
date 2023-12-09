@@ -7,7 +7,7 @@ import 'package:naemansan/widget/course/courseCard/course_card_list.dart';
 import 'package:naemansan/models/course_overview_model.dart';
 
 import 'package:naemansan/models/keyword_model.dart';
-import 'package:naemansan/widget/common/keyword_btn.dart';
+import 'package:naemansan/widget/common/button/keyword_btn.dart';
 
 class CurationPopularCourse extends StatefulWidget {
   const CurationPopularCourse({super.key});
