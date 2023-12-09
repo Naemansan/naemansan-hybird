@@ -49,34 +49,7 @@ class _CourseDetailMomentListState extends State<CourseDetailMomentList> {
                   const SizedBox(
                     height: 8,
                   ),
-                  Row(children: [
-                    Wrap(
-                      direction: Axis.horizontal,
-                      spacing: 8.0, // 가로 간격 조절
-                      children: EmotionConfig.emotionList
-                          .map((element) => Row(
-                                children: [
-                                  Container(
-                                    width: 12,
-                                    height: 12,
-                                    decoration: BoxDecoration(
-                                        color: element.color,
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(12))),
-                                  ),
-                                  const SizedBox(
-                                    width: 4,
-                                  ),
-                                  Text(
-                                    element.kor,
-                                    style: FontStyles.regular10
-                                        .copyWith(color: ColorStyles.gray3),
-                                  )
-                                ],
-                              ))
-                          .toList(),
-                    ),
-                  ]),
+                  EmotionConfig.emotionInfo,
                 ],
               ),
             ),

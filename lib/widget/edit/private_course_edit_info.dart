@@ -11,7 +11,12 @@ import 'package:naemansan/widget/edit/keyword_selector.dart';
 import 'package:naemansan/widget/edit/private_course_edit_spot.dart';
 
 class PrivateCourseEditInfo extends StatefulWidget {
-  const PrivateCourseEditInfo({super.key});
+  final String type;
+
+  const PrivateCourseEditInfo({
+    super.key,
+    required this.type,
+  });
 
   @override
   State<PrivateCourseEditInfo> createState() => _PrivateCourseEditInfoState();
@@ -131,10 +136,15 @@ class _PrivateCourseEditInfoState extends State<PrivateCourseEditInfo> {
         ),
         bottomNavigationBar: BottomButton(
           buttonList: [
-            SolidButton(
-                content: "정보 저장하기",
-                isActive: isFormValid,
-                onTab: () => print("^:산책로 수정완료"))
+            widget.type == "publish"
+                ? SolidButton(
+                    content: "산책로 공개하기",
+                    isActive: isFormValid,
+                    onTap: () => print("^:산책로 공개"))
+                : SolidButton(
+                    content: "정보 저장하기",
+                    isActive: isFormValid,
+                    onTap: () => print("^:산책로 저장"))
           ],
         ));
   }

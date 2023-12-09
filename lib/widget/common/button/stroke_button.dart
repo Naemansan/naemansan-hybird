@@ -5,13 +5,13 @@ import 'package:naemansan/utilities/style/font_styles.dart';
 class StorkeButton extends StatelessWidget {
   final String content;
 
-  final VoidCallback onTab;
-  const StorkeButton({super.key, required this.content, required this.onTab});
+  final VoidCallback onTap;
+  const StorkeButton({super.key, required this.content, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTab,
+      onTap: onTap,
       child: Container(
         width: 120,
         decoration: BoxDecoration(

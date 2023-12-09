@@ -113,12 +113,12 @@ class CourseDetailScreen extends StatelessWidget {
         bottomNavigationBar: BottomButton(
           buttonList: [
             LikeButton(
-                likeNum: "11", isLiked: true, onTab: () => print("좋아요~")),
+                likeNum: "11", isLiked: true, onTap: () => print("좋아요~")),
             const SizedBox(width: 8),
             SolidButton(
                 content: "산책로 걷기",
                 isActive: true,
-                onTab: () => print("^:산책로 걷기"))
+                onTap: () => print("^:산책로 걷기"))
           ],
         ));
   }

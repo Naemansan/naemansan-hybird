@@ -12,9 +12,9 @@ class PrivateCourseEditScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       //앱바...
-      appBar: const PreferredSize(
+      appBar: PreferredSize(
           preferredSize: Size.fromHeight(48),
           child: CustomAppbar(
             leftIcon: "left",
@@ -25,7 +25,9 @@ class PrivateCourseEditScreen extends StatelessWidget {
 
       body:
           //산책로 정보
-          PrivateCourseEditInfo(),
+          PrivateCourseEditInfo(
+        type: "edit",
+      ),
     );
   }
 }

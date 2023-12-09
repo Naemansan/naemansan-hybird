@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:naemansan/models/moment_model.dart';
+import 'package:naemansan/utilities/emotion_list.dart';
 
 import 'package:naemansan/widget/walkingLog/walkinglog_moment_month.dart';
 
@@ -81,7 +82,13 @@ class WalkingLogMoment extends StatelessWidget {
             content: "내용")
       ]
     ];
-    return WalkingLogMomentMonth(
-        datesList: datesList, momentsList: momentsList);
+    return Column(
+      children: [
+        Container(
+            padding: const EdgeInsets.fromLTRB(4, 0, 4, 12),
+            child: EmotionConfig.emotionInfo),
+        WalkingLogMomentMonth(datesList: datesList, momentsList: momentsList),
+      ],
+    );
   }
 }

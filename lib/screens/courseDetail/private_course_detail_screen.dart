@@ -103,7 +103,7 @@ class PrivateCourseDetailScreen extends StatelessWidget {
             SolidButton(
                 content: "산책로 공개하기",
                 isActive: true,
-                onTab: () => Get.toNamed("/privateCoursePublish/1"))
+                onTap: () => Get.toNamed("/privateCoursePublish/1"))
           ],
         ));
   }
