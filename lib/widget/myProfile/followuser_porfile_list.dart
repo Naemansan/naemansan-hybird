@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:naemansan/widget/myProfile/followuser_profile.dart';
 
 class FollowuserProfileList extends StatelessWidget {
-  final List userList;
+  final List<String> userList;
   final String type;
 
   const FollowuserProfileList(
@@ -13,8 +13,8 @@ class FollowuserProfileList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: userList
-          .map((user) => FollowuserProfile(
-                info: user,
+          .map((element) => FollowuserProfile(
+                id: element,
                 type: type,
               ))
           .toList(),

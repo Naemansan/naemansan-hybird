@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:naemansan/models/followuser_profile_model.dart';
 
-import 'package:naemansan/utilities/style/font_styles.dart';
-import 'package:naemansan/utilities/style/color_styles.dart';
-
-import 'package:naemansan/viewModel/profile_view_model.dart';
+import 'package:naemansan/viewModel/user/user_view_model.dart';
 import 'package:naemansan/widget/base/custom_appbar.dart';
 
 import 'package:naemansan/widget/base/custom_tabbar.dart';
@@ -17,7 +15,7 @@ class MyProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ProfileViewModel viewModel = Get.put(ProfileViewModel());
+    final UserViewModel userViewModel = Get.put(UserViewModel());
 
     return Scaffold(
       //앱바...
@@ -31,30 +29,29 @@ class MyProfileScreen extends StatelessWidget {
           )),
       //앱바...
 
-      body: GetBuilder<ProfileViewModel>(
-          init: viewModel,
-          builder: (viewModel) {
+      body: GetBuilder<UserViewModel>(
+          init: userViewModel,
+          builder: (userViewModel) {
             return Container(
               padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
               child: Column(children: [
                 //유저 프로필 (상단)
                 UserProfileHeader(
-                  userProfile: viewModel.userProfile,
-                  isOther: false,
+                  userProfile: userViewModel.user.value,
                 ),
 
                 //팔로잉 팔로워 보는 탭
                 Expanded(
                   child: CustomTabbar(
                     tabs: const ["팔로잉", "팔로워"],
-                    rightTabs: [],
+                    rightTabs: const [],
                     tabviews: [
                       FollowuserProfileList(
-                        userList: viewModel.followingList,
+                        userList: userViewModel.user.value.following,
                         type: "following",
                       ),
                       FollowuserProfileList(
-                        userList: viewModel.followerList,
+                        userList: userViewModel.user.value.follower,
                         type: "follower",
                       ),
                     ],

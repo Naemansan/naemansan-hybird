@@ -52,7 +52,9 @@ class _CourseDetailWriterState extends State<CourseDetailWriter> {
           ],
         )),
         FollowBtn(
-            currentState: currentState, onStateChanged: onFollowBtnStateChanged)
+            userId: "userId",
+            currentState: currentState,
+            onStateChanged: onFollowBtnStateChanged)
       ]),
     ); //제작자 정보
   }

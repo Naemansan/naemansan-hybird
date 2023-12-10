@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:naemansan/screens/userProfile/user_profile_screen.dart';
+
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
+
 import 'package:naemansan/widget/myProfile/follow_btn.dart';
 
 class FollowuserProfile extends StatefulWidget {
   // ignore: prefer_typing_uninitialized_variables
-  final info;
+  final String id;
   final String type;
-  const FollowuserProfile({super.key, required this.info, required this.type});
+  const FollowuserProfile({super.key, required this.id, required this.type});
 
   @override
   State<FollowuserProfile> createState() => _FollowuserProfileState();
@@ -54,12 +55,12 @@ class _FollowuserProfileState extends State<FollowuserProfile> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.info.name,
+                    "${widget.id}의 이름",
                     style:
                         FontStyles.regular12.copyWith(color: ColorStyles.black),
                   ),
                   Text(
-                    widget.info.description,
+                    "${widget.id}의 바이오",
                     style:
                         FontStyles.regular12.copyWith(color: ColorStyles.gray3),
                   ),
@@ -71,6 +72,7 @@ class _FollowuserProfileState extends State<FollowuserProfile> {
             Visibility(
                 visible: widget.type == "following",
                 child: FollowBtn(
+                    userId: widget.id,
                     currentState: currentState,
                     onStateChanged: onFollowBtnStateChanged)) //팔로우 팔로잉 버튼
           ],

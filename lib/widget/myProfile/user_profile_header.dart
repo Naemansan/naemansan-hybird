@@ -6,13 +6,11 @@ import 'package:naemansan/utilities/style/font_styles.dart';
 import 'package:naemansan/widget/myProfile/follow_btn.dart';
 
 class UserProfileHeader extends StatefulWidget {
-  final bool isOther;
   final User userProfile;
 
   const UserProfileHeader({
     Key? key,
     required this.userProfile,
-    required this.isOther,
   }) : super(key: key);
 
   @override
@@ -87,11 +85,11 @@ class _UserProfileState extends State<UserProfileHeader> {
               ),
 
               //팔로우 팔로잉버튼
-              Visibility(
-                  visible: widget.isOther,
-                  child: FollowBtn(
-                      currentState: currentState,
-                      onStateChanged: onFollowBtnStateChanged)) //팔로우 팔로잉 버튼
+
+              FollowBtn(
+                  userId: widget.userProfile.userId,
+                  currentState: currentState,
+                  onStateChanged: onFollowBtnStateChanged) //팔로우 팔로잉 버튼
             ],
           ), //상단 설명
 

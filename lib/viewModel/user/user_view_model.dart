@@ -12,6 +12,7 @@ class UserViewModel extends GetxController {
   final Rx<User> user = User(
     isLoggedIn: false,
     deviceToken: '',
+    userId: '',
     nickname: '',
     bio: '',
     tags: [Tag(id: 0, tag: '')],

@@ -19,10 +19,10 @@ class CourseStartBtnWidget extends StatelessWidget {
     return InkWell(
       onTap: () {
         if (userViewModel.isLoggedIn()) {
+          Get.toNamed('/course/walking');
+        } else {
           // 로그인이 되어있지 않으면 로그인 바텀 시트 올라오기
           LoginBottomSheetWidget.show(context: context);
-        } else {
-          Get.toNamed('/course/walking');
         }
       },
       child: Container(

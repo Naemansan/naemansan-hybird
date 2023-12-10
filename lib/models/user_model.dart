@@ -3,6 +3,9 @@ import 'package:naemansan/models/tag_model.dart';
 class User {
   bool isLoggedIn;
   String deviceToken;
+
+  String userId;
+
   String nickname;
   String bio;
   List<Tag> tags;
@@ -13,6 +16,7 @@ class User {
   User({
     required this.isLoggedIn,
     required this.deviceToken,
+    required this.userId,
     required this.nickname,
     required this.bio,
     required this.tags,
@@ -26,6 +30,7 @@ class User {
     return User(
       isLoggedIn: json['isLoggedIn'] ?? false,
       deviceToken: json['deviceToken'] ?? '',
+      userId: json['userId'] ?? '',
       nickname: json['nickname'] ?? '',
       bio: json['bio'] ?? '',
       tags: List<Tag>.from(json['tags']),
@@ -40,6 +45,7 @@ class User {
     return {
       'isLoggedIn': isLoggedIn,
       'deviceToken': deviceToken,
+      'userId': userId,
       'nickname': nickname,
       'bio': bio,
       'tags': tags,
