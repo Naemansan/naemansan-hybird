@@ -8,7 +8,7 @@ class CourseDetailInfo extends StatelessWidget {
   final String name;
   final String location;
   final String distance;
-  final List<TagModel> tags;
+  final List<Tag> tags;
 
   const CourseDetailInfo(
       {super.key,

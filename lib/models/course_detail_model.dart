@@ -1,8 +1,9 @@
 import 'package:naemansan/models/course_overview_model.dart';
-import 'package:naemansan/models/tag_model.dart';
+
 import 'package:naemansan/models/moment_model.dart';
 
 import 'package:naemansan/models/spot_model.dart';
+import 'package:naemansan/models/tag_model.dart';
 
 class CourseDetailModel {
   final int id;
@@ -10,7 +11,7 @@ class CourseDetailModel {
   final String title;
   final String siGuDong;
   final String distance;
-  final List<TagModel> tags;
+  final List<Tag> tags;
 
   final String descriptionCourseOverview;
 

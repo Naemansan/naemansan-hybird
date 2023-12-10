@@ -5,7 +5,7 @@ class CourseOverviewModel {
   final String title;
   final String siGuDong;
   final String distance;
-  final List<TagModel> tags;
+  final List<Tag> tags;
 
   final int momentCount;
   final int likeCount;
@@ -31,7 +31,7 @@ class CourseOverviewModel {
         title: json['title'],
         siGuDong: json['siGuDong'],
         distance: json['distance'],
-        tags: tagsJson.map((element) => TagModel.fromJson(element)).toList(),
+        tags: tagsJson.map((element) => Tag.fromJson(element)).toList(),
         momentCount: json['momentCount'],
         likeCount: json['likeCount'],
         isPublished: true);

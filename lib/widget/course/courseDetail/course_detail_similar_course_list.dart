@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:naemansan/models/course_overview_model.dart';
 import 'package:naemansan/models/near_course_model.dart';
 
+import 'package:naemansan/models/tag_model.dart';
+
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 import 'package:naemansan/widget/course/courseBtn/course_btn_widget.dart';

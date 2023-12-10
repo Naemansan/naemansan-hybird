@@ -119,7 +119,11 @@ class CourseCard extends StatelessWidget {
                                         children: [
                                           SvgPicture.asset(
                                               'assets/icons/heartStroke.svg',
-                                              height: 16),
+                                              height: 16,
+                                              colorFilter:
+                                                  const ColorFilter.mode(
+                                                      ColorStyles.gray3,
+                                                      BlendMode.srcATop)),
                                           const SizedBox(width: 4),
                                           Text(
                                             courseInfo.likeCount.toString(),

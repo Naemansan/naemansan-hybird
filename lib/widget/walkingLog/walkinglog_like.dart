@@ -16,9 +16,9 @@ class WalkingLogLike extends StatelessWidget {
           siGuDong: "경기도 화성시 석우동",
           distance: "1,234m",
           tags: [
-            TagModel(id: 1, tag: "@"),
-            TagModel(id: 1, tag: "@"),
-            TagModel(id: 1, tag: "@")
+            Tag(id: 1, tag: "@"),
+            Tag(id: 1, tag: "@"),
+            Tag(id: 1, tag: "@")
           ],
           momentCount: 1,
           likeCount: 2,
@@ -29,9 +29,9 @@ class WalkingLogLike extends StatelessWidget {
           siGuDong: "경기도 화성시 석우동",
           distance: "1,234m",
           tags: [
-            TagModel(id: 1, tag: "@"),
-            TagModel(id: 1, tag: "@"),
-            TagModel(id: 1, tag: "@")
+            Tag(id: 1, tag: "@"),
+            Tag(id: 1, tag: "@"),
+            Tag(id: 1, tag: "@")
           ],
           momentCount: 1,
           likeCount: 2,

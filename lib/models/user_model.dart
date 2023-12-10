@@ -1,14 +1,14 @@
-import 'package:naemansan/models/near_course_model.dart';
+import 'package:naemansan/models/tag_model.dart';
 
 class User {
   bool isLoggedIn;
   String deviceToken;
   String nickname;
   String bio;
-  Tag tags;
+  List<Tag> tags;
   String profileImageUrl;
   List<String> following; // 팔로잉 사용자 ID 목록
-  List<String> followers; // 팔로워 사용자 ID 목록
+  List<String> follower; // 팔로워 사용자 ID 목록
 
   User({
     required this.isLoggedIn,
@@ -18,7 +18,7 @@ class User {
     required this.tags,
     required this.profileImageUrl,
     required this.following,
-    required this.followers,
+    required this.follower,
   });
 
   // JSON에서 User 객체로 변환하는 팩토리 생성자
@@ -28,10 +28,10 @@ class User {
       deviceToken: json['deviceToken'] ?? '',
       nickname: json['nickname'] ?? '',
       bio: json['bio'] ?? '',
-      tags: Tag.fromJson(json['tags']),
+      tags: List<Tag>.from(json['tags']),
       profileImageUrl: json['profileImageUrl'] ?? '',
       following: List<String>.from(json['following'] ?? []),
-      followers: List<String>.from(json['followers'] ?? []),
+      follower: List<String>.from(json['follower'] ?? []),
     );
   }
 
@@ -45,7 +45,7 @@ class User {
       'tags': tags,
       'profileImageUrl': profileImageUrl,
       'following': following,
-      'followers': followers,
+      'follower': follower,
     };
   }
 }

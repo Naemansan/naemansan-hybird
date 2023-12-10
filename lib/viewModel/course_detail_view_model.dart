@@ -1,10 +1,11 @@
 import 'package:get/get.dart';
 import 'package:naemansan/models/course_overview_model.dart';
-import 'package:naemansan/models/tag_model.dart';
+
 import 'package:naemansan/models/moment_model.dart';
 
 import 'package:naemansan/models/spot_model.dart';
 import 'package:naemansan/models/course_detail_model.dart';
+import 'package:naemansan/models/tag_model.dart';
 
 class CourseDetailViewModel extends GetxController {
   late CourseDetailModel _courseDetailInfo;
@@ -15,9 +16,9 @@ class CourseDetailViewModel extends GetxController {
         siGuDong: "경기도화성시동탄반석로",
         distance: "1,234m",
         tags: [
-          TagModel(id: 1, tag: "123"),
-          TagModel(id: 1, tag: "123"),
-          TagModel(id: 1, tag: "123")
+          Tag(id: 1, tag: "123"),
+          Tag(id: 1, tag: "123"),
+          Tag(id: 1, tag: "123")
         ],
         descriptionCourseOverview: "1111",
         date: "2023/12/23",
@@ -70,9 +71,9 @@ class CourseDetailViewModel extends GetxController {
               siGuDong: "경기도 화성시 석우동",
               distance: "1,234m",
               tags: [
-                TagModel(id: 1, tag: "@"),
-                TagModel(id: 1, tag: "@"),
-                TagModel(id: 1, tag: "@")
+                Tag(id: 1, tag: "123"),
+                Tag(id: 1, tag: "123"),
+                Tag(id: 1, tag: "123")
               ],
               momentCount: 1,
               likeCount: 2,
@@ -83,9 +84,9 @@ class CourseDetailViewModel extends GetxController {
               siGuDong: "경기도 화성시 석우동",
               distance: "1,234m",
               tags: [
-                TagModel(id: 1, tag: "@"),
-                TagModel(id: 1, tag: "@"),
-                TagModel(id: 1, tag: "@")
+                Tag(id: 1, tag: "123"),
+                Tag(id: 1, tag: "123"),
+                Tag(id: 1, tag: "123")
               ],
               momentCount: 1,
               likeCount: 2,

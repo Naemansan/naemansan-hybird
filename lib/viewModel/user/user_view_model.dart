@@ -1,7 +1,8 @@
 // 파일명: user_view_model.dart
 
 import 'package:get/get.dart';
-import 'package:naemansan/models/near_course_model.dart';
+import 'package:naemansan/models/tag_model.dart';
+
 import 'package:naemansan/models/user_model.dart';
 import 'package:naemansan/services/user_service.dart';
 
@@ -13,10 +14,10 @@ class UserViewModel extends GetxController {
     deviceToken: '',
     nickname: '',
     bio: '',
-    tags: Tag(id: 0, tag: ''),
+    tags: [Tag(id: 0, tag: '')],
     profileImageUrl: '',
     following: [],
-    followers: [],
+    follower: [],
   ).obs;
 
   @override
@@ -32,7 +33,7 @@ class UserViewModel extends GetxController {
   }
 
   // 닉네임, 한 줄 소개, 키워드를 업데이트하는 메소드
-  void updateUserInfo(String nickname, String bio, Tag tags) {
+  void updateUserInfo(String nickname, String bio, List<Tag> tags) {
     user.update((val) {
       val?.nickname = nickname;
       val?.bio = bio;
