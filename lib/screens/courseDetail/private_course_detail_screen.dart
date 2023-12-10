@@ -60,18 +60,17 @@ class PrivateCourseDetailScreen extends StatelessWidget {
                       children: [
                         CourseDetailInfo(
                             name: viewModel.courseDetailInfo.title,
-                            location: viewModel.courseDetailInfo.siGuDong,
+                            siGuDong: viewModel.courseDetailInfo.siGuDong,
                             distance: viewModel.courseDetailInfo.distance,
                             tags: viewModel.courseDetailInfo.tags),
 
                         //소개
                         CourseDetailDescription(
-                            description: viewModel
-                                .courseDetailInfo.descriptionCourseOverview),
+                            content: viewModel.courseDetailInfo.content),
 
                         //모먼트
                         CourseDetailMomentList(
-                            momentList: viewModel.courseDetailInfo.momentList)
+                            momentList: viewModel.courseDetailInfo.moments)
                       ],
                     ),
                   ), //산책로 정보
@@ -89,7 +88,7 @@ class PrivateCourseDetailScreen extends StatelessWidget {
                     child: Column(children: [
                       //스팟 리스트
                       CourseDetailSpotList(
-                        spotList: viewModel.courseDetailInfo.spotList,
+                        spotList: viewModel.courseDetailInfo.spots,
                       ),
                     ]),
                   )

@@ -72,7 +72,7 @@ class _FollowuserProfileState extends State<FollowuserProfile> {
             Visibility(
                 visible: widget.type == "following",
                 child: FollowBtn(
-                    userId: widget.id,
+                    uuid: widget.id,
                     currentState: currentState,
                     onStateChanged: onFollowBtnStateChanged)) //팔로우 팔로잉 버튼
           ],

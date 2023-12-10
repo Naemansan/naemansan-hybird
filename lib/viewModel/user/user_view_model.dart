@@ -12,11 +12,11 @@ class UserViewModel extends GetxController {
   final Rx<User> user = User(
     isLoggedIn: false,
     deviceToken: '',
-    userId: '',
+    uuid: '',
     nickname: '',
-    bio: '',
+    introduction: '',
     tags: [Tag(id: 0, tag: '')],
-    profileImageUrl: '',
+    profile_image_url: '',
     following: [],
     follower: [],
   ).obs;
@@ -34,23 +34,23 @@ class UserViewModel extends GetxController {
   }
 
   // 닉네임, 한 줄 소개, 키워드를 업데이트하는 메소드
-  void updateUserInfo(String nickname, String bio, List<Tag> tags) {
+  void updateUserInfo(String nickname, String introduction, List<Tag> tags) {
     user.update((val) {
       val?.nickname = nickname;
-      val?.bio = bio;
+      val?.introduction = introduction;
       val?.tags = tags;
     });
   }
 
   // 팔로우/언팔로우 기능을 수행하는 메소드
-  void toggleFollow(String userId) {
-    if (user.value.following.contains(userId)) {
+  void toggleFollow(String uuid) {
+    if (user.value.following.contains(uuid)) {
       user.update((val) {
-        val?.following.remove(userId);
+        val?.following.remove(uuid);
       });
     } else {
       user.update((val) {
-        val?.following.add(userId);
+        val?.following.add(uuid);
       });
     }
   }

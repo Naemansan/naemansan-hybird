@@ -14,26 +14,20 @@ class CurationPopularMoment extends StatelessWidget {
     var momentList = [
       MomentModel(
           id: 1,
-          date: "11/2",
-          year: "2023",
+          content: "내용",
           weather: "Cloud",
           emotion: "Sad",
-          courseId: 2,
-          courseTitle: "산책로2",
-          userId: 1,
-          userName: "서현  ",
-          content: "내용"),
+          course_id: 1,
+          user_id: "user1",
+          created_at: "날찌:수정필요"),
       MomentModel(
-          id: 2,
-          date: "11/3",
-          year: "2023",
-          weather: "FewCloudDay",
-          emotion: "Joy",
-          courseId: 2,
-          courseTitle: "산책로2",
-          userId: 1,
-          userName: "서현  ",
-          content: "내용"),
+          id: 1,
+          content: "내용",
+          weather: "Cloud",
+          emotion: "Sad",
+          course_id: 1,
+          user_id: "user1",
+          created_at: "날찌:수정필요"),
     ];
 
     return Column(
@@ -63,7 +57,7 @@ class CurationPopularMoment extends StatelessWidget {
                     return InkWell(
                       onTap: () {
                         // 모먼트 카드 선택 시 해당 코스 화면으로 이동한다.
-                        Get.toNamed("/courseDetail/${element.value.courseId}");
+                        Get.toNamed("/courseDetail/${element.value.course_id}");
                       },
                       child: MomentCard(
                         momentInfo: element.value,

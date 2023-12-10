@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:naemansan/models/moment_model.dart';
 import 'package:naemansan/utilities/emotion_list.dart';
 
 import 'package:naemansan/utilities/style/color_styles.dart';
@@ -8,13 +9,13 @@ import 'package:naemansan/utilities/style/font_styles.dart';
 
 class MomentDetail extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
-  final momentInfo;
+  final MomentModel momentInfo;
   const MomentDetail({super.key, required this.momentInfo});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => {Get.toNamed("/courseDetail/${momentInfo.courseId}")},
+      onTap: () => {Get.toNamed("/courseDetail/${momentInfo.course_id}")},
       child: Column(
         children: [
           //모먼트 상단 정보
@@ -34,7 +35,7 @@ class MomentDetail extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        momentInfo.date,
+                        "날찌:수정필요",
                         style: FontStyles.semiBold16
                             .copyWith(color: ColorStyles.white),
                       ),
@@ -42,7 +43,7 @@ class MomentDetail extends StatelessWidget {
                         height: 4,
                       ),
                       Text(
-                        momentInfo.courseTitle,
+                        "${momentInfo.course_id}번째 산책로",
                         style: FontStyles.semiBold16
                             .copyWith(color: ColorStyles.white),
                       ),

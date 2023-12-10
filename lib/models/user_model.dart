@@ -1,26 +1,28 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:naemansan/models/tag_model.dart';
 
 class User {
-  bool isLoggedIn;
+  bool isLoggedIn; //로그인 여부
   String deviceToken;
 
-  String userId;
+  String uuid;
 
   String nickname;
-  String bio;
+  String introduction;
   List<Tag> tags;
-  String profileImageUrl;
+  String profile_image_url;
   List<String> following; // 팔로잉 사용자 ID 목록
   List<String> follower; // 팔로워 사용자 ID 목록
 
   User({
     required this.isLoggedIn,
     required this.deviceToken,
-    required this.userId,
+    required this.uuid,
     required this.nickname,
-    required this.bio,
+    required this.introduction,
     required this.tags,
-    required this.profileImageUrl,
+    required this.profile_image_url,
     required this.following,
     required this.follower,
   });
@@ -30,11 +32,11 @@ class User {
     return User(
       isLoggedIn: json['isLoggedIn'] ?? false,
       deviceToken: json['deviceToken'] ?? '',
-      userId: json['userId'] ?? '',
+      uuid: json['uuid'] ?? '',
       nickname: json['nickname'] ?? '',
-      bio: json['bio'] ?? '',
+      introduction: json['introduction'] ?? '',
       tags: List<Tag>.from(json['tags']),
-      profileImageUrl: json['profileImageUrl'] ?? '',
+      profile_image_url: json['profile_image_url'] ?? '',
       following: List<String>.from(json['following'] ?? []),
       follower: List<String>.from(json['follower'] ?? []),
     );
@@ -45,11 +47,11 @@ class User {
     return {
       'isLoggedIn': isLoggedIn,
       'deviceToken': deviceToken,
-      'userId': userId,
+      'uuid': uuid,
       'nickname': nickname,
-      'bio': bio,
+      'introduction': introduction,
       'tags': tags,
-      'profileImageUrl': profileImageUrl,
+      'profile_image_url': profile_image_url,
       'following': following,
       'follower': follower,
     };

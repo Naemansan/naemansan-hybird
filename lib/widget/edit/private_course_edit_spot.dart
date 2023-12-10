@@ -55,17 +55,12 @@ class _PrivateCourseEditSpotState extends State<PrivateCourseEditSpot> {
             runSpacing: 20,
             children: [
               SpotModel(
-                  id: 1,
-                  title: "카페",
-                  category: "Cafe",
-                  description: "설명",
-                  thumbnail: null),
-              SpotModel(
-                  id: 2,
-                  title: "산책로",
-                  category: "Nature",
-                  description: "설명",
-                  thumbnail: "사진있음")
+                  id: 11,
+                  title: "1",
+                  content: "1",
+                  thumbnail_url: "1",
+                  course_id: 1,
+                  category: "Cafe"),
             ]
                 .asMap()
                 .entries

@@ -87,7 +87,7 @@ class _UserProfileState extends State<UserProfileHeader> {
               //팔로우 팔로잉버튼
 
               FollowBtn(
-                  userId: widget.userProfile.userId,
+                  uuid: widget.userProfile.uuid,
                   currentState: currentState,
                   onStateChanged: onFollowBtnStateChanged) //팔로우 팔로잉 버튼
             ],
@@ -97,7 +97,7 @@ class _UserProfileState extends State<UserProfileHeader> {
           Container(
             padding: const EdgeInsets.fromLTRB(0, 8, 0, 12),
             child: Text(
-              widget.userProfile.bio,
+              widget.userProfile.introduction,
               style: FontStyles.regular16.copyWith(color: ColorStyles.black),
             ),
           ), //한줄 소개

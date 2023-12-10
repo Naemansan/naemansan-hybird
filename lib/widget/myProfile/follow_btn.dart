@@ -7,14 +7,14 @@ import 'package:naemansan/viewModel/user/user_view_model.dart';
 import 'package:naemansan/widget/base/login_bottom_sheet_widget.dart';
 
 class FollowBtn extends StatefulWidget {
-  final String userId;
+  final String uuid;
   final String currentState;
   final Function(String) onStateChanged;
   const FollowBtn(
       {super.key,
       required this.currentState,
       required this.onStateChanged,
-      required this.userId});
+      required this.uuid});
 
   @override
   State<FollowBtn> createState() => _FollowBtnState();
@@ -26,7 +26,7 @@ class _FollowBtnState extends State<FollowBtn> {
   @override
   Widget build(BuildContext context) {
     return Visibility(
-      visible: userViewModel.user.value.userId != widget.userId,
+      visible: userViewModel.user.value.uuid != widget.uuid,
       child: Container(
         margin: const EdgeInsets.only(left: 4),
         child: InkWell(

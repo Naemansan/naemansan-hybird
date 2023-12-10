@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:naemansan/method/get_scale_width.dart';
-import 'package:naemansan/models/course_overview_model.dart';
+import 'package:naemansan/models/course/course_overview_model.dart';
 
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
@@ -69,11 +69,8 @@ class PrivateCourseCard extends StatelessWidget {
                           padding: const EdgeInsets.only(bottom: 8),
                           child: Wrap(
                             spacing: 4.0,
-                            children: [
-                              courseInfo.siGuDong,
-                              "·",
-                              courseInfo.distance
-                            ].map((element) {
+                            children: [courseInfo.siGuDong, "·", "날찌:수정필요"]
+                                .map((element) {
                               return Text(element,
                                   style: FontStyles.regular16.copyWith(
                                     color: ColorStyles.black,
@@ -113,7 +110,7 @@ class PrivateCourseCard extends StatelessWidget {
                                               height: 16),
                                           const SizedBox(width: 4),
                                           Text(
-                                            courseInfo.momentCount.toString(),
+                                            courseInfo.moment_cnt.toString(),
                                             style: FontStyles.regular12
                                                 .copyWith(
                                                     color: ColorStyles.gray3),

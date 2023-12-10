@@ -7,11 +7,11 @@ class UserService {
     return User(
       isLoggedIn: false,
       deviceToken: 'dummyDeviceToken123',
-      userId: "user1",
+      uuid: "user1",
       nickname: '서찬',
-      bio: '킹갓산책러버',
+      introduction: '킹갓산책러버',
       tags: [Tag(id: 1, tag: '#산책')],
-      profileImageUrl:
+      profile_image_url:
           'https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg',
       following: ['user2', 'user3'],
       follower: ['user4', 'user5', 'user6'],

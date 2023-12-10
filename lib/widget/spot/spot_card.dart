@@ -80,7 +80,7 @@ class _SpotCardState extends State<SpotCard> {
 
           //썸네일
           Visibility(
-            visible: widget.spotInfo.thumbnail != null,
+            visible: widget.spotInfo.thumbnail_url != null,
             child: Container(
               width: double.infinity,
               height: getScaleWidth(context) * 200,
@@ -98,7 +98,7 @@ class _SpotCardState extends State<SpotCard> {
 
           //내용
           Text(
-            widget.spotInfo.description,
+            widget.spotInfo.content,
             style: FontStyles.regular16.copyWith(color: ColorStyles.black),
           ),
           //내용

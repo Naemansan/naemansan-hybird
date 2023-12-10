@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:naemansan/models/followuser_profile_model.dart';
 
 import 'package:naemansan/viewModel/user/user_view_model.dart';
 import 'package:naemansan/widget/base/custom_appbar.dart';

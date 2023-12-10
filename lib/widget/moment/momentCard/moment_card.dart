@@ -30,10 +30,10 @@ class MomentCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(momentInfo.date,
+                  Text("수정",
                       style: FontStyles.semiBold16
                           .copyWith(color: ColorStyles.white)),
-                  Text(momentInfo.year,
+                  Text("수정",
                       style: FontStyles.semiBold12
                           .copyWith(color: ColorStyles.white)),
                 ],
@@ -49,7 +49,7 @@ class MomentCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(momentInfo.courseTitle,
+              Text("${momentInfo.course_id}번째 산책로",
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   style:
@@ -73,7 +73,7 @@ class MomentCard extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                    child: Text(momentInfo.userName,
+                    child: Text("${momentInfo.user_id}번째 유저",
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                         style: FontStyles.regular12

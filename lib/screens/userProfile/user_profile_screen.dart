@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:naemansan/models/course_overview_model.dart';
+import 'package:naemansan/models/course/course_overview_model.dart';
 import 'package:naemansan/models/tag_model.dart';
 
 import 'package:naemansan/viewModel/user/user_view_model.dart';
@@ -44,14 +44,15 @@ class UserProfileScreen extends StatelessWidget {
                       child: CourseCardList(
                         courseList: [
                           CourseOverviewModel(
-                              id: 1,
-                              title: "1",
-                              siGuDong: "1",
-                              distance: "1",
-                              tags: [Tag(id: 1, tag: "1")],
-                              momentCount: 3,
-                              likeCount: 3,
-                              isPublished: true)
+                            id: 1,
+                            title: "1",
+                            siGuDong: "1",
+                            distance: 1234,
+                            tags: [Tag(id: 1, tag: "1")],
+                            moment_cnt: 2,
+                            like_cnt: 3,
+                            isEnrolled: true,
+                          )
                         ],
                       ),
                     ),

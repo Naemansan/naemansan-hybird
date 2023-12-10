@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
-import 'package:naemansan/models/course_overview_model.dart';
+import 'package:naemansan/models/course/course_overview_model.dart';
 
 import 'package:naemansan/models/moment_model.dart';
 
 import 'package:naemansan/models/spot_model.dart';
-import 'package:naemansan/models/course_detail_model.dart';
+import 'package:naemansan/models/course/course_detail_model.dart';
 import 'package:naemansan/models/tag_model.dart';
 
 class CourseDetailViewModel extends GetxController {
@@ -12,85 +12,38 @@ class CourseDetailViewModel extends GetxController {
   CourseDetailViewModel() {
     _courseDetailInfo = CourseDetailModel(
         id: 1,
-        title: "산책로1",
-        siGuDong: "경기도화성시동탄반석로",
-        distance: "1,234m",
-        tags: [
-          Tag(id: 1, tag: "123"),
-          Tag(id: 1, tag: "123"),
-          Tag(id: 1, tag: "123")
-        ],
-        descriptionCourseOverview: "1111",
-        date: "2023/12/23",
-        writerId: 1,
-        writerName: "서현",
-        momentCount: 3,
-        likeCount: 4,
-        momentList: [
+        title: "산책로",
+        content: "내용",
+        siGuDong: "서울시 중구 필동",
+        distance: 1234,
+        tags: [Tag(id: 1, tag: "1")],
+        created_at: "날짜:수정필요",
+        user_id: "user1",
+        like_cnt: 12,
+        moments: [
           MomentModel(
               id: 1,
-              date: "11/2",
-              year: "2023",
+              content: "1",
               weather: "Cloud",
               emotion: "Sad",
-              courseId: 2,
-              courseTitle: "산책로2",
-              userId: 1,
-              userName: "서현  ",
-              content: "내용"),
-          MomentModel(
-              id: 2,
-              date: "11/3",
-              year: "2023",
-              weather: "FewCloudDay",
-              emotion: "Joy",
-              courseId: 2,
-              courseTitle: "산책로2",
-              userId: 1,
-              userName: "서현  ",
-              content: "내용"),
+              course_id: 1,
+              user_id: "user2",
+              created_at: "날짜:수정필요")
         ],
-        spotList: [
+        spots: [
           SpotModel(
-              id: 1,
-              title: "카페",
-              category: "Cafe",
-              description: "설명",
-              thumbnail: null),
-          SpotModel(
-              id: 2,
-              title: "산책로",
-              category: "Nature",
-              description: "설명",
-              thumbnail: "사진있음")
+              id: 1, title: "2", content: "2", course_id: 222, category: "Cafe")
         ],
-        similarCourseList: [
+        similarCourses: [
           CourseOverviewModel(
               id: 1,
-              title: "산책로1",
-              siGuDong: "경기도 화성시 석우동",
-              distance: "1,234m",
-              tags: [
-                Tag(id: 1, tag: "123"),
-                Tag(id: 1, tag: "123"),
-                Tag(id: 1, tag: "123")
-              ],
-              momentCount: 1,
-              likeCount: 2,
-              isPublished: true),
-          CourseOverviewModel(
-              id: 1,
-              title: "산책로2",
-              siGuDong: "경기도 화성시 석우동",
-              distance: "1,234m",
-              tags: [
-                Tag(id: 1, tag: "123"),
-                Tag(id: 1, tag: "123"),
-                Tag(id: 1, tag: "123")
-              ],
-              momentCount: 1,
-              likeCount: 2,
-              isPublished: true)
+              isEnrolled: true,
+              title: "타이틀",
+              siGuDong: "경기화성동탄반석로",
+              distance: 123,
+              tags: [Tag(id: 1, tag: "1")],
+              moment_cnt: 123,
+              like_cnt: 112)
         ]);
   }
   CourseDetailModel get courseDetailInfo => _courseDetailInfo;

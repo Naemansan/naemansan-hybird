@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:naemansan/models/course_overview_model.dart';
+import 'package:naemansan/models/course/course_overview_model.dart';
 import 'package:naemansan/models/near_course_model.dart';
 
 import 'package:naemansan/models/tag_model.dart';
@@ -60,7 +60,7 @@ class CourseDetailSimilarCourseList extends StatelessWidget {
                                 id: element.id,
                                 title: element.title,
                                 siGuDong: element.siGuDong,
-                                distance: element.distance,
+                                distance: element.distance.toString(),
                                 tags: [
                                   Tag(id: 1, tag: "2")
                                 ],
@@ -69,7 +69,6 @@ class CourseDetailSimilarCourseList extends StatelessWidget {
                                 ]),
                             onCourseTap: (courseIndex) {
                               // 코스 카드 선택 시 해당 코스 화면으로 이동한다.
-
                               Get.toNamed("/courseDetail/$courseIndex");
                             }),
                         //수정필요

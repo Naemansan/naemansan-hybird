@@ -1,13 +1,15 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 import 'package:naemansan/widget/myProfile/follow_btn.dart';
 
 class CourseDetailWriter extends StatefulWidget {
-  final String writer;
-  final String date;
+  final String user_id;
+  final String created_at;
   const CourseDetailWriter(
-      {super.key, required this.writer, required this.date});
+      {super.key, required this.user_id, required this.created_at});
 
   @override
   State<CourseDetailWriter> createState() => _CourseDetailWriterState();
@@ -45,14 +47,14 @@ class _CourseDetailWriterState extends State<CourseDetailWriter> {
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(widget.writer,
+            Text("${widget.user_id}번째 유저",
                 style: FontStyles.regular12.copyWith(color: ColorStyles.black)),
-            Text(widget.date,
+            Text("수정",
                 style: FontStyles.regular12.copyWith(color: ColorStyles.gray3)),
           ],
         )),
         FollowBtn(
-            userId: "userId",
+            uuid: "uuid",
             currentState: currentState,
             onStateChanged: onFollowBtnStateChanged)
       ]),
