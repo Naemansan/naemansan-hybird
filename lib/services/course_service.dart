@@ -36,7 +36,7 @@ class CourseService {
           return [
             CourseOverview(
                 id: 1,
-                isEnrolled: true,
+                isEnrolled: false,
                 title: "1번산책로",
                 siGuDong: "경기도홧성시 동탄반석로",
                 distance: "1234",
@@ -184,13 +184,13 @@ class CourseService {
       [
         Spot(
             id: 1,
-            title: "1",
+            title: "기존 스팟1",
             content: "1",
             location: Location(latitude: 10.0, longitude: 20.0),
             category: "CAFE_BAKERY"),
         Spot(
             id: 1,
-            title: "1",
+            title: "기존 스팟2",
             content: "1",
             location: Location(latitude: 10.0, longitude: 20.0),
             category: "CAFE_BAKERY"),
@@ -229,6 +229,43 @@ class CourseService {
             category: "CAFE_BAKERY"),
       ];
     }
+  }
+
+  List<Spot> getDummyNewSpot() {
+    List<Spot> dummySpots = [
+      Spot(
+          id: 6,
+          title: "새로운 스팟 1",
+          content: "1",
+          location: Location(latitude: 10.0, longitude: 20.0),
+          category: "SHOPPING"),
+      Spot(
+          id: 7,
+          title: "새로운 스팟 2",
+          content: "1",
+          location: Location(latitude: 10.0, longitude: 20.0),
+          category: "FOOD"),
+      Spot(
+          id: 6,
+          title: "새로운 스팟 3",
+          content: "1",
+          location: Location(latitude: 10.0, longitude: 20.0),
+          category: "ACCOMMODATION"),
+      Spot(
+          id: 6,
+          title: "새로운 스팟 4",
+          content: "1",
+          location: Location(latitude: 10.0, longitude: 20.0),
+          category: "PUB_BAR"),
+      Spot(
+          id: 6,
+          title: "새로운 스팟 5",
+          content: "1",
+          location: Location(latitude: 10.0, longitude: 20.0),
+          category: "NATURE"),
+    ];
+
+    return dummySpots;
   }
 
   List<SimilarCourse> getDummySimilarCourses(int courseId) {

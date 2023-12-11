@@ -6,7 +6,7 @@ class CategoryConfig {
         kor: "숙소",
         icon: 'assets/icons/spotACCOMMODATION.svg'),
     Category(eng: "NATURE", kor: "자연", icon: 'assets/icons/spotNATURE.svg'),
-    Category(eng: "SHOPPING", kor: "쇼핑", icon: 'assets/icons/spotShOPPING.svg'),
+    Category(eng: "SHOPPING", kor: "쇼핑", icon: 'assets/icons/spotSHOPPING.svg'),
     Category(eng: "FOOD", kor: "음식점", icon: 'assets/icons/spotFOOD.svg'),
     Category(eng: "PLACE", kor: "장소", icon: 'assets/icons/spotPLACE.svg'),
     Category(

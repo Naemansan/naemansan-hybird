@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
+
 import 'package:naemansan/method/get_scale_width.dart';
+import 'package:naemansan/models/spot_model.dart';
 
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
+import 'package:naemansan/viewModel/private_course_edit_view_model.dart';
 import 'package:naemansan/widget/common/button/bottom_button.dart';
 import 'package:naemansan/widget/common/button/solid_button.dart';
 
 import 'package:naemansan/widget/edit/custom_textfield.dart';
+
 import 'package:naemansan/widget/edit/tag_selector.dart';
 import 'package:naemansan/widget/edit/private_course_edit_spot.dart';
 
 class PrivateCourseEditInfo extends StatefulWidget {
+  final PrivateCourseEditViewModel privateCourseEditViewModel;
   final String type;
 
   const PrivateCourseEditInfo({
     super.key,
     required this.type,
+    required this.privateCourseEditViewModel,
   });
 
   @override
@@ -28,6 +34,34 @@ class _PrivateCourseEditInfoState extends State<PrivateCourseEditInfo> {
   List<int> currentSpotSelect = [];
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
+
+  List<Spot> spotList = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    //기존 값 로드 하기
+    titleController.text = widget.privateCourseEditViewModel.course.value.title;
+    descriptionController.text =
+        widget.privateCourseEditViewModel.course.value.content;
+
+    currentTagSelect = [];
+
+    //기존 리스트에 존재하는 모든 스팟을 체크 표시함
+    currentSpotSelect = List.generate(
+        widget.privateCourseEditViewModel.spots.length, (index) => index);
+
+    //새로운 스팟이 있을경우 spot 리스트를 합친다.
+    if (widget.privateCourseEditViewModel.isNewSpot) {
+      spotList = [
+        ...widget.privateCourseEditViewModel.spots,
+        ...widget.privateCourseEditViewModel.newSpots
+      ];
+    } else {
+      spotList = widget.privateCourseEditViewModel.spots;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +96,10 @@ class _PrivateCourseEditInfoState extends State<PrivateCourseEditInfo> {
                     fit: BoxFit.cover,
                     'assets/images/defaultImage.png',
                   ),
-                ), //썸네일
+                ),
+                //썸네일
+
+                //입력 폼
                 Column(
                   children: [
                     Container(
@@ -123,11 +160,13 @@ class _PrivateCourseEditInfoState extends State<PrivateCourseEditInfo> {
 
                     //스팟 정보
                     PrivateCourseEditSpot(
+                      spots: spotList,
                       currentSelect: currentSpotSelect,
                       onChanged: checkFormValid,
                     ),
                   ],
                 ),
+                //입력 폼
               ],
             ),
           ),
@@ -135,14 +174,45 @@ class _PrivateCourseEditInfoState extends State<PrivateCourseEditInfo> {
         bottomNavigationBar: BottomButton(
           buttonList: [
             widget.type == "publish"
-                ? SolidButton(
+                ?
+                //산책로 정보 공개하기
+                SolidButton(
                     content: "산책로 공개하기",
                     isActive: isFormValid,
-                    onTap: () => print("^:산책로 공개"))
-                : SolidButton(
-                    content: "정보 저장하기",
-                    isActive: isFormValid,
-                    onTap: () => print("^:산책로 저장"))
+                    onTap: () =>
+                        widget.privateCourseEditViewModel.publishCourseDetail(
+                          titleController.text,
+                          descriptionController.text,
+                          currentTagSelect,
+                          currentSpotSelect,
+                        ))
+                :
+                //산책로 정보 저장하기
+                widget.privateCourseEditViewModel.isNewSpot
+                    ?
+                    //새로운 스팟이 있는 경우
+                    SolidButton(
+                        content: "정보 저장하기",
+                        isActive: isFormValid,
+                        onTap: () => widget.privateCourseEditViewModel
+                            .updateCourseDetailWithNewSpot(
+                                titleController.text,
+                                descriptionController.text,
+                                currentTagSelect,
+                                currentSpotSelect,
+                                spotList))
+                    :
+                    //새로운 스팟이 없는 경우
+                    SolidButton(
+                        content: "산책로 공개하기",
+                        isActive: isFormValid,
+                        onTap: () => widget.privateCourseEditViewModel
+                                .updateCourseDetail(
+                              titleController.text,
+                              descriptionController.text,
+                              currentTagSelect,
+                              currentSpotSelect,
+                            ))
           ],
         ));
   }
