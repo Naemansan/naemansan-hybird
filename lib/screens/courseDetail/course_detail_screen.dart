@@ -4,6 +4,7 @@ import 'package:naemansan/method/get_scale_width.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 
 import 'package:naemansan/viewModel/course_detail_view_model.dart';
+
 import 'package:naemansan/widget/base/custom_appbar.dart';
 import 'package:naemansan/widget/common/button/bottom_button.dart';
 import 'package:naemansan/widget/common/button/like_button.dart';
@@ -22,8 +23,9 @@ class CourseDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String courseId = Get.parameters['courseId'] ?? '';
     final CourseDetailViewModel courseViewModel =
-        Get.put(CourseDetailViewModel());
+        Get.put(CourseDetailViewModel(courseId: int.parse(courseId)));
 
     return Scaffold(
         //앱바...

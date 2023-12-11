@@ -49,20 +49,7 @@ class UserProfileScreen extends StatelessWidget {
                         child: Container(
                           width: double.infinity,
                           padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: CourseCardList(
-                            courseList: [
-                              CourseOverview(
-                                id: 1,
-                                title: "1",
-                                siGuDong: "1",
-                                distance: 1234,
-                                tags: [],
-                                momentCount: 2,
-                                likeCount: 3,
-                                isEnrolled: true,
-                              )
-                            ],
-                          ),
+                          child: CourseCardList(),
                         ),
                       ),
                     ),

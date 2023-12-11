@@ -59,8 +59,11 @@ class CourseCard extends StatelessWidget {
                           padding: const EdgeInsets.only(bottom: 8),
                           child: Wrap(
                             spacing: 4.0,
-                            children: [courseInfo.siGuDong, "·", "날찌:수정필요"]
-                                .map((element) {
+                            children: [
+                              courseInfo.siGuDong,
+                              "·",
+                              "${courseInfo.distance}m"
+                            ].map((element) {
                               return Text(element,
                                   style: FontStyles.regular16.copyWith(
                                     color: ColorStyles.black,

@@ -61,7 +61,7 @@ class CourseBtnWidget extends StatelessWidget {
                   ),
                   const SizedBox(width: 4),
                   Text(
-                    course.distance,
+                    "${course.distance}m",
                     style: FontStyles.regular16.copyWith(
                       color: ColorStyles.black,
                     ),

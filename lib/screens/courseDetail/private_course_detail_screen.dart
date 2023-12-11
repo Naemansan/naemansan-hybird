@@ -21,8 +21,9 @@ class PrivateCourseDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String courseId = Get.parameters['courseId'] ?? '';
     final CourseDetailViewModel courseViewModel =
-        Get.put(CourseDetailViewModel());
+        Get.put(CourseDetailViewModel(courseId: int.parse(courseId)));
 
     return Scaffold(
         //앱바...

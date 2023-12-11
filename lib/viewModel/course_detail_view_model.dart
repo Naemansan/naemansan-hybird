@@ -6,6 +6,9 @@ import 'package:naemansan/models/spot_model.dart';
 import 'package:naemansan/services/course_service.dart';
 
 class CourseDetailViewModel extends GetxController {
+  final int courseId;
+  CourseDetailViewModel({required this.courseId});
+
   final Rx<CourseDetail> course = CourseDetail(
           id: 0,
           title: '',
@@ -21,12 +24,11 @@ class CourseDetailViewModel extends GetxController {
   final RxList<MomentModel> moments = <MomentModel>[].obs;
   final RxList<SpotModel> spots = <SpotModel>[].obs;
   final RxList<CourseOverview> similarCourses = <CourseOverview>[].obs;
+
   @override
   void onInit() {
     super.onInit();
-
-    String courseId = Get.parameters['courseId'] ?? '';
-    loadCourseDetailData(int.parse(courseId));
+    loadCourseDetailData(courseId);
   }
 
   void loadCourseDetailData(int courseId) {

@@ -1,39 +1,66 @@
 import 'package:naemansan/models/course_detail_model.dart';
 import 'package:naemansan/models/course_overview_model.dart';
-import 'package:naemansan/models/tag_model.dart';
 
 class CourseService {
   List<CourseOverview> getDummyCourseOverviews(
-      List<int> tagIds, double lati, double longi, int page, int size) {
-    return [
-      CourseOverview(
-          id: 1,
-          isEnrolled: true,
-          title: "1번산책로",
-          siGuDong: "경기도홧성시 동탄반석로",
-          distance: 1234,
-          tags: [],
-          momentCount: 1,
-          likeCount: 1),
-      CourseOverview(
-          id: 2,
-          isEnrolled: true,
-          title: "1번산책로",
-          siGuDong: "경기도홧성시 동탄반석로",
-          distance: 1234,
-          tags: [],
-          momentCount: 1,
-          likeCount: 1),
-      CourseOverview(
-          id: 3,
-          isEnrolled: true,
-          title: "1번산책로",
-          siGuDong: "경기도홧성시 동탄반석로",
-          distance: 1234,
-          tags: [],
-          momentCount: 1,
-          likeCount: 1)
-    ];
+      List<int>? tagIds, double? lati, double? longi, int? page, int? size) {
+    switch (tagIds) {
+      case [0]:
+        {
+          return [
+            CourseOverview(
+                id: 1,
+                isEnrolled: true,
+                title: "1번산책로",
+                siGuDong: "경기도홧성시 동탄반석로",
+                distance: "1234",
+                tags: ["아무튼 태그"],
+                momentCount: 1,
+                likeCount: 1),
+            CourseOverview(
+                id: 2,
+                isEnrolled: true,
+                title: "2번산책로",
+                siGuDong: "경기도홧성시 동탄반석로",
+                distance: "1234",
+                tags: ["여유어쩌고", "뭐어쩌고"],
+                momentCount: 1,
+                likeCount: 1),
+          ];
+        }
+      default:
+        {
+          return [
+            CourseOverview(
+                id: 1,
+                isEnrolled: true,
+                title: "1번산책로",
+                siGuDong: "경기도홧성시 동탄반석로",
+                distance: "1234",
+                tags: ["아무튼 태그"],
+                momentCount: 1,
+                likeCount: 1),
+            CourseOverview(
+                id: 2,
+                isEnrolled: true,
+                title: "2번산책로",
+                siGuDong: "경기도홧성시 동탄반석로",
+                distance: "1234",
+                tags: ["여유어쩌고", "뭐어쩌고"],
+                momentCount: 1,
+                likeCount: 1),
+            CourseOverview(
+                id: 3,
+                isEnrolled: true,
+                title: "3번산책로",
+                siGuDong: "경기도홧성시 동탄반석로",
+                distance: "1234",
+                tags: ["여유어쩌고"],
+                momentCount: 1,
+                likeCount: 1)
+          ];
+        }
+    }
   }
 
   CourseDetail getDummyCourseDetail(int courseId) {
@@ -50,8 +77,8 @@ class CourseService {
           userId: "user1"),
       CourseDetail(
           id: 2,
-          title: "1번산책로",
-          content: "1번산책로 설명",
+          title: "2번산책로",
+          content: "2번산책로 설명",
           siGuDong: "경기도 화성시 동탄반석로",
           locations: [Location(latitude: 11.2, longitude: 11.1)],
           tags: [],

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:naemansan/models/course_overview_model.dart';
-import 'package:naemansan/models/tag_model.dart';
 
 import 'package:naemansan/widget/common/button/tag_btn.dart';
 import 'package:naemansan/widget/course/courseCard/course_card_list.dart';
@@ -14,28 +12,6 @@ class WalkingLogCourse extends StatefulWidget {
 
 class _WalkingLogCourseState extends State<WalkingLogCourse> {
   var currentSelect = 0;
-
-  //^:dummy
-  var courseList = [
-    CourseOverview(
-        id: 1,
-        title: "산책로1",
-        siGuDong: "경기도 화성시 석우동",
-        distance: 1234,
-        tags: [],
-        momentCount: 1,
-        likeCount: 2,
-        isEnrolled: true),
-    CourseOverview(
-        id: 1,
-        title: "산책로1",
-        siGuDong: "경기도 화성시 석우동",
-        distance: 1234,
-        tags: [],
-        momentCount: 1,
-        likeCount: 2,
-        isEnrolled: false)
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +42,7 @@ class _WalkingLogCourseState extends State<WalkingLogCourse> {
           ),
         ), //태그 선택
 
-        CourseCardList(courseList: courseList)
+        CourseCardList()
       ],
     );
   }

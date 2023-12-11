@@ -6,7 +6,7 @@ class CourseOverview {
   final String title;
   final String siGuDong; //start_location_name
 
-  final int distance;
+  final String distance;
 
   final List<String> tags;
 
