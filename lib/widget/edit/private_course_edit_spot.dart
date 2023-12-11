@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:naemansan/models/course_detail_model.dart';
 import 'package:naemansan/models/spot_model.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
@@ -54,13 +55,12 @@ class _PrivateCourseEditSpotState extends State<PrivateCourseEditSpot> {
           Wrap(
             runSpacing: 20,
             children: [
-              SpotModel(
-                  id: 11,
+              Spot(
+                  id: 1,
                   title: "1",
-                  content: "1",
-                  thumbnail_url: "1",
-                  course_id: 1,
-                  category: "Cafe"),
+                  content: "content",
+                  location: Location(latitude: 10.0, longitude: 10.0),
+                  category: "CAFE")
             ]
                 .asMap()
                 .entries

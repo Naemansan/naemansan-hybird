@@ -1,5 +1,6 @@
 import 'package:naemansan/models/course_detail_model.dart';
 import 'package:naemansan/models/course_overview_model.dart';
+import 'package:naemansan/models/moment_model.dart';
 
 class CourseService {
   List<CourseOverview> getDummyCourseOverviews(
@@ -100,6 +101,76 @@ class CourseService {
           distance: "1234",
           createdAt: "2023-12-11",
           userId: "user1");
+    }
+  }
+
+  List<Moment> getDummyMoment(int courseId) {
+    List<List<Moment>> dummyMoments = [
+      [
+        Moment(
+            id: 1,
+            courseId: 1,
+            courseTitle: "산책로1",
+            nickname: "서현",
+            content: "안녕하세요?",
+            createdAt: "2023-09-23",
+            emotion: "SADNESS",
+            weather: "CLOUDY_DAY"),
+        Moment(
+            id: 2,
+            courseId: 1,
+            courseTitle: "산책로1",
+            nickname: "서현2",
+            content: "안녕하세요?",
+            createdAt: "2023-09-24",
+            emotion: "FLUTTER",
+            weather: "CLOUDY_DAY")
+      ],
+      [
+        Moment(
+            id: 1,
+            courseId: 2,
+            courseTitle: "산책로2",
+            nickname: "서현",
+            content: "안녕하세요?",
+            createdAt: "2023-09-23",
+            emotion: "SADNESS",
+            weather: "CLOUDY_DAY"),
+        Moment(
+            id: 2,
+            courseId: 2,
+            courseTitle: "산책로2",
+            nickname: "서현2",
+            content: "안녕하세요?",
+            createdAt: "2023-09-24",
+            emotion: "FLUTTER",
+            weather: "CLOUDY_DAY")
+      ]
+    ];
+
+    if (dummyMoments.length >= courseId) {
+      return dummyMoments[courseId - 1];
+    } else {
+      return [
+        Moment(
+            id: 1,
+            courseId: 111,
+            courseTitle: "범위 초과 산책로",
+            nickname: "서현",
+            content: "안녕하세요?",
+            createdAt: "2023-09-23",
+            emotion: "SADNESS",
+            weather: "CLOUDY_DAY"),
+        Moment(
+            id: 2,
+            courseId: 111,
+            courseTitle: "범위 초과 산책로",
+            nickname: "서현2",
+            content: "안녕하세요?",
+            createdAt: "2023-09-24",
+            emotion: "FLUTTER",
+            weather: "CLOUDY_DAY")
+      ];
     }
   }
 }

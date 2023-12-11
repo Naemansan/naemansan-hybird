@@ -6,7 +6,7 @@ import 'package:naemansan/utilities/style/font_styles.dart';
 import 'package:naemansan/widget/spot/spot_card.dart';
 
 class CourseDetailSpotList extends StatefulWidget {
-  final List<SpotModel> spotList;
+  final List<Spot> spotList;
   const CourseDetailSpotList({super.key, required this.spotList});
 
   @override

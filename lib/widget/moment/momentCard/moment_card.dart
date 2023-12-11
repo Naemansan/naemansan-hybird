@@ -6,7 +6,7 @@ import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
 class MomentCard extends StatelessWidget {
-  final MomentModel momentInfo;
+  final Moment momentInfo;
   const MomentCard({super.key, required this.momentInfo});
 
   @override
@@ -49,7 +49,7 @@ class MomentCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("${momentInfo.course_id}번째 산책로",
+              Text("${momentInfo.courseId}번째 산책로",
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   style:
@@ -73,7 +73,7 @@ class MomentCard extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                    child: Text("${momentInfo.user_id}번째 유저",
+                    child: Text("${momentInfo.nickname}번째 유저",
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                         style: FontStyles.regular12

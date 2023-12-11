@@ -9,13 +9,13 @@ import 'package:naemansan/utilities/style/font_styles.dart';
 
 class MomentDetail extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
-  final MomentModel momentInfo;
+  final Moment momentInfo;
   const MomentDetail({super.key, required this.momentInfo});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => {Get.toNamed("/courseDetail/${momentInfo.course_id}")},
+      onTap: () => {Get.toNamed("/courseDetail/${momentInfo.courseId}")},
       child: Column(
         children: [
           //모먼트 상단 정보
@@ -43,7 +43,7 @@ class MomentDetail extends StatelessWidget {
                         height: 4,
                       ),
                       Text(
-                        "${momentInfo.course_id}번째 산책로",
+                        "${momentInfo.courseId}번째 산책로",
                         style: FontStyles.semiBold16
                             .copyWith(color: ColorStyles.white),
                       ),

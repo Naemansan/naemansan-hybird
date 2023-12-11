@@ -1,20 +1,25 @@
 // ignore_for_file: non_constant_identifier_names
 
-class SpotModel {
+import 'package:naemansan/models/course_detail_model.dart';
+
+class Spot {
   final int id;
+
   final String title;
   final String content;
-  final String? thumbnail_url;
 
-  final int course_id;
+  final Location location;
+
   final String category;
 
-  SpotModel({
+  final String? thumbnailurl;
+
+  Spot({
     required this.id,
     required this.title,
     required this.content,
-    required this.course_id,
+    required this.location,
     required this.category,
-    this.thumbnail_url,
+    this.thumbnailurl,
   });
 }

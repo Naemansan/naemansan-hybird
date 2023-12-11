@@ -1,23 +1,25 @@
 // ignore_for_file: non_constant_identifier_names
 
-class MomentModel {
+class Moment {
   final int id;
+  final int courseId;
+  final String courseTitle;
+
+  final String nickname;
 
   final String content;
+  final String createdAt;
+
   final String emotion;
   final String weather;
 
-  final int course_id;
-  final String user_id;
-
-  final String created_at;
-
-  MomentModel(
+  Moment(
       {required this.id,
+      required this.courseId,
+      required this.courseTitle,
+      required this.nickname,
       required this.content,
-      required this.weather,
+      required this.createdAt,
       required this.emotion,
-      required this.course_id,
-      required this.user_id,
-      required this.created_at});
+      required this.weather});
 }

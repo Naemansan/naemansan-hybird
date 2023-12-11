@@ -21,8 +21,8 @@ class CourseDetailViewModel extends GetxController {
           userId: '')
       .obs;
 
-  final RxList<MomentModel> moments = <MomentModel>[].obs;
-  final RxList<SpotModel> spots = <SpotModel>[].obs;
+  final RxList<Moment> moments = <Moment>[].obs;
+  final RxList<Spot> spots = <Spot>[].obs;
   final RxList<CourseOverview> similarCourses = <CourseOverview>[].obs;
 
   @override
@@ -34,7 +34,8 @@ class CourseDetailViewModel extends GetxController {
   void loadCourseDetailData(int courseId) {
     CourseDetail dummyCourseDetail =
         CourseService().getDummyCourseDetail(courseId);
-
+    List<Moment> dummyMoment = CourseService().getDummyMoment(courseId);
     course.value = dummyCourseDetail;
+    moments.value = dummyMoment;
   }
 }

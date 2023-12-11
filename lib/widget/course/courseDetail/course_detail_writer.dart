@@ -7,9 +7,9 @@ import 'package:naemansan/widget/myProfile/follow_btn.dart';
 
 class CourseDetailWriter extends StatefulWidget {
   final String user_id;
-  final String created_at;
+  final String createdAt;
   const CourseDetailWriter(
-      {super.key, required this.user_id, required this.created_at});
+      {super.key, required this.user_id, required this.createdAt});
 
   @override
   State<CourseDetailWriter> createState() => _CourseDetailWriterState();

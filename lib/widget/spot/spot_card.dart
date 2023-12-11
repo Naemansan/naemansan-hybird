@@ -9,7 +9,7 @@ import 'package:naemansan/widget/spot/spot_select_button.dart';
 class SpotCard extends StatefulWidget {
   final bool? isSelected;
   final VoidCallback? onTap;
-  final SpotModel spotInfo;
+  final Spot spotInfo;
   const SpotCard(
       {super.key, required this.spotInfo, this.isSelected, this.onTap});
 
@@ -80,7 +80,7 @@ class _SpotCardState extends State<SpotCard> {
 
           //썸네일
           Visibility(
-            visible: widget.spotInfo.thumbnail_url != null,
+            visible: widget.spotInfo.thumbnailurl != null,
             child: Container(
               width: double.infinity,
               height: getScaleWidth(context) * 200,

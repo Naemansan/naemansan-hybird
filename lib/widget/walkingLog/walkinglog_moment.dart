@@ -10,34 +10,13 @@ class WalkingLogMoment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final datesList = ["2023년 11월", "2023년 10월"];
-    final momentsList = [
-      [
-        MomentModel(
-            id: 1,
-            content: "내용",
-            weather: "Cloud",
-            emotion: "Sad",
-            course_id: 1,
-            user_id: "user1",
-            created_at: "날찌:수정필요"),
-      ],
-      [
-        MomentModel(
-            id: 1,
-            content: "내용",
-            weather: "Cloud",
-            emotion: "Sad",
-            course_id: 1,
-            user_id: "user1",
-            created_at: "날찌:수정필요"),
-      ]
-    ];
+    final List<Moment> momentsList = [];
     return Column(
       children: [
         Container(
             padding: const EdgeInsets.fromLTRB(4, 0, 4, 12),
             child: EmotionConfig.emotionInfo),
-        WalkingLogMomentMonth(datesList: datesList, momentsList: momentsList),
+        // WalkingLogMomentMonth(datesList: datesList, momentsList: momentsList),
       ],
     );
   }
