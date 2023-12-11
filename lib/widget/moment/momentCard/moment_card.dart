@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 import 'package:naemansan/models/moment_model.dart';
 import 'package:naemansan/utilities/emotion_list.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
@@ -30,10 +31,16 @@ class MomentCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("수정",
+                  //mm/dd
+                  Text(
+                      DateFormat('MM/dd')
+                          .format(DateTime.parse(momentInfo.createdAt)),
                       style: FontStyles.semiBold16
                           .copyWith(color: ColorStyles.white)),
-                  Text("수정",
+                  //yyyy
+                  Text(
+                      DateFormat('yyyy')
+                          .format(DateTime.parse(momentInfo.createdAt)),
                       style: FontStyles.semiBold12
                           .copyWith(color: ColorStyles.white)),
                 ],

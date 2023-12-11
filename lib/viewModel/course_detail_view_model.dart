@@ -16,7 +16,8 @@ class CourseDetailViewModel extends GetxController {
           tags: [],
           distance: '',
           createdAt: '',
-          userId: '')
+          userId: '',
+          userNickName: '')
       .obs;
 
   final RxList<Moment> moments = <Moment>[].obs;

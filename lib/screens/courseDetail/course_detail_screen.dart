@@ -70,7 +70,9 @@ class CourseDetailScreen extends StatelessWidget {
 
                         //작성자
                         CourseDetailWriter(
-                          user_id: courseViewModel.course.value.userId,
+                          userNickName:
+                              courseViewModel.course.value.userNickName,
+                          userId: courseViewModel.course.value.userId,
                           createdAt: courseViewModel.course.value.createdAt,
                         ),
 

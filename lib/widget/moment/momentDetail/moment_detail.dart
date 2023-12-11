@@ -35,7 +35,7 @@ class MomentDetail extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "날찌:수정필요",
+                        "날씨:수정필요",
                         style: FontStyles.semiBold16
                             .copyWith(color: ColorStyles.white),
                       ),
@@ -43,7 +43,7 @@ class MomentDetail extends StatelessWidget {
                         height: 4,
                       ),
                       Text(
-                        "${momentInfo.courseId}번째 산책로",
+                        "${momentInfo.courseId}번째 산책로 수정필요",
                         style: FontStyles.semiBold16
                             .copyWith(color: ColorStyles.white),
                       ),

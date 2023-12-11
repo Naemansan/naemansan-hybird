@@ -1,5 +1,3 @@
-import 'package:naemansan/models/tag_model.dart';
-
 class CourseDetail {
   final int id;
   final String title;
@@ -14,17 +12,22 @@ class CourseDetail {
   final String createdAt;
 
   final String userId;
+  final String userNickName;
+  final String? userProfileImageUrl;
 
-  CourseDetail(
-      {required this.id,
-      required this.title,
-      required this.content,
-      required this.siGuDong,
-      required this.locations,
-      required this.tags,
-      required this.distance,
-      required this.createdAt,
-      required this.userId});
+  CourseDetail({
+    required this.id,
+    required this.title,
+    required this.content,
+    required this.siGuDong,
+    required this.locations,
+    required this.tags,
+    required this.distance,
+    required this.createdAt,
+    required this.userId,
+    required this.userNickName,
+    this.userProfileImageUrl,
+  });
 }
 
 class Location {

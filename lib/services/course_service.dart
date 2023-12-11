@@ -77,7 +77,8 @@ class CourseService {
           tags: [],
           distance: "1234",
           createdAt: "2023-12-11",
-          userId: "user1"),
+          userId: "user1",
+          userNickName: "user1"),
       CourseDetail(
           id: 2,
           title: "2번산책로",
@@ -87,7 +88,8 @@ class CourseService {
           tags: [],
           distance: "1234",
           createdAt: "2023-12-11",
-          userId: "user1"),
+          userId: "user1",
+          userNickName: "user1"),
     ];
 
     if (dummyCourseDetails.length >= courseId) {
@@ -102,7 +104,8 @@ class CourseService {
           tags: [],
           distance: "1234",
           createdAt: "2023-12-11",
-          userId: "user1");
+          userId: "user1",
+          userNickName: "user1");
     }
   }
 
