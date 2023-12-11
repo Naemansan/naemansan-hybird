@@ -35,32 +35,40 @@ class UserProfileScreen extends StatelessWidget {
               return Container(
                 width: double.infinity,
                 padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
-                child: Column(children: [
-                  UserProfileHeader(
-                    userProfile: userProfileViewModel.user.value,
-                  ),
-                  Expanded(
+                child: Column(
+                  children: [
+                    //상단 유저 프로필
+                    UserProfileHeader(
+                      userProfile: userProfileViewModel.user.value,
+                    ),
+                    //상단 유저 프로필
+
+                    //산책로 목록
+                    Expanded(
                       child: SingleChildScrollView(
-                    child: Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: CourseCardList(
-                        courseList: [
-                          CourseOverviewModel(
-                            id: 1,
-                            title: "1",
-                            siGuDong: "1",
-                            distance: 1234,
-                            tags: [Tag(id: 1, tag: "1")],
-                            moment_cnt: 2,
-                            like_cnt: 3,
-                            isEnrolled: true,
-                          )
-                        ],
+                        child: Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: CourseCardList(
+                            courseList: [
+                              CourseOverviewModel(
+                                id: 1,
+                                title: "1",
+                                siGuDong: "1",
+                                distance: 1234,
+                                tags: [Tag(id: 1, tag: "1")],
+                                moment_cnt: 2,
+                                like_cnt: 3,
+                                isEnrolled: true,
+                              )
+                            ],
+                          ),
+                        ),
                       ),
                     ),
-                  ))
-                ]),
+                    //산책로 목록
+                  ],
+                ),
               );
             }));
   }

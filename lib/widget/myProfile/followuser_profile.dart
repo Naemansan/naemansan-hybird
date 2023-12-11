@@ -3,14 +3,17 @@ import 'package:get/get.dart';
 
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
+import 'package:naemansan/viewModel/follow_model.dart';
 
 import 'package:naemansan/widget/myProfile/follow_btn.dart';
 
 class FollowuserProfile extends StatefulWidget {
   // ignore: prefer_typing_uninitialized_variables
-  final String id;
+  final Follow userInfo;
   final String type;
-  const FollowuserProfile({super.key, required this.id, required this.type});
+
+  const FollowuserProfile(
+      {super.key, required this.userInfo, required this.type});
 
   @override
   State<FollowuserProfile> createState() => _FollowuserProfileState();
@@ -31,7 +34,7 @@ class _FollowuserProfileState extends State<FollowuserProfile> {
       margin: const EdgeInsets.only(bottom: 20),
       child: InkWell(
         onTap: () {
-          Get.toNamed("/userProfile/${widget.id}");
+          Get.toNamed("/userProfile/${widget.userInfo.userId}");
         },
         child: Row(
           children: [
@@ -55,12 +58,12 @@ class _FollowuserProfileState extends State<FollowuserProfile> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "${widget.id}의 이름",
+                    widget.userInfo.nickname,
                     style:
                         FontStyles.regular12.copyWith(color: ColorStyles.black),
                   ),
                   Text(
-                    "${widget.id}의 바이오",
+                    widget.userInfo.introduction,
                     style:
                         FontStyles.regular12.copyWith(color: ColorStyles.gray3),
                   ),
@@ -72,7 +75,7 @@ class _FollowuserProfileState extends State<FollowuserProfile> {
             Visibility(
                 visible: widget.type == "following",
                 child: FollowBtn(
-                    uuid: widget.id,
+                    uuid: widget.userInfo.userId,
                     currentState: currentState,
                     onStateChanged: onFollowBtnStateChanged)) //팔로우 팔로잉 버튼
           ],

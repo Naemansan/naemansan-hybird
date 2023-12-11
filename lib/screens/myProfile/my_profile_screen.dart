@@ -15,7 +15,6 @@ class MyProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final UserViewModel userViewModel = Get.put(UserViewModel());
     final MyProfileViewModel userProfileViewModel =
         Get.put(MyProfileViewModel());
 
@@ -37,28 +36,30 @@ class MyProfileScreen extends StatelessWidget {
             return Container(
               padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
               child: Column(children: [
-                //유저 프로필 (상단)
+                //상단 유저 프로필
                 UserProfileHeader(
                   userProfile: userProfileViewModel.user.value,
                 ),
+                //상단 유저 프로필
 
-                //팔로잉 팔로워 보는 탭
+                //팔로잉 팔로워
                 Expanded(
                   child: CustomTabbar(
                     tabs: const ["팔로잉", "팔로워"],
                     rightTabs: const [],
                     tabviews: [
                       FollowuserProfileList(
-                        userList: userViewModel.user.value.following,
+                        userList: userProfileViewModel.following,
                         type: "following",
                       ),
                       FollowuserProfileList(
-                        userList: userViewModel.user.value.follower,
+                        userList: userProfileViewModel.follower,
                         type: "follower",
                       ),
                     ],
                   ),
                 ),
+                //팔로잉 팔로워
               ]),
             );
           }),
