@@ -60,7 +60,7 @@ class _PrivateCourseEditSpotState extends State<PrivateCourseEditSpot> {
                   title: "1",
                   content: "content",
                   location: Location(latitude: 10.0, longitude: 10.0),
-                  category: "CAFE")
+                  category: "NATURE")
             ]
                 .asMap()
                 .entries

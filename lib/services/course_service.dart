@@ -1,6 +1,7 @@
 import 'package:naemansan/models/course_detail_model.dart';
 import 'package:naemansan/models/course_overview_model.dart';
 import 'package:naemansan/models/moment_model.dart';
+import 'package:naemansan/models/spot_model.dart';
 
 class CourseService {
   List<CourseOverview> getDummyCourseOverviews(
@@ -112,7 +113,7 @@ class CourseService {
             courseId: 1,
             courseTitle: "산책로1",
             nickname: "서현",
-            content: "안녕하세요?",
+            content: "안녕하세요?1",
             createdAt: "2023-09-23",
             emotion: "SADNESS",
             weather: "CLOUDY_DAY"),
@@ -132,7 +133,7 @@ class CourseService {
             courseId: 2,
             courseTitle: "산책로2",
             nickname: "서현",
-            content: "안녕하세요?",
+            content: "안녕하세요?3",
             createdAt: "2023-09-23",
             emotion: "SADNESS",
             weather: "CLOUDY_DAY"),
@@ -141,7 +142,7 @@ class CourseService {
             courseId: 2,
             courseTitle: "산책로2",
             nickname: "서현2",
-            content: "안녕하세요?",
+            content: "안녕하세요?4",
             createdAt: "2023-09-24",
             emotion: "FLUTTER",
             weather: "CLOUDY_DAY")
@@ -170,6 +171,58 @@ class CourseService {
             createdAt: "2023-09-24",
             emotion: "FLUTTER",
             weather: "CLOUDY_DAY")
+      ];
+    }
+  }
+
+  List<Spot> getDummySpot(int courseId) {
+    List<List<Spot>> dummySpots = [
+      [
+        Spot(
+            id: 1,
+            title: "1",
+            content: "1",
+            location: Location(latitude: 10.0, longitude: 20.0),
+            category: "CAFE_BAKERY"),
+        Spot(
+            id: 1,
+            title: "1",
+            content: "1",
+            location: Location(latitude: 10.0, longitude: 20.0),
+            category: "CAFE_BAKERY"),
+      ],
+      [
+        Spot(
+            id: 1,
+            title: "1",
+            content: "1",
+            location: Location(latitude: 10.0, longitude: 20.0),
+            category: "CAFE_BAKERY"),
+        Spot(
+            id: 1,
+            title: "1",
+            content: "1",
+            location: Location(latitude: 10.0, longitude: 20.0),
+            category: "CAFE_BAKERY"),
+      ],
+    ];
+
+    if (dummySpots.length >= courseId) {
+      return dummySpots[courseId - 1];
+    } else {
+      return [
+        Spot(
+            id: 1,
+            title: "1",
+            content: "1",
+            location: Location(latitude: 10.0, longitude: 20.0),
+            category: "CAFE_BAKERY"),
+        Spot(
+            id: 1,
+            title: "1",
+            content: "1",
+            location: Location(latitude: 10.0, longitude: 20.0),
+            category: "CAFE_BAKERY"),
       ];
     }
   }

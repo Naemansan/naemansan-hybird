@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:naemansan/method/get_scale_width.dart';
 import 'package:naemansan/models/spot_model.dart';
+import 'package:naemansan/utilities/category_list.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 import 'package:naemansan/widget/spot/spot_select_button.dart';
@@ -43,7 +44,7 @@ class _SpotCardState extends State<SpotCard> {
                       padding: const EdgeInsets.all(4),
                       margin: const EdgeInsets.only(right: 8),
                       child: SvgPicture.asset(
-                        'assets/icons/spot${widget.spotInfo.category}.svg',
+                        CategoryConfig.engTo("icon", widget.spotInfo.category),
                         height: 24,
                         colorFilter: const ColorFilter.mode(
                             ColorStyles.main1, BlendMode.srcATop),
@@ -59,7 +60,7 @@ class _SpotCardState extends State<SpotCard> {
                               .copyWith(color: ColorStyles.black),
                         ),
                         Text(
-                          widget.spotInfo.category,
+                          CategoryConfig.engTo("kor", widget.spotInfo.category),
                           style: FontStyles.regular12
                               .copyWith(color: ColorStyles.gray3),
                         ),

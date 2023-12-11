@@ -34,8 +34,10 @@ class CourseDetailViewModel extends GetxController {
   void loadCourseDetailData(int courseId) {
     CourseDetail dummyCourseDetail =
         CourseService().getDummyCourseDetail(courseId);
-    List<Moment> dummyMoment = CourseService().getDummyMoment(courseId);
+    List<Moment> dummyMoments = CourseService().getDummyMoment(courseId);
+    List<Spot> dummySpots = CourseService().getDummySpot(courseId);
     course.value = dummyCourseDetail;
-    moments.value = dummyMoment;
+    moments.value = dummyMoments;
+    spots.value = dummySpots;
   }
 }
