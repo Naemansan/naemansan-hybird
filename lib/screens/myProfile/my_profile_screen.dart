@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:naemansan/viewModel/my_profile_view_model.dart';
 
 import 'package:naemansan/viewModel/user/user_view_model.dart';
 import 'package:naemansan/widget/base/custom_appbar.dart';
@@ -15,6 +16,8 @@ class MyProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final UserViewModel userViewModel = Get.put(UserViewModel());
+    final MyProfileViewModel userProfileViewModel =
+        Get.put(MyProfileViewModel());
 
     return Scaffold(
       //앱바...
@@ -28,15 +31,15 @@ class MyProfileScreen extends StatelessWidget {
           )),
       //앱바...
 
-      body: GetBuilder<UserViewModel>(
-          init: userViewModel,
-          builder: (userViewModel) {
+      body: GetBuilder<MyProfileViewModel>(
+          init: userProfileViewModel,
+          builder: (userProfileViewModel) {
             return Container(
               padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
               child: Column(children: [
                 //유저 프로필 (상단)
                 UserProfileHeader(
-                  userProfile: userViewModel.user.value,
+                  userProfile: userProfileViewModel.user.value,
                 ),
 
                 //팔로잉 팔로워 보는 탭

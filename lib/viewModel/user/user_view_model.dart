@@ -13,10 +13,7 @@ class UserViewModel extends GetxController {
     isLoggedIn: false,
     deviceToken: '',
     uuid: '',
-    nickname: '',
-    introduction: '',
     tags: [Tag(id: 0, tag: '')],
-    profile_image_url: '',
     following: [],
     follower: [],
   ).obs;
@@ -36,8 +33,8 @@ class UserViewModel extends GetxController {
   // 닉네임, 한 줄 소개, 키워드를 업데이트하는 메소드
   void updateUserInfo(String nickname, String introduction, List<Tag> tags) {
     user.update((val) {
-      val?.nickname = nickname;
-      val?.introduction = introduction;
+      // val?.nickname = nickname;
+      // val?.introduction = introduction;
       val?.tags = tags;
     });
   }

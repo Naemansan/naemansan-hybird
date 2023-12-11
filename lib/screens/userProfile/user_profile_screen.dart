@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:naemansan/models/course/course_overview_model.dart';
 import 'package:naemansan/models/tag_model.dart';
+import 'package:naemansan/viewModel/user_profile_view_model.dart';
 
-import 'package:naemansan/viewModel/user/user_view_model.dart';
 import 'package:naemansan/widget/base/custom_appbar.dart';
 import 'package:naemansan/widget/course/courseCard/course_card_list.dart';
 import 'package:naemansan/widget/myProfile/user_profile_header.dart';
@@ -13,7 +13,10 @@ class UserProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final UserViewModel userViewModel = Get.put(UserViewModel());
+    final String uuid = Get.parameters['uuid'] ?? '';
+
+    final UserProfileViewModel userProfileViewModel =
+        Get.put(UserProfileViewModel());
 
     return Scaffold(
         //앱바...
@@ -26,15 +29,15 @@ class UserProfileScreen extends StatelessWidget {
             )),
         //앱바...
 
-        body: GetBuilder<UserViewModel>(
-            init: userViewModel,
-            builder: (userViewModel) {
+        body: GetBuilder<UserProfileViewModel>(
+            init: userProfileViewModel,
+            builder: (userProfileViewModel) {
               return Container(
                 width: double.infinity,
                 padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
                 child: Column(children: [
                   UserProfileHeader(
-                    userProfile: userViewModel.user.value,
+                    userProfile: userProfileViewModel.user.value,
                   ),
                   Expanded(
                       child: SingleChildScrollView(

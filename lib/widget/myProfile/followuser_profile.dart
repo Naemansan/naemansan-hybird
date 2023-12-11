@@ -31,7 +31,7 @@ class _FollowuserProfileState extends State<FollowuserProfile> {
       margin: const EdgeInsets.only(bottom: 20),
       child: InkWell(
         onTap: () {
-          Get.toNamed("/userProfile/1");
+          Get.toNamed("/userProfile/${widget.id}");
         },
         child: Row(
           children: [

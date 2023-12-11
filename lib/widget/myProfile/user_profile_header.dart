@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:naemansan/models/user_model.dart';
+import 'package:naemansan/models/user_info_model.dart';
 
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 import 'package:naemansan/widget/myProfile/follow_btn.dart';
 
 class UserProfileHeader extends StatefulWidget {
-  final User userProfile;
+  final UserInfo userProfile;
 
   const UserProfileHeader({
     Key? key,
@@ -61,25 +61,28 @@ class _UserProfileState extends State<UserProfileHeader> {
                       style: FontStyles.semiBold20
                           .copyWith(color: ColorStyles.black),
                     ),
-                    Wrap(
-                      spacing: 4.0,
-                      children: [
-                        "팔로잉",
-                        widget.userProfile.following.length.toString(),
-                        "·",
-                        "팔로워",
-                        widget.userProfile.follower.length.toString()
-                      ].asMap().entries.map((element) {
-                        return Text(
-                          element.value,
-                          style: element.key % 3 == 1
-                              ? FontStyles.semiBold12
-                                  .copyWith(color: ColorStyles.gray3)
-                              : FontStyles.regular12
-                                  .copyWith(color: ColorStyles.gray3),
-                        );
-                      }).toList(),
-                    ),
+
+                    // 수정 필요 === 팔로잉/ 팔로워 숫자 받는게 없음....
+
+                    // Wrap(
+                    //   spacing: 4.0,
+                    //   children: [
+                    //     "팔로잉",
+                    //     widget.userProfile.following.length.toString(),
+                    //     "·",
+                    //     "팔로워",
+                    //     widget.userProfile.follower.length.toString()
+                    //   ].asMap().entries.map((element) {
+                    //     return Text(
+                    //       element.value,
+                    //       style: element.key % 3 == 1
+                    //           ? FontStyles.semiBold12
+                    //               .copyWith(color: ColorStyles.gray3)
+                    //           : FontStyles.regular12
+                    //               .copyWith(color: ColorStyles.gray3),
+                    //     );
+                    //   }).toList(),
+                    // ),
                   ],
                 ),
               ),
