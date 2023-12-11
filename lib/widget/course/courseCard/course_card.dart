@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:naemansan/method/get_scale_width.dart';
-import 'package:naemansan/models/course/course_overview_model.dart';
+import 'package:naemansan/models/course_overview_model.dart';
 
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
 class CourseCard extends StatelessWidget {
-  final CourseOverviewModel courseInfo;
+  final CourseOverview courseInfo;
   const CourseCard({super.key, required this.courseInfo});
 
   @override
@@ -80,7 +80,7 @@ class CourseCard extends StatelessWidget {
                                   spacing: 4.0,
                                   children: courseInfo.tags.map((element) {
                                     return Text(
-                                      '#${element.tag}',
+                                      '#$element',
                                       style: FontStyles.regular12
                                           .copyWith(color: ColorStyles.gray3),
                                     );
@@ -100,7 +100,7 @@ class CourseCard extends StatelessWidget {
                                               height: 16),
                                           const SizedBox(width: 4),
                                           Text(
-                                            courseInfo.moment_cnt.toString(),
+                                            courseInfo.momentCount.toString(),
                                             style: FontStyles.regular12
                                                 .copyWith(
                                                     color: ColorStyles.gray3),
@@ -123,7 +123,7 @@ class CourseCard extends StatelessWidget {
                                                       BlendMode.srcATop)),
                                           const SizedBox(width: 4),
                                           Text(
-                                            courseInfo.like_cnt.toString(),
+                                            courseInfo.likeCount.toString(),
                                             style: FontStyles.regular12
                                                 .copyWith(
                                                     color: ColorStyles.gray3),

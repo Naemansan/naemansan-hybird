@@ -21,7 +21,8 @@ class PrivateCourseDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CourseDetailViewModel viewModel = Get.put(CourseDetailViewModel());
+    final CourseDetailViewModel courseViewModel =
+        Get.put(CourseDetailViewModel());
 
     return Scaffold(
         //앱바...
@@ -30,14 +31,15 @@ class PrivateCourseDetailScreen extends StatelessWidget {
             child: CustomAppbar(
               leftIcon: "left",
               rightIcon: "edit",
-              rightLink: "/privateCourseEdit/${viewModel.courseDetailInfo.id}",
+              rightLink:
+                  "/privateCourseEdit/${courseViewModel.course.value.id}",
               content: '',
             )),
         //앱바...
 
         body: GetBuilder<CourseDetailViewModel>(
-          init: viewModel,
-          builder: (viewModel) {
+          init: courseViewModel,
+          builder: (courseViewModel) {
             return SingleChildScrollView(
               child: Container(
                 color: ColorStyles.white,
@@ -59,18 +61,20 @@ class PrivateCourseDetailScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         CourseDetailInfo(
-                            name: viewModel.courseDetailInfo.title,
-                            siGuDong: viewModel.courseDetailInfo.siGuDong,
-                            distance: viewModel.courseDetailInfo.distance,
-                            tags: viewModel.courseDetailInfo.tags),
+                            name: courseViewModel.course.value.title,
+                            siGuDong: courseViewModel.course.value.siGuDong,
+                            distance: courseViewModel.course.value.distance,
+                            tags: courseViewModel.course.value.tags),
 
                         //소개
                         CourseDetailDescription(
-                            content: viewModel.courseDetailInfo.content),
+                            content: courseViewModel.course.value.content),
 
                         //모먼트
-                        CourseDetailMomentList(
-                            momentList: viewModel.courseDetailInfo.moments)
+                        Visibility(
+                            visible: courseViewModel.moments.isNotEmpty,
+                            child: CourseDetailMomentList(
+                                momentList: courseViewModel.moments))
                       ],
                     ),
                   ), //산책로 정보
@@ -88,7 +92,7 @@ class PrivateCourseDetailScreen extends StatelessWidget {
                     child: Column(children: [
                       //스팟 리스트
                       CourseDetailSpotList(
-                        spotList: viewModel.courseDetailInfo.spots,
+                        spotList: courseViewModel.spots,
                       ),
                     ]),
                   )

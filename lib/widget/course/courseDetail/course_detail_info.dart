@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:naemansan/models/tag_model.dart';
+
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
@@ -7,8 +7,8 @@ class CourseDetailInfo extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
   final String name;
   final String siGuDong;
-  final int distance;
-  final List<Tag> tags;
+  final String distance;
+  final List<String> tags;
 
   const CourseDetailInfo(
       {super.key,
@@ -35,7 +35,7 @@ class CourseDetailInfo extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 12),
           child: Wrap(
             spacing: 4.0,
-            children: [siGuDong, "·", distance.toString()].map((element) {
+            children: [siGuDong, "·", distance].map((element) {
               return Text(element,
                   style: FontStyles.regular16.copyWith(
                     color: ColorStyles.black,
@@ -49,7 +49,7 @@ class CourseDetailInfo extends StatelessWidget {
           spacing: 4.0,
           children: tags.map((element) {
             return Text(
-              element.tag,
+              "#$element",
               style: FontStyles.regular12.copyWith(color: ColorStyles.gray3),
             );
           }).toList(),
