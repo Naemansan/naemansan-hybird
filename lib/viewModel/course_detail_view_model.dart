@@ -1,14 +1,12 @@
 import 'package:get/get.dart';
-import 'package:naemansan/models/course_overview_model.dart';
+
 import 'package:naemansan/models/course_detail_model.dart';
 import 'package:naemansan/models/moment_model.dart';
+import 'package:naemansan/models/similar_course_model.dart';
 import 'package:naemansan/models/spot_model.dart';
 import 'package:naemansan/services/course_service.dart';
 
 class CourseDetailViewModel extends GetxController {
-  final int courseId;
-  CourseDetailViewModel({required this.courseId});
-
   final Rx<CourseDetail> course = CourseDetail(
           id: 0,
           title: '',
@@ -23,21 +21,19 @@ class CourseDetailViewModel extends GetxController {
 
   final RxList<Moment> moments = <Moment>[].obs;
   final RxList<Spot> spots = <Spot>[].obs;
-  final RxList<CourseOverview> similarCourses = <CourseOverview>[].obs;
-
-  @override
-  void onInit() {
-    super.onInit();
-    loadCourseDetailData(courseId);
-  }
+  final RxList<SimilarCourse> similarCourses = <SimilarCourse>[].obs;
 
   void loadCourseDetailData(int courseId) {
     CourseDetail dummyCourseDetail =
         CourseService().getDummyCourseDetail(courseId);
     List<Moment> dummyMoments = CourseService().getDummyMoment(courseId);
     List<Spot> dummySpots = CourseService().getDummySpot(courseId);
+    List<SimilarCourse> dummySimilarCourses =
+        CourseService().getDummySimilarCourses(courseId);
+
     course.value = dummyCourseDetail;
     moments.value = dummyMoments;
     spots.value = dummySpots;
+    similarCourses.value = dummySimilarCourses;
   }
 }

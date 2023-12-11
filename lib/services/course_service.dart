@@ -1,6 +1,7 @@
 import 'package:naemansan/models/course_detail_model.dart';
 import 'package:naemansan/models/course_overview_model.dart';
 import 'package:naemansan/models/moment_model.dart';
+import 'package:naemansan/models/similar_course_model.dart';
 import 'package:naemansan/models/spot_model.dart';
 
 class CourseService {
@@ -224,6 +225,27 @@ class CourseService {
             location: Location(latitude: 10.0, longitude: 20.0),
             category: "CAFE_BAKERY"),
       ];
+    }
+  }
+
+  List<SimilarCourse> getDummySimilarCourses(int courseId) {
+    if (courseId == 1) {
+      return [
+        SimilarCourse(
+            id: 2,
+            title: "산책로2",
+            startLocationName: "시군구...",
+            distance: "1234",
+            tags: ["1", "2"]),
+        SimilarCourse(
+            id: 3,
+            title: "산책로3",
+            startLocationName: "시군구...",
+            distance: "1234",
+            tags: ["1", "2"])
+      ];
+    } else {
+      return [];
     }
   }
 }
