@@ -205,12 +205,15 @@ class CourseWalkingViewModel extends GetxController {
     });
   }
 
+// 산책 중지
   void stopLocationTracking() {
     if (_positionStreamSubscription != null) {
       _positionStreamSubscription!.cancel();
       _positionStreamSubscription = null;
       print("위치 추적 중단");
     }
+    // 경로 초기화
+    latLngList.clear();
   }
 
 // 산책 종료
