@@ -87,7 +87,7 @@ class _CourseWalkingScreenState extends State<CourseWalkingScreen> {
                     buttonTitle: "산책 기록하기",
                     onPressedCancelButton: () => {
                       // 취소
-                      Get.offAll(() => const HomeScreen()),
+                      Get.offAndToNamed('/')
                     },
                     onPressedGreenButton: () => {
                       // 산책 기록하기

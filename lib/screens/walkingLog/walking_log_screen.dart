@@ -9,12 +9,21 @@ class WalkingLogScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        body: SafeArea(
-      child: CustomTabbar(
-          tabs: ["산책로", "모먼트"],
-          rightTabs: ["좋아요"],
-          tabviews: [WalkingLogCourse(), WalkingLogMoment(), WalkingLogLike()]),
+    return Scaffold(
+        body: Container(
+      color: Colors.white,
+      child: const SafeArea(
+        child: CustomTabbar(tabs: [
+          "산책로",
+          "모먼트"
+        ], rightTabs: [
+          "좋아요"
+        ], tabviews: [
+          WalkingLogCourse(),
+          WalkingLogMoment(),
+          WalkingLogLike()
+        ]),
+      ),
     ));
   }
 }
