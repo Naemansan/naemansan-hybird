@@ -86,8 +86,11 @@ class _CourseWalkingScreenState extends State<CourseWalkingScreen> {
                     description: "산책을 기록하시면 산책 기록이 저장됩니다.",
                     buttonTitle: "산책 기록하기",
                     onPressedCancelButton: () => {
+                      // 산책 기록 중단
+                      viewModel.onClose(),
                       // 취소
-                      Get.offAndToNamed('/')
+
+                      Get.offAllNamed('/')
                     },
                     onPressedGreenButton: () => {
                       // 산책 기록하기
