@@ -45,14 +45,12 @@ class TwoBtnBottomSheetWidget extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(4)),
                     backgroundColor: ColorStyles.main1,
-                    foregroundColor: ColorStyles.white),
+                    foregroundColor: ColorStyles.white,
+                    padding: const EdgeInsets.symmetric(vertical: 12)),
                 child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: Text(
-                      "확인",
-                      style: FontStyles.semiBold20.copyWith(),
-                    ),
+                  child: Text(
+                    "확인",
+                    style: FontStyles.semiBold20.copyWith(),
                   ),
                 ),
               )),

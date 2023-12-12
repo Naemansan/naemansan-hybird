@@ -20,7 +20,7 @@ class TwoBtnBottomSheetWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200, // BottomSheet의 높이 설정
+      height: 220, // BottomSheet의 높이 설정
       padding: const EdgeInsets.fromLTRB(16, 36, 16, 16),
       decoration: const BoxDecoration(
           color: Colors.white,
@@ -40,7 +40,7 @@ class TwoBtnBottomSheetWidget extends StatelessWidget {
               color: ColorStyles.gray3,
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 32),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -49,40 +49,35 @@ class TwoBtnBottomSheetWidget extends StatelessWidget {
                   child: TextButton(
                     onPressed: () => Get.back(),
                     style: TextButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4)),
-                      side:
-                          const BorderSide(color: ColorStyles.gray1, width: 2),
-                      backgroundColor: ColorStyles.white,
-                      foregroundColor: ColorStyles.gray1,
-                    ),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4)),
+                        side: const BorderSide(
+                            color: ColorStyles.gray1, width: 2),
+                        backgroundColor: ColorStyles.white,
+                        foregroundColor: ColorStyles.gray1,
+                        padding: const EdgeInsets.symmetric(vertical: 12)),
                     child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: Text(
-                          '취소',
-                          style: FontStyles.semiBold20.copyWith(),
-                        ),
+                      child: Text(
+                        '취소',
+                        style: FontStyles.semiBold20.copyWith(),
                       ),
                     ),
                   )),
               const SizedBox(width: 16),
               Expanded(
-                  flex: 4,
+                  flex: 5,
                   child: TextButton(
                     onPressed: onPressedGreenButton,
                     style: TextButton.styleFrom(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4)),
                         backgroundColor: ColorStyles.main1,
-                        foregroundColor: ColorStyles.white),
+                        foregroundColor: ColorStyles.white,
+                        padding: const EdgeInsets.symmetric(vertical: 12)),
                     child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: Text(
-                          buttonTitle,
-                          style: FontStyles.semiBold20.copyWith(),
-                        ),
+                      child: Text(
+                        buttonTitle,
+                        style: FontStyles.semiBold20.copyWith(),
                       ),
                     ),
                   )),

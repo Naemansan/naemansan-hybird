@@ -7,7 +7,8 @@ class IconConfig {
     'assets/icons/spotCAFE_BAKERY.svg',
     'assets/icons/spotFOOD.svg',
     'assets/icons/spotNATURE.svg',
+    'assets/icons/spotNATURE.svg',
     'assets/icons/spotPLACE.svg',
-    'assets/icons/spotShOPPING.svg',
+    // 'assets/icons/spotShOPPING.svg',
   ];
 }

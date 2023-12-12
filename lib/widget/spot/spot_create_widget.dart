@@ -200,14 +200,12 @@ class SpotCreateWidget extends StatelessWidget {
                 side: const BorderSide(color: ColorStyles.gray1, width: 2),
                 backgroundColor: ColorStyles.white,
                 foregroundColor: ColorStyles.gray1,
+                padding: const EdgeInsets.symmetric(vertical: 12),
               ),
               child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Text(
-                    '취소',
-                    style: FontStyles.semiBold20.copyWith(),
-                  ),
+                child: Text(
+                  '취소',
+                  style: FontStyles.semiBold20.copyWith(),
                 ),
               ),
             )),
@@ -231,14 +229,12 @@ class SpotCreateWidget extends StatelessWidget {
                     isEnabled ? ColorStyles.main1 : ColorStyles.gray0,
                 foregroundColor:
                     isEnabled ? ColorStyles.white : ColorStyles.gray3,
+                padding: const EdgeInsets.symmetric(vertical: 12),
               ),
               child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Text(
-                    '스팟 등록하기',
-                    style: FontStyles.semiBold20.copyWith(),
-                  ),
+                child: Text(
+                  '스팟 등록하기',
+                  style: FontStyles.semiBold20.copyWith(),
                 ),
               ),
             )),

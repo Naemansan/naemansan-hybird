@@ -45,7 +45,14 @@ class _CourseWalkingScreenState extends State<CourseWalkingScreen> {
 
   Widget _buildEndWalkButton(CourseWalkingViewModel viewModel) {
     return InkWell(
-      onTap: () => viewModel.endWalk(),
+      onTap: () => {
+        TwoBtnBottomSheetWidget.show(
+            context: context,
+            title: "산책을 종료하시겠습니까?",
+            description: "산책을 종료하시면 기록이 중단됩니다.",
+            buttonTitle: "산책 종료하기",
+            onPressedGreenButton: () => viewModel.endWalk())
+      },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 19, vertical: 8),
         decoration: BoxDecoration(
@@ -93,21 +100,10 @@ class _CourseWalkingScreenState extends State<CourseWalkingScreen> {
                 right: 0,
                 child: Center(child: _buildSpotButton()),
               ),
-              InkWell(
-                onTap: () => {
-                  TwoBtnBottomSheetWidget.show(
-                    context: context,
-                    title: '산책을 종료하시겠습니까?',
-                    description: '산책을 종료하시면 기록이 중단됩니다.',
-                    buttonTitle: '산책 종료',
-                    onPressedGreenButton: () => viewModel.endWalk(),
-                  )
-                },
-                child: Positioned(
-                  top: 80,
-                  right: 20,
-                  child: Center(child: _buildEndWalkButton(viewModel)),
-                ),
+              Positioned(
+                top: 80,
+                right: 20,
+                child: Center(child: _buildEndWalkButton(viewModel)),
               ),
             ],
           ),
