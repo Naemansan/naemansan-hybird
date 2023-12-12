@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:naemansan/utilities/spot_icon_list.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 import 'package:naemansan/viewModel/course_walking_view_model.dart';
-import 'package:naemansan/viewModel/walking/course_spot_create_view_model.dart';
+import 'package:naemansan/widget/base/one_btn_bottom_sheet_widget.dart';
 import 'package:naemansan/widget/base/two_btn_bottom_sheet_widget.dart';
 import 'package:naemansan/widget/spot/spot_create_widget.dart';
 import 'package:naver_map_plugin/naver_map_plugin.dart';
@@ -30,7 +28,16 @@ class _CourseWalkingScreenState extends State<CourseWalkingScreen> {
 // 스팟 남기기 버튼
   Widget _buildSpotButton() {
     return InkWell(
-      onTap: () => _showSpotCreateModal(context),
+      onTap: () => {
+        if (Get.find<CourseWalkingViewModel>().spotCnt > 5)
+          _showSpotCreateModal(context)
+        else
+          OneBtnBottomSheetWidget.show(
+            context: context,
+            title: "스팟이 너무 많아요!",
+            description: "스팟은 한 산책로에 5개 까지 만들 수 있어요.",
+          )
+      },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
         decoration: BoxDecoration(

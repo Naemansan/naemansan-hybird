@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
-class TwoBtnBottomSheetWidget extends StatelessWidget {
+class OneBtnBottomSheetWidget extends StatelessWidget {
   final String title;
   final String description;
 
-  const TwoBtnBottomSheetWidget({
+  const OneBtnBottomSheetWidget({
     super.key,
     required this.title,
     required this.description,
@@ -16,7 +16,7 @@ class TwoBtnBottomSheetWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200, // BottomSheet의 높이 설정
+      height: 220, // BottomSheet의 높이 설정
       padding: const EdgeInsets.fromLTRB(16, 36, 16, 16),
       decoration: const BoxDecoration(
           color: Colors.white,
@@ -36,24 +36,22 @@ class TwoBtnBottomSheetWidget extends StatelessWidget {
               color: ColorStyles.gray3,
             ),
           ),
-          const SizedBox(height: 20),
-          Expanded(
-              flex: 4,
-              child: TextButton(
-                onPressed: () => Get.back(),
-                style: TextButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4)),
-                    backgroundColor: ColorStyles.main1,
-                    foregroundColor: ColorStyles.white,
-                    padding: const EdgeInsets.symmetric(vertical: 12)),
-                child: Center(
-                  child: Text(
-                    "확인",
-                    style: FontStyles.semiBold20.copyWith(),
-                  ),
-                ),
-              )),
+          const SizedBox(height: 32),
+          TextButton(
+            onPressed: () => Get.back(),
+            style: TextButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4)),
+                backgroundColor: ColorStyles.main1,
+                foregroundColor: ColorStyles.white,
+                padding: const EdgeInsets.symmetric(vertical: 12)),
+            child: Center(
+              child: Text(
+                "확인",
+                style: FontStyles.semiBold20.copyWith(),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -65,7 +63,7 @@ class TwoBtnBottomSheetWidget extends StatelessWidget {
     required String description,
   }) {
     Get.bottomSheet(
-      TwoBtnBottomSheetWidget(
+      OneBtnBottomSheetWidget(
         title: title,
         description: description,
       ),
