@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:naemansan/models/course_detail_model.dart';
+import 'package:naemansan/models/course_walking_single_spot_model.dart';
+import 'package:naemansan/models/spot_model.dart';
 import 'package:naemansan/services/location_service.dart';
 import 'package:naver_map_plugin/naver_map_plugin.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
@@ -19,8 +22,9 @@ class CourseWalkingViewModel extends GetxController {
   var selectedIndex = Rx<int?>(null);
   var spotName = ''.obs;
   var spotDescription = ''.obs;
-  // 등록한 스팟 갯수
-  var spotCnt = 0.obs;
+
+  // spot저장할 리스트
+  var spotList = <WalkingSingleSpotModel>[].obs;
 
 /* ---------------- 그외 ----------------  */
   bool _isLoading = false;
@@ -51,13 +55,62 @@ class CourseWalkingViewModel extends GetxController {
     selectedIndex.value = index;
   }
 
+  // index에 따라 카테고리 string 반환
+  String getSpotCategory(int index) {
+    // index가 null이면 빈 문자열 반환
+    switch (index) {
+      case 0:
+        return 'PUB_BAR';
+      case 1:
+        return 'ACCOMMODATION';
+      case 2:
+        return 'NATURE';
+      case 3:
+        return 'SHOPPING';
+      case 4:
+        return 'FOOD';
+      case 5:
+        return 'CAFE_BAKERY';
+      case 6:
+        return 'PLACE';
+
+      default:
+        return '';
+    }
+  }
+
+// 현재 위치 받아오기
+  Future<Position> getNowLocation() async {
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    return position;
+  }
+
   // 스팟 등록 함수
-  void registerSpot(String name, String description) {
+  void registerSpot(
+    String title,
+    String content,
+    String categroy,
+  ) async {
+    // 현재 위치 받아오기
+    Position position = await getNowLocation();
+
+    // spot 모델을 토대로 새로운 spot 생성
+    WalkingSingleSpotModel newSpot = WalkingSingleSpotModel(
+      title: title,
+      content: content,
+      location:
+          Location(latitude: position.latitude, longitude: position.longitude),
+      category: categroy,
+      // imageState: imageState
+    );
+
+    // 생성된 spot 리스트에 추가
+    spotList.add(newSpot);
+    // 등록된 spot
+    print(newSpot);
     // 등록 알고리즘
-    // ..
-    print('스팟 등록: $name, $description');
-    // 장소 추가 성공시 cnt 증가
-    spotCnt.value++;
+
     // 등록 후 폼 초기화
     spotName.value = '';
     spotDescription.value = '';

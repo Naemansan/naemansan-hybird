@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:naemansan/models/course_walking_single_spot_model.dart';
 import 'package:naemansan/utilities/spot_icon_list.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
@@ -184,6 +185,8 @@ class _SpotCreateWidgetState extends State<SpotCreateWidget> {
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: IconConfig.iconLength,
+              // itembuilder 내부에서 Obx를 사용하면
+              // Obx가 변경되면 해당 위젯만 다시 그려짐
               itemBuilder: (context, index) {
                 return Obx(() {
                   // 선택된 아이콘은 색상이 바뀜
@@ -256,6 +259,8 @@ class _SpotCreateWidgetState extends State<SpotCreateWidget> {
                       viewModel.registerSpot(
                         viewModel.spotName.value,
                         viewModel.spotDescription.value,
+                        viewModel
+                            .getSpotCategory(viewModel.selectedIndex.value!),
                       );
                       //스팟창 닫기
                       Get.back();

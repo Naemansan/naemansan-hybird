@@ -22,4 +22,8 @@ class Spot {
     required this.category,
     this.thumbnailurl,
   });
+  @override
+  String toString() {
+    return 'Spot(id: $id, title: $title, content: $content, location: $location, category: $category, thumbnailurl: $thumbnailurl)';
+  }
 }

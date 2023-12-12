@@ -42,4 +42,6 @@ class Location {
       longitude: json['longitude'],
     );
   }
+  @override
+  String toString() => 'Location(latitude: $latitude, longitude: $longitude)';
 }
