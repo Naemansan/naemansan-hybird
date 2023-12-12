@@ -7,6 +7,7 @@ class TwoBtnBottomSheetWidget extends StatelessWidget {
   final String title;
   final String description;
   final String buttonTitle;
+  final Function()? onPressedCancelButton;
   final Function()? onPressedGreenButton;
 
   const TwoBtnBottomSheetWidget({
@@ -14,9 +15,9 @@ class TwoBtnBottomSheetWidget extends StatelessWidget {
     required this.title,
     required this.description,
     required this.buttonTitle,
+    required this.onPressedCancelButton,
     required this.onPressedGreenButton,
   });
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -47,7 +48,7 @@ class TwoBtnBottomSheetWidget extends StatelessWidget {
               Expanded(
                   flex: 2,
                   child: TextButton(
-                    onPressed: () => Get.back(),
+                    onPressed: () => onPressedCancelButton!(),
                     style: TextButton.styleFrom(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4)),
@@ -93,6 +94,7 @@ class TwoBtnBottomSheetWidget extends StatelessWidget {
     required String title,
     required String description,
     required String buttonTitle,
+    required Function()? onPressedCancelButton,
     required Function()? onPressedGreenButton,
   }) {
     Get.bottomSheet(
@@ -100,6 +102,7 @@ class TwoBtnBottomSheetWidget extends StatelessWidget {
         title: title,
         description: description,
         buttonTitle: buttonTitle,
+        onPressedCancelButton: onPressedCancelButton,
         onPressedGreenButton: onPressedGreenButton,
       ),
       barrierColor: Colors.black54, // 반투명한 검은색 배경

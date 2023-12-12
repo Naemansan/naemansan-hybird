@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -9,6 +11,7 @@ import 'package:naemansan/utilities/style/color_styles.dart';
 
 class CourseWalkingViewModel extends GetxController {
   /* ---------------- 위치 관련 ----------------  */
+  StreamSubscription<Position>? _positionStreamSubscription;
   // 위치 정보를 받아오는 서비스
   final LocationService locationService = LocationService();
   // 현재 위치를 저장하는 리스트
@@ -35,12 +38,14 @@ class CourseWalkingViewModel extends GetxController {
     super.onInit();
     _isLoading = true;
     // 현재 위치를 받아옴
-    determinePosition().then((Position position) {
-      _isLoading = false;
-      addInitialLocationToPath(position);
-    }).catchError((e) {
-      _isLoading = false;
-    });
+
+    updatePathOverlay();
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+    stopLocationTracking();
   }
 
   // 폼이 유효한지 확인하는 getter
@@ -76,13 +81,6 @@ class CourseWalkingViewModel extends GetxController {
       default:
         return '';
     }
-  }
-
-// 현재 위치 받아오기
-  Future<Position> getNowLocation() async {
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-    return position;
   }
 
   // 스팟 등록 함수
@@ -128,24 +126,39 @@ class CourseWalkingViewModel extends GetxController {
     spotDescription.value = description;
   }
 
-  // 산책 시작 처음 위치를 경로에 추가
-  void addInitialLocationToPath(Position position) {
-    var initialPoint = LatLng(position.latitude, position.longitude);
-    latLngList.addAll([initialPoint, initialPoint]);
-    updatePathOverlay();
+// 현재 위치 받아오기
+  Future<Position> getNowLocation() async {
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    return position;
+  }
+
+  void setLatLngList() async {
+    final Position postionNowLocation = await getNowLocation();
+
+    latLngList
+        .add(LatLng(postionNowLocation.latitude, postionNowLocation.longitude));
+    latLngList
+        .add(LatLng(postionNowLocation.latitude, postionNowLocation.longitude));
+    print("초기 위치 설정 완료");
+    print(latLngList);
+    print("위치 추적 시작");
+    startLocationTracking();
   }
 
   // 업데이트 경로
   void updatePathOverlay() {
-    if (latLngList.length > 1) {
+    print("updatePathOverlay");
+    if (latLngList.isEmpty) {
+      setLatLngList();
+    } else {
       var newPathOverlay = PathOverlay(
         PathOverlayId('walking_path'),
-        latLngList.toList(),
+        latLngList,
         width: 12,
         color: ColorStyles.main2,
         outlineColor: Colors.transparent,
       );
-
       currentPathOverlay.value = newPathOverlay;
     }
   }
@@ -153,52 +166,51 @@ class CourseWalkingViewModel extends GetxController {
   // 산책 중 현재 위치를 경로에 추가
   void addLocationToPath(Position position) {
     var newPoint = LatLng(position.latitude, position.longitude);
-    //새 위치를 경로에 추가
-    latLngList.add(newPoint);
-
-    // 경로를 표시하는 PathOverlay 생성
-    var newPathOverlay = PathOverlay(
-      PathOverlayId('walking_path'),
-      latLngList,
-      width: 12,
-      color: ColorStyles.main2,
-      outlineColor: Colors.transparent,
-    );
-
-    // 업데이트
-    currentPathOverlay.value = newPathOverlay;
+    print("addLocationToPath $newPoint");
+    // 위치가 실제로 변경되었는지 확인
+    if (latLngList.isEmpty || _isPositionChanged(newPoint)) {
+      print("위치 변경");
+      latLngList.add(newPoint); //새 위치를 경로에 추가
+      updatePathOverlay(); // 경로 업데이트
+    } else {
+      print("위치 변경 안됨");
+    }
   }
 
-  // 사용자의 현재 위치를 결정하는 함수
-  Future<Position> determinePosition() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-    _isLoading = true;
-
-    // 위치 서비스가 활성화되어 있는지 확인
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      // 위치 서비스가 비활성화되어 있다면 에러를 반환
-      return Future.error('Location services are disabled.');
+  bool _isPositionChanged(LatLng newPoint) {
+    if (latLngList.isEmpty) {
+      return true;
     }
 
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        // 권한이 거부되었다면 에러를 반환
-        return Future.error('Location permissions are denied');
-      }
-    }
+    final lastPoint = latLngList.last;
+    final distance = Geolocator.distanceBetween(lastPoint.latitude,
+        lastPoint.longitude, newPoint.latitude, newPoint.longitude);
 
-    if (permission == LocationPermission.deniedForever) {
-      // 권한이 영구적으로 거부되었다면 에러를 반환
-      return Future.error(
-          'Location permissions are permanently denied, we cannot request permissions.');
-    }
+    // 거리가 3미터 이상인지 확인
+    return distance > 3.0;
+  }
 
-    // 현재 위치를 반환
-    return await Geolocator.getCurrentPosition();
+  void startLocationTracking() {
+    const locationOptions = LocationSettings(
+      accuracy: LocationAccuracy.bestForNavigation,
+      distanceFilter: 5,
+      timeLimit: Duration(seconds: 5),
+    );
+    print("위치 추적 시작");
+
+    _positionStreamSubscription = Geolocator.getPositionStream(
+      locationSettings: locationOptions,
+    ).listen((Position position) {
+      addLocationToPath(position);
+    });
+  }
+
+  void stopLocationTracking() {
+    if (_positionStreamSubscription != null) {
+      _positionStreamSubscription!.cancel();
+      _positionStreamSubscription = null;
+      print("위치 추적 중단");
+    }
   }
 
 // 산책 종료
