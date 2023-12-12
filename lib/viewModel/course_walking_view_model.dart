@@ -79,6 +79,17 @@ class CourseWalkingViewModel extends GetxController {
     }
   }
 
+// 스팟 리스트에서 인덱스당 category와 location을 반환하는 함수
+  // List<Spot> getSpotList() {
+  //   List<Spot> spotList = [];
+  //   for (int i = 0; i < this.spotList.length; i++) {
+  //     spotList.add(Spot(
+  //         category: this.spotList[i].category,
+  //         location: this.spotList[i].location));
+  //   }
+  //   return spotList;
+  // }
+
 // 현재 위치 받아오기
   Future<Position> getNowLocation() async {
     Position position = await Geolocator.getCurrentPosition(
