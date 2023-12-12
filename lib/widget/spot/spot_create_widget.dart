@@ -193,7 +193,7 @@ class SpotCreateWidget extends StatelessWidget {
         Expanded(
             flex: 2,
             child: TextButton(
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () => Get.back(),
               style: TextButton.styleFrom(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(4)),

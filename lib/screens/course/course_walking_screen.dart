@@ -6,6 +6,7 @@ import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 import 'package:naemansan/viewModel/course_walking_view_model.dart';
 import 'package:naemansan/viewModel/walking/course_spot_create_view_model.dart';
+import 'package:naemansan/widget/base/two_btn_bottom_sheet_widget.dart';
 import 'package:naemansan/widget/spot/spot_create_widget.dart';
 import 'package:naver_map_plugin/naver_map_plugin.dart';
 
@@ -92,10 +93,21 @@ class _CourseWalkingScreenState extends State<CourseWalkingScreen> {
                 right: 0,
                 child: Center(child: _buildSpotButton()),
               ),
-              Positioned(
-                top: 65,
-                right: 20,
-                child: Center(child: _buildEndWalkButton(viewModel)),
+              InkWell(
+                onTap: () => {
+                  TwoBtnBottomSheetWidget.show(
+                    context: context,
+                    title: '산책을 종료하시겠습니까?',
+                    description: '산책을 종료하시면 기록이 중단됩니다.',
+                    buttonTitle: '산책 종료',
+                    onPressedGreenButton: () => viewModel.endWalk(),
+                  )
+                },
+                child: Positioned(
+                  top: 80,
+                  right: 20,
+                  child: Center(child: _buildEndWalkButton(viewModel)),
+                ),
               ),
             ],
           ),
