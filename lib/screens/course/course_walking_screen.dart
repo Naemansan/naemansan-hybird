@@ -127,6 +127,7 @@ class _CourseWalkingScreenState extends State<CourseWalkingScreen> {
               icon: markerImage,
               width: 40,
               height: 48,
+              captionText: spot.title,
             );
           }).toList(),
           initLocationTrackingMode: LocationTrackingMode.Follow,
@@ -143,9 +144,7 @@ class _CourseWalkingScreenState extends State<CourseWalkingScreen> {
       init: Get.put(CourseWalkingViewModel()),
       builder: (viewModel) {
         // 로딩 중일 때 로딩 인디케이터를 표시한다.
-        if (viewModel.isLoading) {
-          return const Center(child: CircularProgressIndicator());
-        }
+
         return Scaffold(
           body: Stack(
             children: [
