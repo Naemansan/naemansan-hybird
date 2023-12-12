@@ -33,6 +33,7 @@ class _SpotCreateWidgetState extends State<SpotCreateWidget> {
         isNameFilled && isDescriptionFilled && isIconSelected;
   }
 
+  // init 상태 초기화
   @override
   void initState() {
     super.initState();
@@ -50,6 +51,7 @@ class _SpotCreateWidgetState extends State<SpotCreateWidget> {
     });
   }
 
+  // dispose
   @override
   void dispose() {
     nameController.dispose();
@@ -59,6 +61,7 @@ class _SpotCreateWidgetState extends State<SpotCreateWidget> {
 
   @override
   Widget build(BuildContext context) {
+    // 드래그 가능한 스크롤 가능한 시트
     return DraggableScrollableSheet(
       expand: false,
       initialChildSize: 0.9,
@@ -182,35 +185,36 @@ class _SpotCreateWidgetState extends State<SpotCreateWidget> {
               scrollDirection: Axis.horizontal,
               itemCount: IconConfig.iconLength,
               itemBuilder: (context, index) {
-                bool isSelected = viewModel.selectedIndex.value == index;
-                return GestureDetector(
-                  onTap: () => viewModel.selectSpotIcon(index),
-                  child: Container(
-                    width: 48,
-                    height: 48,
-                    padding: const EdgeInsets.all(8.0),
-                    margin: const EdgeInsets.fromLTRB(0, 0, 8, 0),
-                    decoration: BoxDecoration(
-                      color: isSelected ? ColorStyles.main1 : Colors.white,
-                      border: Border.all(
-                        color: ColorStyles.main1,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: SvgPicture.asset(
-                      IconConfig.iconPaths[index],
+                return Obx(() {
+                  // 선택된 아이콘은 색상이 바뀜
+                  bool isSelected = viewModel.selectedIndex.value == index;
+                  return GestureDetector(
+                    onTap: () => viewModel.selectSpotIcon(index),
+                    child: Container(
                       width: 48,
                       height: 48,
-                      colorFilter: ColorFilter.mode(
-                        isSelected
-                            ? ColorStyles.white
-                            : ColorStyles.main1, // 선택된 경우와 그렇지 않은 경우에 적용할 색상
-                        BlendMode.srcIn, // Blend mode
+                      padding: const EdgeInsets.all(8.0),
+                      margin: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+                      decoration: BoxDecoration(
+                        color: isSelected ? ColorStyles.main1 : Colors.white,
+                        border: Border.all(
+                          color: ColorStyles.main1,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: SvgPicture.asset(
+                        IconConfig.iconPaths[index],
+                        width: 48,
+                        height: 48,
+                        colorFilter: ColorFilter.mode(
+                          isSelected ? ColorStyles.white : ColorStyles.main1,
+                          BlendMode.srcIn,
+                        ),
                       ),
                     ),
-                  ),
-                );
+                  );
+                });
               },
             )),
       ],

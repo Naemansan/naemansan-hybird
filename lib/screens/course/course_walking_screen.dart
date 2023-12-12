@@ -29,7 +29,7 @@ class _CourseWalkingScreenState extends State<CourseWalkingScreen> {
   Widget _buildSpotButton() {
     return InkWell(
       onTap: () => {
-        if (Get.find<CourseWalkingViewModel>().spotCnt > 5)
+        if (Get.find<CourseWalkingViewModel>().spotCnt < 5)
           _showSpotCreateModal(context)
         else
           OneBtnBottomSheetWidget.show(
