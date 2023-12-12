@@ -3,7 +3,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:naemansan/models/course_detail_model.dart';
 import 'package:naemansan/models/course_walking_single_spot_model.dart';
-import 'package:naemansan/models/spot_model.dart';
 import 'package:naemansan/services/location_service.dart';
 import 'package:naver_map_plugin/naver_map_plugin.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
@@ -79,17 +78,6 @@ class CourseWalkingViewModel extends GetxController {
     }
   }
 
-// 스팟 리스트에서 인덱스당 category와 location을 반환하는 함수
-  // List<Spot> getSpotList() {
-  //   List<Spot> spotList = [];
-  //   for (int i = 0; i < this.spotList.length; i++) {
-  //     spotList.add(Spot(
-  //         category: this.spotList[i].category,
-  //         location: this.spotList[i].location));
-  //   }
-  //   return spotList;
-  // }
-
 // 현재 위치 받아오기
   Future<Position> getNowLocation() async {
     Position position = await Geolocator.getCurrentPosition(
@@ -103,6 +91,7 @@ class CourseWalkingViewModel extends GetxController {
     String content,
     String categroy,
   ) async {
+    _isLoading = true;
     // 현재 위치 받아오기
     Position position = await getNowLocation();
 
@@ -118,8 +107,10 @@ class CourseWalkingViewModel extends GetxController {
 
     // 생성된 spot 리스트에 추가
     spotList.add(newSpot);
+    update(); // 상태 업데이트
+    _isLoading = false;
     // 등록된 spot
-    print(newSpot);
+
     // 등록 알고리즘
 
     // 등록 후 폼 초기화

@@ -6,6 +6,7 @@ import 'package:naemansan/utilities/style/font_styles.dart';
 import 'package:naemansan/viewModel/course_walking_view_model.dart';
 import 'package:naemansan/widget/base/one_btn_bottom_sheet_widget.dart';
 import 'package:naemansan/widget/base/two_btn_bottom_sheet_widget.dart';
+import 'package:naemansan/widget/spot/spot_cnt_widget.dart';
 import 'package:naemansan/widget/spot/spot_create_widget.dart';
 import 'package:naver_map_plugin/naver_map_plugin.dart';
 
@@ -55,33 +56,6 @@ class _CourseWalkingScreenState extends State<CourseWalkingScreen> {
     );
   }
 
-// 스팟 남기기 버튼 옆에 스팟 개수 표시 위쳇
-  Widget _buildSpotCnt(CourseWalkingViewModel viewModel) {
-    return InkWell(
-      onTap: () => {
-        // 만든 스팟 리스트 보여주기
-        OneBtnBottomSheetWidget.show(
-          context: context,
-          title: "제작한 스팟 리스트 ${viewModel.spotList.length}/5",
-          description: viewModel.spotList.map((spot) => spot.title).join(","),
-        )
-      },
-      child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-          decoration: BoxDecoration(
-            color: ColorStyles.white,
-            borderRadius: BorderRadius.circular(48),
-            border: Border.all(color: ColorStyles.main1, width: 2),
-          ),
-          child: Obx(
-            () => Text(
-              "${viewModel.spotList.length}/5",
-              style: FontStyles.semiBold12.copyWith(color: ColorStyles.main1),
-            ),
-          )),
-    );
-  }
-
 // 산책 종료 버튼
   Widget _buildEndWalkButton(CourseWalkingViewModel viewModel) {
     return InkWell(
@@ -99,18 +73,9 @@ class _CourseWalkingScreenState extends State<CourseWalkingScreen> {
           color: ColorStyles.main1,
           borderRadius: BorderRadius.circular(48),
         ),
-        child: Column(
-          children: [
-            SvgPicture.asset(
-              "assets/icons/food.svg",
-              width: 24,
-              height: 24,
-            ),
-            Text(
-              "산책 종료",
-              style: FontStyles.semiBold12.copyWith(color: ColorStyles.white),
-            ),
-          ],
+        child: Text(
+          "산책 종료",
+          style: FontStyles.semiBold12.copyWith(color: ColorStyles.white),
         ),
       ),
     );
@@ -120,8 +85,11 @@ class _CourseWalkingScreenState extends State<CourseWalkingScreen> {
   Widget buildNaverMap(CourseWalkingViewModel viewModel) {
     return FutureBuilder<List<OverlayImage>>(future: Future.wait(
       viewModel.spotList.map((spot) {
+        // spot category lowercase
+        final categoryLowerName = spot.category.toLowerCase();
+
         return OverlayImage.fromAssetImage(
-          assetName: "assets/icons/food.png",
+          assetName: "assets/icons/$categoryLowerName.png",
         );
       }),
     ), builder:
@@ -157,6 +125,8 @@ class _CourseWalkingScreenState extends State<CourseWalkingScreen> {
               markerId: spot.title,
               position: LatLng(spot.location.latitude, spot.location.longitude),
               icon: markerImage,
+              width: 40,
+              height: 48,
             );
           }).toList(),
           initLocationTrackingMode: LocationTrackingMode.Follow,
@@ -172,6 +142,10 @@ class _CourseWalkingScreenState extends State<CourseWalkingScreen> {
     return GetBuilder<CourseWalkingViewModel>(
       init: Get.put(CourseWalkingViewModel()),
       builder: (viewModel) {
+        // 로딩 중일 때 로딩 인디케이터를 표시한다.
+        if (viewModel.isLoading) {
+          return const Center(child: CircularProgressIndicator());
+        }
         return Scaffold(
           body: Stack(
             children: [
@@ -185,7 +159,7 @@ class _CourseWalkingScreenState extends State<CourseWalkingScreen> {
               Positioned(
                 bottom: 75,
                 right: 20,
-                child: Center(child: _buildSpotCnt(viewModel)),
+                child: Center(child: buildSpotCnt(viewModel, context)),
               ),
               Positioned(
                 top: 80,
