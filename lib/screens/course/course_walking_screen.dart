@@ -23,7 +23,7 @@ class _CourseWalkingScreenState extends State<CourseWalkingScreen> {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      builder: (BuildContext context) => SpotCreateWidget(),
+      builder: (BuildContext context) => const SpotCreateWidget(),
     );
   }
 
@@ -48,17 +48,18 @@ class _CourseWalkingScreenState extends State<CourseWalkingScreen> {
 // 스팟 남기기 버튼 옆에 스팟 개수 표시 위쳇
   Widget _buildSpotCnt(CourseWalkingViewModel viewModel) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-      decoration: BoxDecoration(
-        color: ColorStyles.white,
-        borderRadius: BorderRadius.circular(48),
-        border: Border.all(color: ColorStyles.main1, width: 2),
-      ),
-      child: Text(
-        "${viewModel.spotCnt.toString()}/5",
-        style: FontStyles.semiBold12.copyWith(color: ColorStyles.main1),
-      ),
-    );
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+        decoration: BoxDecoration(
+          color: ColorStyles.white,
+          borderRadius: BorderRadius.circular(48),
+          border: Border.all(color: ColorStyles.main1, width: 2),
+        ),
+        child: Obx(
+          () => Text(
+            "${viewModel.spotCnt}/5",
+            style: FontStyles.semiBold12.copyWith(color: ColorStyles.main1),
+          ),
+        ));
   }
 
 // 산책 종료 버튼
@@ -91,49 +92,45 @@ class _CourseWalkingScreenState extends State<CourseWalkingScreen> {
     return GetBuilder<CourseWalkingViewModel>(
       init: Get.put(CourseWalkingViewModel()),
       builder: (viewModel) {
-        return GestureDetector(
-          // 화면을 터치하면 키보드가 내려감
-          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-          child: Scaffold(
-            body: Stack(
-              children: [
-                NaverMap(
-                  locationButtonEnable: true,
-                  mapType: MapType.Basic,
-                  initialCameraPosition: CameraPosition(
-                    target: viewModel.latLngList.isNotEmpty
-                        ? viewModel.latLngList.last
-                        : const LatLng(37.3595704, 127.105399),
-                    zoom: 17,
-                  ),
-                  onMapCreated: (controller) {
-                    if (viewModel.latLngList.isNotEmpty) {
-                      controller.moveCamera(CameraUpdate.toCameraPosition(
-                        CameraPosition(
-                            target: viewModel.latLngList.last, zoom: 17),
-                      ));
-                    }
-                  },
-                  initLocationTrackingMode: LocationTrackingMode.Follow,
+        return Scaffold(
+          body: Stack(
+            children: [
+              NaverMap(
+                locationButtonEnable: true,
+                mapType: MapType.Basic,
+                initialCameraPosition: CameraPosition(
+                  target: viewModel.latLngList.isNotEmpty
+                      ? viewModel.latLngList.last
+                      : const LatLng(37.3595704, 127.105399),
+                  zoom: 17,
                 ),
-                Positioned(
-                  bottom: 75,
-                  left: 0,
-                  right: 0,
-                  child: Center(child: _buildSpotButton()),
-                ),
-                Positioned(
-                  bottom: 75,
-                  right: 20,
-                  child: Center(child: _buildSpotCnt(viewModel)),
-                ),
-                Positioned(
-                  top: 80,
-                  right: 20,
-                  child: Center(child: _buildEndWalkButton(viewModel)),
-                ),
-              ],
-            ),
+                onMapCreated: (controller) {
+                  if (viewModel.latLngList.isNotEmpty) {
+                    controller.moveCamera(CameraUpdate.toCameraPosition(
+                      CameraPosition(
+                          target: viewModel.latLngList.last, zoom: 17),
+                    ));
+                  }
+                },
+                initLocationTrackingMode: LocationTrackingMode.Follow,
+              ),
+              Positioned(
+                bottom: 75,
+                left: 0,
+                right: 0,
+                child: Center(child: _buildSpotButton()),
+              ),
+              Positioned(
+                bottom: 75,
+                right: 20,
+                child: Center(child: _buildSpotCnt(viewModel)),
+              ),
+              Positioned(
+                top: 80,
+                right: 20,
+                child: Center(child: _buildEndWalkButton(viewModel)),
+              ),
+            ],
           ),
         );
       },

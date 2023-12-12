@@ -7,55 +7,88 @@ import 'package:naemansan/utilities/style/font_styles.dart';
 import 'package:naemansan/viewModel/course_walking_view_model.dart';
 import 'package:naemansan/viewModel/image_capture_view_model.dart';
 
-class SpotCreateWidget extends StatelessWidget {
+class SpotCreateWidget extends StatefulWidget {
+  const SpotCreateWidget({Key? key}) : super(key: key);
+
+  @override
+  State<SpotCreateWidget> createState() => _SpotCreateWidgetState();
+}
+
+class _SpotCreateWidgetState extends State<SpotCreateWidget> {
   final CourseWalkingViewModel spotCreateViewModel =
       Get.find<CourseWalkingViewModel>();
+
   final imageviewModel = Get.put(ImageCaptureViewModel());
 
-  SpotCreateWidget({Key? key}) : super(key: key);
+  late final TextEditingController nameController;
+  late final TextEditingController descriptionController;
+  final RxBool isSubmitEnabled = false.obs;
+
+  void checkFormValid() {
+    final isNameFilled = nameController.text.trim().isNotEmpty;
+    final isDescriptionFilled = descriptionController.text.trim().isNotEmpty;
+    final isIconSelected = spotCreateViewModel.selectedIndex.value != null;
+
+    isSubmitEnabled.value =
+        isNameFilled && isDescriptionFilled && isIconSelected;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    nameController = TextEditingController();
+    descriptionController = TextEditingController();
+
+    nameController.addListener(() {
+      checkFormValid();
+      spotCreateViewModel.updateSpotName(nameController.text);
+    });
+
+    descriptionController.addListener(() {
+      checkFormValid();
+      spotCreateViewModel.updateSpotDescription(descriptionController.text);
+    });
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    descriptionController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController nameController = TextEditingController();
-    final TextEditingController descriptionController = TextEditingController();
-
-    final RxBool isSubmitEnabled = false.obs;
-
-    void checkFormValid() {
-      final isNameFilled = nameController.text.trim().isNotEmpty;
-      final isDescriptionFilled = descriptionController.text.trim().isNotEmpty;
-      final isIconSelected = spotCreateViewModel.selectedIndex.value != null;
-
-      isSubmitEnabled.value =
-          isNameFilled && isDescriptionFilled && isIconSelected;
-    }
-
-    nameController.addListener(checkFormValid);
-    descriptionController.addListener(checkFormValid);
-
     return DraggableScrollableSheet(
       expand: false,
+      initialChildSize: 0.9,
       builder: (_, ScrollController scrollController) {
-        return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 36),
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-          ),
-          child: ListView(
-            controller: scrollController,
-            children: <Widget>[
-              _buildTitleSection(),
-              _buildTextField('스팟 이름', '스팟의 이름을 입력하세요.', nameController, 12, 1),
-              const SizedBox(height: 28),
-              _buildTextField(
-                  '스팟 설명', '스팟에 대한 설명을 입력하세요.', descriptionController, 300, 3),
-              const SizedBox(height: 28),
-              _buildCategorySection(spotCreateViewModel),
-              const SizedBox(height: 32),
-              Obx(() => _buildButtonRow(
-                  context, spotCreateViewModel, isSubmitEnabled.value)),
-            ],
+        return GestureDetector(
+          // 화면을 터치하면 키보드가 내려감
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 36),
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+            ),
+            child: ListView(
+              controller: scrollController,
+              children: <Widget>[
+                _buildTitleSection(),
+                _buildTextField(
+                    '스팟 이름', '스팟의 이름을 입력하세요.', nameController, 12, 1),
+                const SizedBox(height: 28),
+                _buildTextField('스팟 설명', '스팟에 대한 설명을 입력하세요.',
+                    descriptionController, 300, 3),
+                const SizedBox(height: 28),
+                _buildCategorySection(spotCreateViewModel),
+                const SizedBox(height: 32),
+                Obx(() => _buildButtonRow(
+                    context, spotCreateViewModel, isSubmitEnabled.value)),
+                const SizedBox(height: 320),
+              ],
+            ),
           ),
         );
       },
@@ -215,6 +248,7 @@ class SpotCreateWidget extends StatelessWidget {
             child: TextButton(
               onPressed: isEnabled
                   ? () {
+                      //스팟 등록
                       viewModel.registerSpot(
                         viewModel.spotName.value,
                         viewModel.spotDescription.value,

@@ -55,6 +55,7 @@ class CourseWalkingViewModel extends GetxController {
   void registerSpot(String name, String description) {
     // 등록 알고리즘
     // ..
+    print('스팟 등록: $name, $description');
     // 장소 추가 성공시 cnt 증가
     spotCnt.value++;
     // 등록 후 폼 초기화
@@ -64,11 +65,11 @@ class CourseWalkingViewModel extends GetxController {
   }
 
   // 유저가 입력한 스팟 이름과 설명을 업데이트하는 함수
-  void updateName(String name) {
+  void updateSpotName(String name) {
     spotName.value = name;
   }
 
-  void updateDescription(String description) {
+  void updateSpotDescription(String description) {
     spotDescription.value = description;
   }
 
