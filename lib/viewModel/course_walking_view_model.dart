@@ -6,14 +6,27 @@ import 'package:naver_map_plugin/naver_map_plugin.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 
 class CourseWalkingViewModel extends GetxController {
+  /* ---------------- 위치 관련 ----------------  */
   // 위치 정보를 받아오는 서비스
   final LocationService locationService = LocationService();
   // 현재 위치를 저장하는 리스트
   final RxList<LatLng> latLngList = <LatLng>[].obs;
   // 현재 경로를 표시하는 PathOverlay
   Rxn<PathOverlay> currentPathOverlay = Rxn<PathOverlay>();
+
+/* ---------------- SPOT 관련 ----------------  */
+  // 선택한 카테고리 아이콘
+  var selectedIndex = Rx<int?>(null);
+  var spotName = ''.obs;
+  var spotDescription = ''.obs;
+  // 등록한 스팟 갯수
+  var spotCnt = 0.obs;
+
+/* ---------------- 그외 ----------------  */
   bool _isLoading = false;
   bool get isLoading => _isLoading;
+
+/* ---------------- Method ----------------  */
   @override
   void onInit() {
     super.onInit();
@@ -26,12 +39,6 @@ class CourseWalkingViewModel extends GetxController {
       _isLoading = false;
     });
   }
-
-  // 스팟 이름 설명 카테고리 인덱스
-  var selectedIndex = Rx<int?>(null);
-
-  var spotName = ''.obs;
-  var spotDescription = ''.obs;
 
   // 폼이 유효한지 확인하는 getter
   bool get isFormValid =>
@@ -48,6 +55,8 @@ class CourseWalkingViewModel extends GetxController {
   void registerSpot(String name, String description) {
     // 등록 알고리즘
     // ..
+    // 장소 추가 성공시 cnt 증가
+    spotCnt.value++;
     // 등록 후 폼 초기화
     spotName.value = '';
     spotDescription.value = '';
@@ -138,7 +147,4 @@ class CourseWalkingViewModel extends GetxController {
 
 // 산책 종료
   void endWalk() {}
-
-// 산책 경로에 장소 추가
-  void addSpot() {}
 }

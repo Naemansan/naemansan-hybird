@@ -219,7 +219,8 @@ class SpotCreateWidget extends StatelessWidget {
                         viewModel.spotName.value,
                         viewModel.spotDescription.value,
                       );
-                      Navigator.of(context).pop();
+                      //스팟창 닫기
+                      Get.back();
                     }
                   : null, // Button is disabled if form is not valid
               style: TextButton.styleFrom(
