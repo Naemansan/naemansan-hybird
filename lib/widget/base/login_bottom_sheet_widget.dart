@@ -95,7 +95,7 @@ class LoginBottomSheetWidget extends StatelessWidget {
       isDismissible: true, // 외부 탭으로 닫을 수 있음
       shape: const RoundedRectangleBorder(
         // 모서리 둥글게
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
     );
   }

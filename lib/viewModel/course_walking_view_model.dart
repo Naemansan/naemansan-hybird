@@ -1,19 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:naemansan/models/course_detail_model.dart';
+import 'package:naemansan/models/course_walking_single_spot_model.dart';
 import 'package:naemansan/services/location_service.dart';
 import 'package:naver_map_plugin/naver_map_plugin.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 
 class CourseWalkingViewModel extends GetxController {
+  /* ---------------- 위치 관련 ----------------  */
   // 위치 정보를 받아오는 서비스
   final LocationService locationService = LocationService();
   // 현재 위치를 저장하는 리스트
   final RxList<LatLng> latLngList = <LatLng>[].obs;
   // 현재 경로를 표시하는 PathOverlay
   Rxn<PathOverlay> currentPathOverlay = Rxn<PathOverlay>();
+
+/* ---------------- SPOT 관련 ----------------  */
+  // 선택한 카테고리 아이콘
+  var selectedIndex = Rx<int?>(null);
+  var spotName = ''.obs;
+  var spotDescription = ''.obs;
+
+  // spot저장할 리스트
+  var spotList = <WalkingSingleSpotModel>[].obs;
+
+/* ---------------- 그외 ----------------  */
   bool _isLoading = false;
   bool get isLoading => _isLoading;
+
+/* ---------------- Method ----------------  */
   @override
   void onInit() {
     super.onInit();
@@ -27,12 +43,6 @@ class CourseWalkingViewModel extends GetxController {
     });
   }
 
-  // 스팟 이름 설명 카테고리 인덱스
-  var selectedIndex = Rx<int?>(null);
-
-  var spotName = ''.obs;
-  var spotDescription = ''.obs;
-
   // 폼이 유효한지 확인하는 getter
   bool get isFormValid =>
       spotName.isNotEmpty &&
@@ -44,10 +54,65 @@ class CourseWalkingViewModel extends GetxController {
     selectedIndex.value = index;
   }
 
+  // index에 따라 카테고리 string 반환
+  String getSpotCategory(int index) {
+    // index가 null이면 빈 문자열 반환
+    switch (index) {
+      case 0:
+        return 'PUB_BAR';
+      case 1:
+        return 'ACCOMMODATION';
+      case 2:
+        return 'NATURE';
+      case 3:
+        return 'SHOPPING';
+      case 4:
+        return 'FOOD';
+      case 5:
+        return 'CAFE_BAKERY';
+      case 6:
+        return 'PLACE';
+
+      default:
+        return '';
+    }
+  }
+
+// 현재 위치 받아오기
+  Future<Position> getNowLocation() async {
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    return position;
+  }
+
   // 스팟 등록 함수
-  void registerSpot(String name, String description) {
+  void registerSpot(
+    String title,
+    String content,
+    String categroy,
+  ) async {
+    _isLoading = true;
+    // 현재 위치 받아오기
+    Position position = await getNowLocation();
+
+    // spot 모델을 토대로 새로운 spot 생성
+    WalkingSingleSpotModel newSpot = WalkingSingleSpotModel(
+      title: title,
+      content: content,
+      location:
+          Location(latitude: position.latitude, longitude: position.longitude),
+      category: categroy,
+      // imageState: imageState
+    );
+
+    // 생성된 spot 리스트에 추가
+    spotList.add(newSpot);
+    update(); // 상태 업데이트
+    _isLoading = false;
+    // 등록된 spot
+
     // 등록 알고리즘
-    // ..
+
     // 등록 후 폼 초기화
     spotName.value = '';
     spotDescription.value = '';
@@ -55,11 +120,11 @@ class CourseWalkingViewModel extends GetxController {
   }
 
   // 유저가 입력한 스팟 이름과 설명을 업데이트하는 함수
-  void updateName(String name) {
+  void updateSpotName(String name) {
     spotName.value = name;
   }
 
-  void updateDescription(String description) {
+  void updateSpotDescription(String description) {
     spotDescription.value = description;
   }
 
@@ -138,7 +203,4 @@ class CourseWalkingViewModel extends GetxController {
 
 // 산책 종료
   void endWalk() {}
-
-// 산책 경로에 장소 추가
-  void addSpot() {}
 }

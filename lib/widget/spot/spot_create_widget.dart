@@ -1,61 +1,98 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:naemansan/models/course_walking_single_spot_model.dart';
 import 'package:naemansan/utilities/spot_icon_list.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 import 'package:naemansan/viewModel/course_walking_view_model.dart';
 import 'package:naemansan/viewModel/image_capture_view_model.dart';
 
-class SpotCreateWidget extends StatelessWidget {
+class SpotCreateWidget extends StatefulWidget {
+  const SpotCreateWidget({Key? key}) : super(key: key);
+
+  @override
+  State<SpotCreateWidget> createState() => _SpotCreateWidgetState();
+}
+
+class _SpotCreateWidgetState extends State<SpotCreateWidget> {
   final CourseWalkingViewModel spotCreateViewModel =
       Get.find<CourseWalkingViewModel>();
+
   final imageviewModel = Get.put(ImageCaptureViewModel());
 
-  SpotCreateWidget({Key? key}) : super(key: key);
+  late final TextEditingController nameController;
+  late final TextEditingController descriptionController;
+  final RxBool isSubmitEnabled = false.obs;
+
+  void checkFormValid() {
+    final isNameFilled = nameController.text.trim().isNotEmpty;
+    final isDescriptionFilled = descriptionController.text.trim().isNotEmpty;
+    final isIconSelected = spotCreateViewModel.selectedIndex.value != null;
+
+    isSubmitEnabled.value =
+        isNameFilled && isDescriptionFilled && isIconSelected;
+  }
+
+  // init 상태 초기화
+  @override
+  void initState() {
+    super.initState();
+    nameController = TextEditingController();
+    descriptionController = TextEditingController();
+
+    nameController.addListener(() {
+      checkFormValid();
+      spotCreateViewModel.updateSpotName(nameController.text);
+    });
+
+    descriptionController.addListener(() {
+      checkFormValid();
+      spotCreateViewModel.updateSpotDescription(descriptionController.text);
+    });
+  }
+
+  // dispose
+  @override
+  void dispose() {
+    nameController.dispose();
+    descriptionController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController nameController = TextEditingController();
-    final TextEditingController descriptionController = TextEditingController();
-
-    final RxBool isSubmitEnabled = false.obs;
-
-    void checkFormValid() {
-      final isNameFilled = nameController.text.trim().isNotEmpty;
-      final isDescriptionFilled = descriptionController.text.trim().isNotEmpty;
-      final isIconSelected = spotCreateViewModel.selectedIndex.value != null;
-
-      isSubmitEnabled.value =
-          isNameFilled && isDescriptionFilled && isIconSelected;
-    }
-
-    nameController.addListener(checkFormValid);
-    descriptionController.addListener(checkFormValid);
-
+    // 드래그 가능한 스크롤 가능한 시트
     return DraggableScrollableSheet(
       expand: false,
+      initialChildSize: 0.9,
       builder: (_, ScrollController scrollController) {
-        return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 36),
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-          ),
-          child: ListView(
-            controller: scrollController,
-            children: <Widget>[
-              _buildTitleSection(),
-              _buildTextField('스팟 이름', '스팟의 이름을 입력하세요.', nameController, 12, 1),
-              const SizedBox(height: 28),
-              _buildTextField(
-                  '스팟 설명', '스팟에 대한 설명을 입력하세요.', descriptionController, 300, 3),
-              const SizedBox(height: 28),
-              _buildCategorySection(spotCreateViewModel),
-              const SizedBox(height: 32),
-              Obx(() => _buildButtonRow(
-                  context, spotCreateViewModel, isSubmitEnabled.value)),
-            ],
+        return GestureDetector(
+          // 화면을 터치하면 키보드가 내려감
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 36),
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+            ),
+            child: ListView(
+              controller: scrollController,
+              children: <Widget>[
+                _buildTitleSection(),
+                _buildTextField(
+                    '스팟 이름', '스팟의 이름을 입력하세요.', nameController, 12, 1),
+                const SizedBox(height: 28),
+                _buildTextField('스팟 설명', '스팟에 대한 설명을 입력하세요.',
+                    descriptionController, 300, 3),
+                const SizedBox(height: 28),
+                _buildCategorySection(spotCreateViewModel),
+                const SizedBox(height: 32),
+                Obx(() => _buildButtonRow(
+                    context, spotCreateViewModel, isSubmitEnabled.value)),
+                const SizedBox(height: 320),
+              ],
+            ),
           ),
         );
       },
@@ -148,36 +185,39 @@ class SpotCreateWidget extends StatelessWidget {
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: IconConfig.iconLength,
+              // itembuilder 내부에서 Obx를 사용하면
+              // Obx가 변경되면 해당 위젯만 다시 그려짐
               itemBuilder: (context, index) {
-                bool isSelected = viewModel.selectedIndex.value == index;
-                return GestureDetector(
-                  onTap: () => viewModel.selectSpotIcon(index),
-                  child: Container(
-                    width: 48,
-                    height: 48,
-                    padding: const EdgeInsets.all(8.0),
-                    margin: const EdgeInsets.fromLTRB(0, 0, 8, 0),
-                    decoration: BoxDecoration(
-                      color: isSelected ? ColorStyles.main1 : Colors.white,
-                      border: Border.all(
-                        color: ColorStyles.main1,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: SvgPicture.asset(
-                      IconConfig.iconPaths[index],
+                return Obx(() {
+                  // 선택된 아이콘은 색상이 바뀜
+                  bool isSelected = viewModel.selectedIndex.value == index;
+                  return GestureDetector(
+                    onTap: () => viewModel.selectSpotIcon(index),
+                    child: Container(
                       width: 48,
                       height: 48,
-                      colorFilter: ColorFilter.mode(
-                        isSelected
-                            ? ColorStyles.white
-                            : ColorStyles.main1, // 선택된 경우와 그렇지 않은 경우에 적용할 색상
-                        BlendMode.srcIn, // Blend mode
+                      padding: const EdgeInsets.all(8.0),
+                      margin: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+                      decoration: BoxDecoration(
+                        color: isSelected ? ColorStyles.main1 : Colors.white,
+                        border: Border.all(
+                          color: ColorStyles.main1,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: SvgPicture.asset(
+                        IconConfig.iconPaths[index],
+                        width: 48,
+                        height: 48,
+                        colorFilter: ColorFilter.mode(
+                          isSelected ? ColorStyles.white : ColorStyles.main1,
+                          BlendMode.srcIn,
+                        ),
                       ),
                     ),
-                  ),
-                );
+                  );
+                });
               },
             )),
       ],
@@ -193,21 +233,19 @@ class SpotCreateWidget extends StatelessWidget {
         Expanded(
             flex: 2,
             child: TextButton(
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () => Get.back(),
               style: TextButton.styleFrom(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(4)),
                 side: const BorderSide(color: ColorStyles.gray1, width: 2),
                 backgroundColor: ColorStyles.white,
                 foregroundColor: ColorStyles.gray1,
+                padding: const EdgeInsets.symmetric(vertical: 12),
               ),
               child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Text(
-                    '취소',
-                    style: FontStyles.semiBold20.copyWith(),
-                  ),
+                child: Text(
+                  '취소',
+                  style: FontStyles.semiBold20.copyWith(),
                 ),
               ),
             )),
@@ -217,11 +255,15 @@ class SpotCreateWidget extends StatelessWidget {
             child: TextButton(
               onPressed: isEnabled
                   ? () {
+                      //스팟 등록
                       viewModel.registerSpot(
                         viewModel.spotName.value,
                         viewModel.spotDescription.value,
+                        viewModel
+                            .getSpotCategory(viewModel.selectedIndex.value!),
                       );
-                      Navigator.of(context).pop();
+                      //스팟창 닫기
+                      Get.back();
                     }
                   : null, // Button is disabled if form is not valid
               style: TextButton.styleFrom(
@@ -231,14 +273,12 @@ class SpotCreateWidget extends StatelessWidget {
                     isEnabled ? ColorStyles.main1 : ColorStyles.gray0,
                 foregroundColor:
                     isEnabled ? ColorStyles.white : ColorStyles.gray3,
+                padding: const EdgeInsets.symmetric(vertical: 12),
               ),
               child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Text(
-                    '스팟 등록하기',
-                    style: FontStyles.semiBold20.copyWith(),
-                  ),
+                child: Text(
+                  '스팟 등록하기',
+                  style: FontStyles.semiBold20.copyWith(),
                 ),
               ),
             )),

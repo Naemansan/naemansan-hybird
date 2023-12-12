@@ -42,6 +42,20 @@ flutter:
         - assets/icons/
         - assets/config/.env
         - assets/data/
+        - assets/icons/food.png
+        - assets/icons/food_checked.png
+        - assets/icons/accommodation_checked.png
+        - assets/icons/accommodation.png
+        - assets/icons/cafe_bakery.png
+        - assets/icons/cafe_bakery_checked.png
+        - assets/icons/nature.png
+        - assets/icons/nature_checked.png
+        - assets/icons/place.png
+        - assets/icons/place_checked.png
+        - assets/icons/pub_bar.png
+        - assets/icons/pub_bar_checked.png
+        - assets/icons/shopping.png
+        - assets/icons/shopping_checked.png
 
     fonts:
         - family: Pretendard
