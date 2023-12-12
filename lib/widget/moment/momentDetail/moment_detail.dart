@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:naemansan/models/moment_model.dart';
 import 'package:naemansan/utilities/emotion_list.dart';
 
 import 'package:naemansan/utilities/style/color_styles.dart';
@@ -8,7 +9,7 @@ import 'package:naemansan/utilities/style/font_styles.dart';
 
 class MomentDetail extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
-  final momentInfo;
+  final Moment momentInfo;
   const MomentDetail({super.key, required this.momentInfo});
 
   @override
@@ -34,7 +35,7 @@ class MomentDetail extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        momentInfo.date,
+                        "날씨:수정필요",
                         style: FontStyles.semiBold16
                             .copyWith(color: ColorStyles.white),
                       ),
@@ -42,7 +43,7 @@ class MomentDetail extends StatelessWidget {
                         height: 4,
                       ),
                       Text(
-                        momentInfo.courseTitle,
+                        "${momentInfo.courseId}번째 산책로 수정필요",
                         style: FontStyles.semiBold16
                             .copyWith(color: ColorStyles.white),
                       ),

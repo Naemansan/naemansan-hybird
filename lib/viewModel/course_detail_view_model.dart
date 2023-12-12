@@ -1,96 +1,40 @@
 import 'package:get/get.dart';
-import 'package:naemansan/models/course_overview_model.dart';
-import 'package:naemansan/models/tag_model.dart';
-import 'package:naemansan/models/moment_model.dart';
 
-import 'package:naemansan/models/spot_model.dart';
 import 'package:naemansan/models/course_detail_model.dart';
+import 'package:naemansan/models/moment_model.dart';
+import 'package:naemansan/models/similar_course_model.dart';
+import 'package:naemansan/models/spot_model.dart';
+import 'package:naemansan/services/course_service.dart';
 
 class CourseDetailViewModel extends GetxController {
-  late CourseDetailModel _courseDetailInfo;
-  CourseDetailViewModel() {
-    _courseDetailInfo = CourseDetailModel(
-        id: 1,
-        title: "산책로1",
-        siGuDong: "경기도화성시동탄반석로",
-        distance: "1,234m",
-        tags: [
-          TagModel(id: 1, tag: "123"),
-          TagModel(id: 1, tag: "123"),
-          TagModel(id: 1, tag: "123")
-        ],
-        descriptionCourseOverview: "1111",
-        date: "2023/12/23",
-        writerId: 1,
-        writerName: "서현",
-        momentCount: 3,
-        likeCount: 4,
-        momentList: [
-          MomentModel(
-              id: 1,
-              date: "11/2",
-              year: "2023",
-              weather: "Cloud",
-              emotion: "Sad",
-              courseId: 2,
-              courseTitle: "산책로2",
-              userId: 1,
-              userName: "서현  ",
-              content: "내용"),
-          MomentModel(
-              id: 2,
-              date: "11/3",
-              year: "2023",
-              weather: "FewCloudDay",
-              emotion: "Joy",
-              courseId: 2,
-              courseTitle: "산책로2",
-              userId: 1,
-              userName: "서현  ",
-              content: "내용"),
-        ],
-        spotList: [
-          SpotModel(
-              id: 1,
-              title: "카페",
-              category: "Cafe",
-              description: "설명",
-              thumbnail: null),
-          SpotModel(
-              id: 2,
-              title: "산책로",
-              category: "Nature",
-              description: "설명",
-              thumbnail: "사진있음")
-        ],
-        similarCourseList: [
-          CourseOverviewModel(
-              id: 1,
-              title: "산책로1",
-              siGuDong: "경기도 화성시 석우동",
-              distance: "1,234m",
-              tags: [
-                TagModel(id: 1, tag: "@"),
-                TagModel(id: 1, tag: "@"),
-                TagModel(id: 1, tag: "@")
-              ],
-              momentCount: 1,
-              likeCount: 2,
-              isPublished: true),
-          CourseOverviewModel(
-              id: 1,
-              title: "산책로2",
-              siGuDong: "경기도 화성시 석우동",
-              distance: "1,234m",
-              tags: [
-                TagModel(id: 1, tag: "@"),
-                TagModel(id: 1, tag: "@"),
-                TagModel(id: 1, tag: "@")
-              ],
-              momentCount: 1,
-              likeCount: 2,
-              isPublished: true)
-        ]);
+  final Rx<CourseDetail> course = CourseDetail(
+          id: 0,
+          title: '',
+          content: '',
+          siGuDong: '',
+          locations: [Location(latitude: 0, longitude: 0)],
+          tags: [],
+          distance: '',
+          createdAt: '',
+          userId: '',
+          userNickName: '')
+      .obs;
+
+  final RxList<Moment> moments = <Moment>[].obs;
+  final RxList<Spot> spots = <Spot>[].obs;
+  final RxList<SimilarCourse> similarCourses = <SimilarCourse>[].obs;
+
+  void loadCourseDetailData(int courseId) {
+    CourseDetail dummyCourseDetail =
+        CourseService().getDummyCourseDetail(courseId);
+    List<Moment> dummyMoments = CourseService().getDummyMoment(courseId);
+    List<Spot> dummySpots = CourseService().getDummySpot(courseId);
+    List<SimilarCourse> dummySimilarCourses =
+        CourseService().getDummySimilarCourses(courseId);
+
+    course.value = dummyCourseDetail;
+    moments.value = dummyMoments;
+    spots.value = dummySpots;
+    similarCourses.value = dummySimilarCourses;
   }
-  CourseDetailModel get courseDetailInfo => _courseDetailInfo;
 }

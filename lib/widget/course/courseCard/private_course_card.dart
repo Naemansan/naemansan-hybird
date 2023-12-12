@@ -8,7 +8,7 @@ import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
 class PrivateCourseCard extends StatelessWidget {
-  final CourseOverviewModel courseInfo;
+  final CourseOverview courseInfo;
   const PrivateCourseCard({super.key, required this.courseInfo});
 
   @override
@@ -72,7 +72,7 @@ class PrivateCourseCard extends StatelessWidget {
                             children: [
                               courseInfo.siGuDong,
                               "·",
-                              courseInfo.distance
+                              "${courseInfo.distance}m"
                             ].map((element) {
                               return Text(element,
                                   style: FontStyles.regular16.copyWith(
@@ -93,7 +93,7 @@ class PrivateCourseCard extends StatelessWidget {
                                   spacing: 4.0,
                                   children: courseInfo.tags.map((element) {
                                     return Text(
-                                      '#${element.tag}',
+                                      '#$element',
                                       style: FontStyles.regular12
                                           .copyWith(color: ColorStyles.gray3),
                                     );

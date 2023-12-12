@@ -1,44 +1,45 @@
-import 'package:naemansan/models/course_overview_model.dart';
-import 'package:naemansan/models/tag_model.dart';
-import 'package:naemansan/models/moment_model.dart';
-
-import 'package:naemansan/models/spot_model.dart';
-
-class CourseDetailModel {
+class CourseDetail {
   final int id;
-
   final String title;
-  final String siGuDong;
+  final String content;
+  final String siGuDong; //back siDongGu;
+
+  final List<Location> locations;
+
+  final List<String> tags;
+
   final String distance;
-  final List<TagModel> tags;
+  final String createdAt;
 
-  final String descriptionCourseOverview;
+  final String userId;
+  final String userNickName;
+  final String? userProfileImageUrl;
 
-  final String date;
+  CourseDetail({
+    required this.id,
+    required this.title,
+    required this.content,
+    required this.siGuDong,
+    required this.locations,
+    required this.tags,
+    required this.distance,
+    required this.createdAt,
+    required this.userId,
+    required this.userNickName,
+    this.userProfileImageUrl,
+  });
+}
 
-  final int writerId;
-  final String writerName;
+class Location {
+  final double latitude;
+  final double longitude;
 
-  final int momentCount;
-  final int likeCount;
+  Location({required this.latitude, required this.longitude});
 
-  final List<MomentModel> momentList;
-  final List<SpotModel> spotList;
-  final List<CourseOverviewModel> similarCourseList;
-
-  CourseDetailModel(
-      {required this.id,
-      required this.title,
-      required this.siGuDong,
-      required this.distance,
-      required this.tags,
-      required this.descriptionCourseOverview,
-      required this.date,
-      required this.writerId,
-      required this.writerName,
-      required this.momentCount,
-      required this.likeCount,
-      required this.momentList,
-      required this.spotList,
-      required this.similarCourseList});
+  factory Location.fromJson(Map<String, dynamic> json) {
+    return Location(
+      latitude: json['latitude'],
+      longitude: json['longitude'],
+    );
+  }
 }

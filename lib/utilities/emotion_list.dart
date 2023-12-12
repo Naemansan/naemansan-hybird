@@ -5,27 +5,27 @@ import 'package:naemansan/utilities/style/font_styles.dart';
 class EmotionConfig {
   static const emtionLength = 6;
   static List<Emotion> emotionList = [
-    Emotion(eng: "Flutter", kor: "설렘", color: ColorStyles.emotionFlutter),
-    Emotion(eng: "Joy", kor: "기쁨", color: ColorStyles.emotionJoy),
-    Emotion(eng: "Com", kor: "편안", color: ColorStyles.emotionCom),
-    Emotion(eng: "Sur", kor: "감사", color: ColorStyles.emotionSur),
-    Emotion(eng: "Sad", kor: "슬픔", color: ColorStyles.emotionSad),
-    Emotion(eng: "Boolan", kor: "불안", color: ColorStyles.emotionBoolan),
+    Emotion(eng: "FLUTTER", kor: "설렘", color: ColorStyles.emotionFlutter),
+    Emotion(eng: "JOY", kor: "기쁨", color: ColorStyles.emotionJoy),
+    Emotion(eng: "COMFORT", kor: "편안", color: ColorStyles.emotionCom),
+    Emotion(eng: "THANKS", kor: "감사", color: ColorStyles.emotionSur),
+    Emotion(eng: "SADNESS", kor: "슬픔", color: ColorStyles.emotionSad),
+    Emotion(eng: "ANXIETY", kor: "불안", color: ColorStyles.emotionBoolan),
   ];
 
   static Color getEmotionColor(String emotion) {
     switch (emotion) {
-      case "Flutter":
+      case "FLUTTER":
         return ColorStyles.emotionFlutter;
-      case "Joy":
+      case "JOY":
         return ColorStyles.emotionJoy;
-      case "Com":
+      case "COMFORT":
         return ColorStyles.emotionCom;
-      case "Sur":
+      case "THANKS":
         return ColorStyles.emotionSur;
-      case "Sad":
+      case "SADNESS":
         return ColorStyles.emotionSad;
-      case "Boolan":
+      case "ANXIETY":
         return ColorStyles.emotionBoolan;
 
       default:

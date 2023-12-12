@@ -4,6 +4,7 @@ import 'package:naemansan/method/get_scale_width.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 
 import 'package:naemansan/viewModel/course_detail_view_model.dart';
+
 import 'package:naemansan/widget/base/custom_appbar.dart';
 import 'package:naemansan/widget/common/button/bottom_button.dart';
 import 'package:naemansan/widget/common/button/like_button.dart';
@@ -22,8 +23,11 @@ class CourseDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CourseDetailViewModel viewModel = Get.put(CourseDetailViewModel());
+    final String courseId = Get.parameters['courseId'] ?? '';
+    final CourseDetailViewModel courseViewModel =
+        Get.put(CourseDetailViewModel());
 
+    courseViewModel.loadCourseDetailData(int.parse(courseId));
     return Scaffold(
         //앱바...
         appBar: const PreferredSize(
@@ -36,8 +40,8 @@ class CourseDetailScreen extends StatelessWidget {
         //앱바...
 
         body: GetBuilder<CourseDetailViewModel>(
-          init: viewModel,
-          builder: (viewModel) {
+          init: courseViewModel,
+          builder: (courseViewModel) {
             return SingleChildScrollView(
               child: Container(
                 color: ColorStyles.white,
@@ -59,25 +63,29 @@ class CourseDetailScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         CourseDetailInfo(
-                            name: viewModel.courseDetailInfo.title,
-                            location: viewModel.courseDetailInfo.siGuDong,
-                            distance: viewModel.courseDetailInfo.distance,
-                            tags: viewModel.courseDetailInfo.tags),
+                            name: courseViewModel.course.value.title,
+                            siGuDong: courseViewModel.course.value.siGuDong,
+                            distance: courseViewModel.course.value.distance,
+                            tags: courseViewModel.course.value.tags),
 
                         //작성자
                         CourseDetailWriter(
-                          writer: viewModel.courseDetailInfo.writerName,
-                          date: viewModel.courseDetailInfo.date,
+                          userNickName:
+                              courseViewModel.course.value.userNickName,
+                          userId: courseViewModel.course.value.userId,
+                          createdAt: courseViewModel.course.value.createdAt,
                         ),
 
                         //소개
                         CourseDetailDescription(
-                            description: viewModel
-                                .courseDetailInfo.descriptionCourseOverview),
+                            content: courseViewModel.course.value.content),
 
                         //모먼트
-                        CourseDetailMomentList(
-                            momentList: viewModel.courseDetailInfo.momentList)
+                        Visibility(
+                          visible: courseViewModel.moments.isNotEmpty,
+                          child: CourseDetailMomentList(
+                              momentList: courseViewModel.moments),
+                        )
                       ],
                     ),
                   ), //산책로 정보
@@ -95,14 +103,15 @@ class CourseDetailScreen extends StatelessWidget {
                     child: Column(children: [
                       //스팟 리스트
                       CourseDetailSpotList(
-                        spotList: viewModel.courseDetailInfo.spotList,
+                        spotList: courseViewModel.spots,
                       ),
-
                       //유사 산책로 리스트
-                      CourseDetailSimilarCourseList(
-                        similarCourseList:
-                            viewModel.courseDetailInfo.similarCourseList,
-                      ),
+                      Visibility(
+                        visible: courseViewModel.similarCourses.isNotEmpty,
+                        child: CourseDetailSimilarCourseList(
+                          similarCourseList: courseViewModel.similarCourses,
+                        ),
+                      )
                     ]),
                   )
                 ]),

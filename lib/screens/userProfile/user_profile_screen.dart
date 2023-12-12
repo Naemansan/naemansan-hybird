@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:naemansan/models/course_overview_model.dart';
 
-import 'package:naemansan/viewModel/otheruser_profile_view_model.dart';
+import 'package:naemansan/viewModel/user_profile_view_model.dart';
+
 import 'package:naemansan/widget/base/custom_appbar.dart';
 import 'package:naemansan/widget/course/courseCard/course_card_list.dart';
 import 'package:naemansan/widget/myProfile/user_profile_header.dart';
@@ -11,7 +13,10 @@ class UserProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final UserProfileViewModel viewModel = Get.put(UserProfileViewModel());
+    final String uuid = Get.parameters['uuid'] ?? '';
+
+    final UserProfileViewModel userProfileViewModel =
+        Get.put(UserProfileViewModel());
 
     return Scaffold(
         //앱바...
@@ -25,27 +30,32 @@ class UserProfileScreen extends StatelessWidget {
         //앱바...
 
         body: GetBuilder<UserProfileViewModel>(
-            init: viewModel,
-            builder: (viewModel) {
+            init: userProfileViewModel,
+            builder: (userProfileViewModel) {
               return Container(
                 width: double.infinity,
                 padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
-                child: Column(children: [
-                  UserProfileHeader(
-                    userProfile: viewModel.otheruserProfile,
-                    isOther: true,
-                  ),
-                  Expanded(
+                child: Column(
+                  children: [
+                    //상단 유저 프로필
+                    UserProfileHeader(
+                      userProfile: userProfileViewModel.user.value,
+                    ),
+                    //상단 유저 프로필
+
+                    //산책로 목록
+                    Expanded(
                       child: SingleChildScrollView(
-                    child: Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: CourseCardList(
-                        courseList: viewModel.courseList,
+                        child: Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: CourseCardList(),
+                        ),
                       ),
                     ),
-                  ))
-                ]),
+                    //산책로 목록
+                  ],
+                ),
               );
             }));
   }

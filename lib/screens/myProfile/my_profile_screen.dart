@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:naemansan/viewModel/my_profile_view_model.dart';
 
-import 'package:naemansan/utilities/style/font_styles.dart';
-import 'package:naemansan/utilities/style/color_styles.dart';
-
-import 'package:naemansan/viewModel/profile_view_model.dart';
+import 'package:naemansan/viewModel/user/user_view_model.dart';
 import 'package:naemansan/widget/base/custom_appbar.dart';
 
 import 'package:naemansan/widget/base/custom_tabbar.dart';
@@ -17,7 +15,8 @@ class MyProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ProfileViewModel viewModel = Get.put(ProfileViewModel());
+    final MyProfileViewModel userProfileViewModel =
+        Get.put(MyProfileViewModel());
 
     return Scaffold(
       //앱바...
@@ -31,35 +30,36 @@ class MyProfileScreen extends StatelessWidget {
           )),
       //앱바...
 
-      body: GetBuilder<ProfileViewModel>(
-          init: viewModel,
-          builder: (viewModel) {
+      body: GetBuilder<MyProfileViewModel>(
+          init: userProfileViewModel,
+          builder: (userProfileViewModel) {
             return Container(
               padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
               child: Column(children: [
-                //유저 프로필 (상단)
+                //상단 유저 프로필
                 UserProfileHeader(
-                  userProfile: viewModel.userProfile,
-                  isOther: false,
+                  userProfile: userProfileViewModel.user.value,
                 ),
+                //상단 유저 프로필
 
-                //팔로잉 팔로워 보는 탭
+                //팔로잉 팔로워
                 Expanded(
                   child: CustomTabbar(
                     tabs: const ["팔로잉", "팔로워"],
-                    rightTabs: [],
+                    rightTabs: const [],
                     tabviews: [
                       FollowuserProfileList(
-                        userList: viewModel.followingList,
+                        userList: userProfileViewModel.following,
                         type: "following",
                       ),
                       FollowuserProfileList(
-                        userList: viewModel.followerList,
+                        userList: userProfileViewModel.follower,
                         type: "follower",
                       ),
                     ],
                   ),
                 ),
+                //팔로잉 팔로워
               ]),
             );
           }),

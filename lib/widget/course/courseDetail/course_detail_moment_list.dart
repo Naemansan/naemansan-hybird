@@ -6,7 +6,7 @@ import 'package:naemansan/utilities/style/font_styles.dart';
 import 'package:naemansan/widget/moment/momentCard/moment_card.dart';
 
 class CourseDetailMomentList extends StatefulWidget {
-  final List<MomentModel> momentList;
+  final List<Moment> momentList;
   const CourseDetailMomentList({super.key, required this.momentList});
 
   @override

@@ -69,8 +69,7 @@ class MyApp extends StatelessWidget {
 
         //프로필
         GetPage(
-            name: '/userProfile/:userId',
-            page: () => const UserProfileScreen()),
+            name: '/userProfile/:uuid', page: () => const UserProfileScreen()),
         GetPage(
             name: '/myProfileEdit', page: () => const MyProfileEditScreen()),
       ],

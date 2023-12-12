@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:naemansan/models/near_course_model.dart';
+
+import 'package:naemansan/models/similar_course_model.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
-class CourseBtnWidget extends StatelessWidget {
-  final Course course;
+class SimilarCourseCard extends StatelessWidget {
+  final SimilarCourse course;
   final Function(int) onCourseTap;
 
-  const CourseBtnWidget(
+  const SimilarCourseCard(
       {super.key, required this.course, required this.onCourseTap});
 
   @override
@@ -47,7 +48,7 @@ class CourseBtnWidget extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    course.siGuDong,
+                    course.startLocationName,
                     style: FontStyles.regular16.copyWith(
                       color: ColorStyles.black,
                     ),
@@ -75,7 +76,7 @@ class CourseBtnWidget extends StatelessWidget {
                     spacing: 4.0,
                     children: course.tags.map((element) {
                       return Text(
-                        "#${element.tag}",
+                        "#$element",
                         style: FontStyles.regular12.copyWith(
                           color: ColorStyles.gray3,
                         ),

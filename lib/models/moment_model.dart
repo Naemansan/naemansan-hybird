@@ -1,43 +1,25 @@
-class MomentModel {
+// ignore_for_file: non_constant_identifier_names
+
+class Moment {
   final int id;
-
-  final String date;
-  final String year;
-
-  final String weather;
-  final String emotion;
-
   final int courseId;
   final String courseTitle;
 
-  final int userId;
-  final String userName;
+  final String nickname;
 
   final String content;
+  final String createdAt;
 
-  MomentModel(
+  final String emotion;
+  final String weather;
+
+  Moment(
       {required this.id,
-      required this.date,
-      required this.year,
-      required this.weather,
-      required this.emotion,
       required this.courseId,
       required this.courseTitle,
-      required this.userId,
-      required this.userName,
-      required this.content});
-
-  factory MomentModel.fromJson(Map<String, dynamic> json) {
-    return MomentModel(
-        id: json['id'],
-        date: json['date'],
-        year: json['year'],
-        weather: json['weather'],
-        emotion: json['emotion'],
-        courseId: json['courseId'],
-        courseTitle: json['courseTtile'],
-        userId: json['userId'],
-        userName: json['userName'],
-        content: json['content']);
-  }
+      required this.nickname,
+      required this.content,
+      required this.createdAt,
+      required this.emotion,
+      required this.weather});
 }

@@ -8,7 +8,7 @@ import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
 class CourseCard extends StatelessWidget {
-  final CourseOverviewModel courseInfo;
+  final CourseOverview courseInfo;
   const CourseCard({super.key, required this.courseInfo});
 
   @override
@@ -62,7 +62,7 @@ class CourseCard extends StatelessWidget {
                             children: [
                               courseInfo.siGuDong,
                               "·",
-                              courseInfo.distance
+                              "${courseInfo.distance}m"
                             ].map((element) {
                               return Text(element,
                                   style: FontStyles.regular16.copyWith(
@@ -83,7 +83,7 @@ class CourseCard extends StatelessWidget {
                                   spacing: 4.0,
                                   children: courseInfo.tags.map((element) {
                                     return Text(
-                                      '#${element.tag}',
+                                      '#$element',
                                       style: FontStyles.regular12
                                           .copyWith(color: ColorStyles.gray3),
                                     );
@@ -119,7 +119,11 @@ class CourseCard extends StatelessWidget {
                                         children: [
                                           SvgPicture.asset(
                                               'assets/icons/heartStroke.svg',
-                                              height: 16),
+                                              height: 16,
+                                              colorFilter:
+                                                  const ColorFilter.mode(
+                                                      ColorStyles.gray3,
+                                                      BlendMode.srcATop)),
                                           const SizedBox(width: 4),
                                           Text(
                                             courseInfo.likeCount.toString(),

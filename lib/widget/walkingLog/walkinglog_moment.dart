@@ -10,84 +10,13 @@ class WalkingLogMoment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final datesList = ["2023년 11월", "2023년 10월"];
-    final momentsList = [
-      [
-        MomentModel(
-            id: 1,
-            date: "11/2",
-            year: "2023",
-            weather: "Cloud",
-            emotion: "Sad",
-            courseId: 2,
-            courseTitle: "산책로2",
-            userId: 1,
-            userName: "서현  ",
-            content: "내용"),
-        MomentModel(
-            id: 1,
-            date: "11/2",
-            year: "2023",
-            weather: "Cloud",
-            emotion: "Sad",
-            courseId: 2,
-            courseTitle: "산책로2",
-            userId: 1,
-            userName: "서현  ",
-            content: "내용"),
-        MomentModel(
-            id: 1,
-            date: "11/2",
-            year: "2023",
-            weather: "Cloud",
-            emotion: "Sad",
-            courseId: 2,
-            courseTitle: "산책로2",
-            userId: 1,
-            userName: "서현  ",
-            content: "내용")
-      ],
-      [
-        MomentModel(
-            id: 1,
-            date: "11/2",
-            year: "2023",
-            weather: "Cloud",
-            emotion: "Sad",
-            courseId: 2,
-            courseTitle: "산책로2",
-            userId: 1,
-            userName: "서현  ",
-            content: "내용"),
-        MomentModel(
-            id: 1,
-            date: "11/2",
-            year: "2023",
-            weather: "Cloud",
-            emotion: "Sad",
-            courseId: 2,
-            courseTitle: "산책로2",
-            userId: 1,
-            userName: "서현  ",
-            content: "내용"),
-        MomentModel(
-            id: 1,
-            date: "11/2",
-            year: "2023",
-            weather: "Cloud",
-            emotion: "Sad",
-            courseId: 2,
-            courseTitle: "산책로2",
-            userId: 1,
-            userName: "서현  ",
-            content: "내용")
-      ]
-    ];
+    final List<Moment> momentsList = [];
     return Column(
       children: [
         Container(
             padding: const EdgeInsets.fromLTRB(4, 0, 4, 12),
             child: EmotionConfig.emotionInfo),
-        WalkingLogMomentMonth(datesList: datesList, momentsList: momentsList),
+        // WalkingLogMomentMonth(datesList: datesList, momentsList: momentsList),
       ],
     );
   }

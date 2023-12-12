@@ -11,29 +11,16 @@ class CurationPopularMoment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var momentList = [
-      MomentModel(
+    List<Moment> momentList = [
+      Moment(
           id: 1,
-          date: "11/2",
-          year: "2023",
-          weather: "Cloud",
-          emotion: "Sad",
-          courseId: 2,
-          courseTitle: "산책로2",
-          userId: 1,
-          userName: "서현  ",
-          content: "내용"),
-      MomentModel(
-          id: 2,
-          date: "11/3",
-          year: "2023",
-          weather: "FewCloudDay",
-          emotion: "Joy",
-          courseId: 2,
-          courseTitle: "산책로2",
-          userId: 1,
-          userName: "서현  ",
-          content: "내용"),
+          courseId: 1,
+          courseTitle: "1",
+          nickname: "1",
+          content: "1",
+          createdAt: "1111-11-11",
+          emotion: "SADNESS",
+          weather: "CLOUDY_NIGHT")
     ];
 
     return Column(

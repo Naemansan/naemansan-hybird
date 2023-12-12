@@ -5,9 +5,7 @@ import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 
 import 'package:naemansan/widget/course/courseCard/course_card_list.dart';
-import 'package:naemansan/models/course_overview_model.dart';
 
-import 'package:naemansan/models/tag_model.dart';
 import 'package:naemansan/widget/common/button/tag_btn.dart';
 
 class CurationPopularCourse extends StatefulWidget {
@@ -18,37 +16,7 @@ class CurationPopularCourse extends StatefulWidget {
 }
 
 class _CurationPopularCourseState extends State<CurationPopularCourse> {
-  var currentSelect = [];
-
-  //^:dummy
-  var courseList = [
-    CourseOverviewModel(
-        id: 1,
-        title: "산책로1",
-        siGuDong: "경기도 화성시 석우동",
-        distance: "1,234m",
-        tags: [
-          TagModel(id: 1, tag: "@"),
-          TagModel(id: 1, tag: "@"),
-          TagModel(id: 1, tag: "@")
-        ],
-        momentCount: 1,
-        likeCount: 2,
-        isPublished: true),
-    CourseOverviewModel(
-        id: 1,
-        title: "산책로1",
-        siGuDong: "경기도 화성시 석우동",
-        distance: "1,234m",
-        tags: [
-          TagModel(id: 1, tag: "@"),
-          TagModel(id: 1, tag: "@"),
-          TagModel(id: 1, tag: "@")
-        ],
-        momentCount: 1,
-        likeCount: 2,
-        isPublished: true)
-  ];
+  List<int> currentSelect = [];
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +59,9 @@ class _CurationPopularCourseState extends State<CurationPopularCourse> {
                     .toList()),
           ),
         ), //태그 선택
-        CourseCardList(courseList: courseList)
+        CourseCardList(
+          tagIds: currentSelect,
+        )
       ],
     );
   }
