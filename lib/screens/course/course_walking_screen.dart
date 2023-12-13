@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:naemansan/screens/home/home_screen.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 import 'package:naemansan/viewModel/course_walking_view_model.dart';
@@ -19,6 +20,14 @@ class CourseWalkingScreen extends StatefulWidget {
 
 class _CourseWalkingScreenState extends State<CourseWalkingScreen> {
   late final CourseWalkingViewModel viewModel;
+
+  @override
+  void initState() {
+    super.initState();
+    viewModel = Get.put(CourseWalkingViewModel());
+
+    //
+  }
 
   // 스팟 남기기 모달창 띄우기 위한 함수
   void _showSpotCreateModal(BuildContext context) {
@@ -65,7 +74,32 @@ class _CourseWalkingScreenState extends State<CourseWalkingScreen> {
             title: "산책을 종료하시겠습니까?",
             description: "산책을 종료하시면 기록이 중단됩니다.",
             buttonTitle: "산책 종료하기",
-            onPressedGreenButton: () => viewModel.endWalk())
+            onPressedCancelButton: () => {
+                  // 취소
+                  Get.back(),
+                },
+            onPressedGreenButton: () => {
+                  // 산책을 기록하시겠습니까 묻기
+                  TwoBtnBottomSheetWidget.show(
+                    context: context,
+                    title: "산책을 기록하시겠습니까?",
+                    description: "산책을 기록하시면 산책 기록이 저장됩니다.",
+                    buttonTitle: "산책 기록하기",
+                    onPressedCancelButton: () => {
+                      // 산책 기록 중단
+                      viewModel.onClose(),
+                      // 취소
+
+                      Get.offAllNamed('/')
+                    },
+                    onPressedGreenButton: () => {
+                      // 산책 기록하기
+                      viewModel.endWalk(),
+                      Get.back(),
+                      Get.back(),
+                    },
+                  ),
+                }),
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 19, vertical: 8),
@@ -98,40 +132,44 @@ class _CourseWalkingScreenState extends State<CourseWalkingScreen> {
           snapshot.hasData) {
         final markerImages = snapshot.data;
 
-        return NaverMap(
-          locationButtonEnable: true,
-          mapType: MapType.Basic,
-          initialCameraPosition: CameraPosition(
-            target: viewModel.latLngList.isNotEmpty
-                ? viewModel.latLngList.last
-                : const LatLng(37.3595704, 127.105399),
-            zoom: 17,
-          ),
-          onMapCreated: (controller) {
-            if (viewModel.latLngList.isNotEmpty) {
-              controller.moveCamera(CameraUpdate.toCameraPosition(
-                CameraPosition(
-                  target: viewModel.latLngList.last,
-                  zoom: 17,
-                ),
-              ));
-            }
-          },
-          markers: viewModel.spotList.asMap().entries.map((entry) {
-            final spot = entry.value;
-            final markerImage = markerImages?[entry.key];
+        return Obx(() => NaverMap(
+              locationButtonEnable: true,
+              mapType: MapType.Basic,
+              initialCameraPosition: CameraPosition(
+                target: viewModel.latLngList.isNotEmpty
+                    ? viewModel.latLngList.last
+                    : const LatLng(37.3595704, 127.105399),
+                zoom: 17,
+              ),
+              pathOverlays: viewModel.currentPathOverlay.value != null
+                  ? {viewModel.currentPathOverlay.value!}
+                  : {},
+              onMapCreated: (controller) {
+                if (viewModel.latLngList.isNotEmpty) {
+                  controller.moveCamera(CameraUpdate.toCameraPosition(
+                    CameraPosition(
+                      target: viewModel.latLngList.last,
+                      zoom: 17,
+                    ),
+                  ));
+                }
+              },
+              markers: viewModel.spotList.asMap().entries.map((entry) {
+                final spot = entry.value;
+                final markerImage = markerImages?[entry.key];
 
-            return Marker(
-              markerId: spot.title,
-              position: LatLng(spot.location.latitude, spot.location.longitude),
-              icon: markerImage,
-              width: 40,
-              height: 48,
-              captionText: spot.title,
-            );
-          }).toList(),
-          initLocationTrackingMode: LocationTrackingMode.Follow,
-        );
+                return Marker(
+                  markerId: spot.title,
+                  position:
+                      LatLng(spot.location.latitude, spot.location.longitude),
+                  icon: markerImage,
+                  width: 40,
+                  height: 48,
+                  captionText: spot.title,
+                );
+              }).toList(),
+              initLocationTrackingMode: LocationTrackingMode.Follow,
+            ));
       } else {
         return const CircularProgressIndicator();
       }
@@ -141,7 +179,7 @@ class _CourseWalkingScreenState extends State<CourseWalkingScreen> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CourseWalkingViewModel>(
-      init: Get.put(CourseWalkingViewModel()),
+      init: Get.find<CourseWalkingViewModel>(),
       builder: (viewModel) {
         // 로딩 중일 때 로딩 인디케이터를 표시한다.
 

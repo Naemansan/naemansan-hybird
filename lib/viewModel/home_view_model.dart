@@ -39,27 +39,19 @@ class HomeViewModel extends GetxController {
   bool get isLoading => _isLoading;
 
   // 홈 스크롤 컨트롤러 초기화
-  void initScrollListener(CourseController courseController) {
-    scrollController.addListener(() {
-      if (courseController.course.value?.courses.isNotEmpty ?? false) {
-        // 가장 많이 보이는 카드의 인덱스 가져오기
-        int mostVisibleIndex = getMostVisibleCardIndex(
-                courseController.course.value!.courses.length) -
-            1;
-        Course mostVisibleCourse =
-            courseController.course.value!.courses[mostVisibleIndex];
-        updatePathOverlays(mostVisibleCourse.locations);
-      }
-    });
-  }
-
-// 가장 많이 보이는 카드의 인덱스를 반환하는 함수
-  int getMostVisibleCardIndex(int itemCount) {
-    double cardWidth = 320.0;
-    double currentScroll = scrollController.offset;
-    int index = (currentScroll / cardWidth).round();
-    return index.clamp(1, itemCount); // 0이 아닌 1부터 시작하도록 조정
-  }
+  // void initScrollListener(CourseController courseController) {
+  //   scrollController.addListener(() {
+  //     if (courseController.course.value?.courses.isNotEmpty ?? false) {
+  //       // 가장 많이 보이는 카드의 인덱스 가져오기
+  //       int mostVisibleIndex = getMostVisibleCardIndex(
+  //               courseController.course.value!.courses.length) -
+  //           1;
+  //       Course mostVisibleCourse =
+  //           courseController.course.value!.courses[mostVisibleIndex];
+  //       updatePathOverlays(mostVisibleCourse.locations);
+  //     }
+  //   });
+  // }
 
   // 현재 위치를 받아오는 함수
   void loadCurrentLocation() async {
@@ -117,17 +109,17 @@ class HomeViewModel extends GetxController {
   }
 
   // 홈 스크롤 컨트롤러 초기화
-  @override
-  void onInit() {
-    super.onInit();
-    final courseController = Get.put(CourseController());
-    initScrollListener(courseController);
-  }
+//   @override
+//   void onInit() {
+//     super.onInit();
+//     // final courseController = Get.put(CourseController());
+//     // initScrollListener(courseController);
+//   }
 
-// 홈 스크롤 컨트롤러 종료
-  @override
-  void onClose() {
-    scrollController.dispose();
-    super.onClose();
-  }
+// // 홈 스크롤 컨트롤러 종료
+//   @override
+//   void onClose() {
+//     scrollController.dispose();
+//     super.onClose();
+//   }
 }

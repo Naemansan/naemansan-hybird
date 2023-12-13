@@ -8,12 +8,17 @@ class CurationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        body: SafeArea(
-      child: CustomTabbar(
-          tabs: ["주변 산책로", "인기 산책로"],
-          rightTabs: [],
-          tabviews: [CurationNear(), CurationPopular()]),
+    return Scaffold(
+        body: Container(
+      color: Colors.white,
+      child: const SafeArea(
+        // color
+
+        child: CustomTabbar(
+            tabs: ["주변 산책로", "인기 산책로"],
+            rightTabs: [],
+            tabviews: [CurationNear(), CurationPopular()]),
+      ),
     ));
   }
 }
