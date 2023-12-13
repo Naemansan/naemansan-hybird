@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+import 'package:naemansan/screens/course/course_create_screen.dart';
 import 'package:naemansan/screens/course/course_walking_screen.dart';
 import 'package:naemansan/screens/courseDetail/course_detail_screen.dart';
 import 'package:naemansan/screens/courseDetail/private_course_detail_screen.dart';
@@ -51,7 +53,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/', page: () => const RootScreen()),
         GetPage(
             name: '/course/walking', page: () => const CourseWalkingScreen()),
-
+        GetPage(name: '/course/create', page: () => const CourseCreateScreen()),
         //산책로
         GetPage(
             name: '/courseDetail/:courseId',

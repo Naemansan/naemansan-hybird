@@ -94,9 +94,9 @@ class _CourseWalkingScreenState extends State<CourseWalkingScreen> {
                     },
                     onPressedGreenButton: () => {
                       // 산책 기록하기
+                      print("산책 기록하기 버튼 클릭"),
+                      // 산책 기록하기
                       viewModel.endWalk(),
-                      Get.back(),
-                      Get.back(),
                     },
                   ),
                 }),

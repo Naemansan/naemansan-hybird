@@ -27,6 +27,7 @@ dependencies:
     http: ^1.1.2
     image_picker: ^1.0.4
     permission_handler: ^11.1.0
+    dio: ^5.4.0
 dev_dependencies:
     flutter_test:
         sdk: flutter
