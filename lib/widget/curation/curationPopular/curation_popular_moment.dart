@@ -15,12 +15,48 @@ class CurationPopularMoment extends StatelessWidget {
       Moment(
           id: 1,
           courseId: 1,
-          courseTitle: "1",
+          courseTitle: "동국대학교 산책로",
+          nickname: "희찬",
+          content: "1",
+          createdAt: "2023-11-13",
+          emotion: "COMFORT",
+          weather: "CLOUDY_NIGHT"),
+      Moment(
+          id: 1,
+          courseId: 1,
+          courseTitle: "혜화 가는길",
+          nickname: "서현",
+          content: "1",
+          createdAt: "2023-11-13",
+          emotion: "THANKS",
+          weather: "SUNNY_NIGHT"),
+      Moment(
+          id: 1,
+          courseId: 1,
+          courseTitle: "충무로에서 동대 입구",
+          nickname: "산책러",
+          content: "1",
+          createdAt: "2023-11-13",
+          emotion: "JOY",
+          weather: "CLOUDY_DAY"),
+      Moment(
+          id: 1,
+          courseId: 1,
+          courseTitle: "산책로1",
+          nickname: "희찬",
+          content: "1",
+          createdAt: "2023-11-13",
+          emotion: "JOY",
+          weather: "CLOUDY_DAY"),
+      Moment(
+          id: 1,
+          courseId: 1,
+          courseTitle: "자취방 가는 길",
           nickname: "1",
           content: "1",
-          createdAt: "1111-11-11",
-          emotion: "SADNESS",
-          weather: "CLOUDY_NIGHT")
+          createdAt: "2023-11-12",
+          emotion: "FLUTTER",
+          weather: "CLOUDY_DAY")
     ];
 
     return Column(

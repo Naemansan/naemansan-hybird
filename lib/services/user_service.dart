@@ -31,14 +31,14 @@ class UserService {
   List<Follow> getDummyFollowing() {
     return [
       Follow(
-          userId: "user2",
-          nickname: "user2",
-          introduction: "user2의 자기소개",
+          userId: "서현",
+          nickname: "서현",
+          introduction: "안녕하세요?",
           profileImageUrl: "user2"),
       Follow(
           userId: "user3",
-          nickname: "user3",
-          introduction: "user3의 자기소개",
+          nickname: "kpaas",
+          introduction: "오픈클라우드 플랫폼",
           profileImageUrl: "user3"),
     ];
   }

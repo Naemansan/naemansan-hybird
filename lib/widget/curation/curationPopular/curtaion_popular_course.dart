@@ -60,7 +60,7 @@ class _CurationPopularCourseState extends State<CurationPopularCourse> {
           ),
         ), //태그 선택
         CourseCardList(
-          tagIds: currentSelect,
+          tagIds: [1],
         )
       ],
     );

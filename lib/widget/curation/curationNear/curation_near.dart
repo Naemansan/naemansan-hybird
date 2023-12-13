@@ -24,9 +24,9 @@ class _CurationNearState extends State<CurationNear> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeViewModel>(builder: (homeViewModel) {
-      if (homeViewModel.isLoading) {
-        return const Center(child: CircularProgressIndicator());
-      }
+      // if (homeViewModel.isLoading) {
+      //   return const Center(child: CircularProgressIndicator());
+      // }
 
       return Column(
         children: [
@@ -36,7 +36,8 @@ class _CurationNearState extends State<CurationNear> {
             child: Row(
               children: [
                 Text(
-                  homeViewModel.sigudongData.toString(),
+                  "서울특별시 중구 동호로",
+                  // homeViewModel.sigudongData.toString(),
                   style:
                       FontStyles.semiBold20.copyWith(color: ColorStyles.main1),
                 ),
