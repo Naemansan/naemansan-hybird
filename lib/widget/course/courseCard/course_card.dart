@@ -6,6 +6,7 @@ import 'package:naemansan/models/course_overview_model.dart';
 
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
+import 'package:naver_map_plugin/naver_map_plugin.dart';
 
 class CourseCard extends StatelessWidget {
   final CourseOverview courseInfo;
@@ -26,19 +27,47 @@ class CourseCard extends StatelessWidget {
                     bottom: BorderSide(color: ColorStyles.gray1, width: 1))),
             child: Column(
               children: [
-                //썸네일
-                Container(
+                //
+                SizedBox(
                   width: double.infinity,
-                  height: getScaleWidth(context) * 180,
-                  margin: const EdgeInsets.only(right: 4),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
+                  height: MediaQuery.of(context).size.height *
+                      0.2, // 높이를 원하는 비율로 조절
+                  child: Stack(
+                    children: [
+                      // 썸네일 이미지
+                      SizedBox(
+                        width: double.infinity,
+                        height: double.infinity, // Container와 동일한 크기로 설정
+                        child: Image.asset(
+                          'assets/images/defaultImage.png',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      // Naver 지도 위젯
+                      Positioned.fill(
+                        child: NaverMap(
+                          scrollGestureEnable: false,
+                          zoomGestureEnable: false,
+                          mapType: MapType.Basic,
+                          pathOverlays: {
+                            PathOverlay(
+                              PathOverlayId('path'),
+                              courseInfo.locations,
+                              width: 12,
+                              color: ColorStyles.main2,
+                              outlineColor: Colors.transparent,
+                            ),
+                          },
+                          initialCameraPosition: CameraPosition(
+                            target: courseInfo.locations.first,
+                            zoom: 17,
+                          ),
+                          initLocationTrackingMode: LocationTrackingMode.None,
+                        ),
+                      ),
+                    ],
                   ),
-                  child: Image.asset(
-                    'assets/images/defaultImage.png',
-                    height: 32,
-                  ),
-                ), //썸네일
+                ),
 
                 //정보부분
                 Container(

@@ -5,6 +5,7 @@ import 'package:naemansan/models/moment_model.dart';
 import 'package:naemansan/models/similar_course_model.dart';
 import 'package:naemansan/models/spot_model.dart';
 import 'package:naemansan/services/course_service.dart';
+import 'package:naver_map_plugin/naver_map_plugin.dart';
 
 class CourseDetailViewModel extends GetxController {
   final Rx<CourseDetail> course = CourseDetail(
@@ -12,7 +13,7 @@ class CourseDetailViewModel extends GetxController {
           title: '',
           content: '',
           siGuDong: '',
-          locations: [Location(latitude: 0, longitude: 0)],
+          locations: [const LatLng(0, 0), const LatLng(0, 0)],
           tags: [],
           distance: '',
           createdAt: '',

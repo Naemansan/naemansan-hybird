@@ -22,7 +22,7 @@ class UserService {
     return UserInfo(
         uuid: "user1",
         nickname: "서찬",
-        introduction: "킹갓산책러버",
+        introduction: "내만산 많은 관심 바랍니다:)",
         tags: [Tag(id: 1, tag: '산책')],
         profile_image_url:
             'https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg');
@@ -32,13 +32,13 @@ class UserService {
     return [
       Follow(
           userId: "user2",
-          nickname: "user2",
-          introduction: "user2의 자기소개",
+          nickname: "서현",
+          introduction: "하암..피곤해..",
           profileImageUrl: "user2"),
       Follow(
           userId: "user3",
-          nickname: "user3",
-          introduction: "user3의 자기소개",
+          nickname: "산책러버",
+          introduction: "산책없이는 못살아요!",
           profileImageUrl: "user3"),
     ];
   }
@@ -63,8 +63,8 @@ class UserService {
       case "user3":
         return UserInfo(
             uuid: "user1",
-            nickname: "이름...",
-            introduction: "킹갓산책러버",
+            nickname: "산책러버",
+            introduction: "산책없이는 못살아요!",
             tags: [Tag(id: 1, tag: '#산책')],
             profile_image_url:
                 'https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg');

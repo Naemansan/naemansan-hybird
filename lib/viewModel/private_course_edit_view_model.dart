@@ -19,7 +19,7 @@ class PrivateCourseEditViewModel extends GetxController {
           title: '',
           content: '',
           siGuDong: '',
-          locations: [Location(latitude: 0, longitude: 0)],
+          locations: [const LatLng(0, 0), const LatLng(0, 0)],
           tags: [],
           distance: '',
           createdAt: '',
