@@ -33,9 +33,13 @@ class CourseWalkingViewModel extends GetxController {
   bool get isLoading => _isLoading;
 
 /* ---------------- Method ----------------  */
+
   @override
   void onInit() {
     super.onInit();
+    // 경로 초기화
+    latLngList.clear();
+    print("경로 초기화");
     _isLoading = true;
     // 현재 위치를 받아옴
 
@@ -166,7 +170,7 @@ class CourseWalkingViewModel extends GetxController {
   // 산책 중 현재 위치를 경로에 추가
   void addLocationToPath(Position position) {
     var newPoint = LatLng(position.latitude, position.longitude);
-    print("addLocationToPath $newPoint");
+
     // 위치가 실제로 변경되었는지 확인
     if (latLngList.isEmpty || _isPositionChanged(newPoint)) {
       print("위치 변경");
@@ -207,18 +211,14 @@ class CourseWalkingViewModel extends GetxController {
 
 // 산책 중지
   void stopLocationTracking() {
-    if (_positionStreamSubscription != null) {
-      _positionStreamSubscription!.cancel();
-      _positionStreamSubscription = null;
-      print("위치 추적 중단");
-    } else {
-      print("위치 추적 중단 실패");
-    }
-    // 경로 초기화
-    latLngList.clear();
-    print("경로 초기화");
+    _positionStreamSubscription?.cancel();
+    _positionStreamSubscription = null;
+    print("위치 추적 중단");
+    // latLang List 모두 출력
   }
 
 // 산책 종료
-  void endWalk() {}
+  void endWalk() {
+    Get.offAllNamed('/course/create', arguments: [spotList, latLngList]);
+  }
 }

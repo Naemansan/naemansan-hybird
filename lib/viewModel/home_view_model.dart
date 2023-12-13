@@ -81,8 +81,7 @@ class HomeViewModel extends GetxController {
 
     pathOverlays.add(
       PathOverlay(
-        PathOverlayId(
-            "Your Title Here"), // Use a unique identifier or course title
+        PathOverlayId("title"), // Use a unique identifier or course title
         latLngList,
         width: 12,
         color: ColorStyles.main2,

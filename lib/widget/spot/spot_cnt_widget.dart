@@ -12,7 +12,7 @@ Widget buildSpotCnt(CourseWalkingViewModel viewModel, BuildContext context) {
       // 만든 스팟 리스트 보여주기
       OneBtnBottomSheetWidget.show(
         context: context,
-        title: "제작한 스팟 리스트 ${viewModel.spotList.length}/5",
+        title: "남긴 스팟 리스트 (${viewModel.spotList.length}/5)",
         description: viewModel.spotList.map((spot) => spot.title).join(","),
       )
     },
