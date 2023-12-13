@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:naemansan/method/get_scale_width.dart';
+import 'package:naemansan/models/course_walking_single_spot_model.dart';
 import 'package:naemansan/models/spot_model.dart';
 
 import 'package:naemansan/utilities/style/color_styles.dart';
@@ -13,15 +14,21 @@ import 'package:naemansan/widget/edit/custom_textfield.dart';
 
 import 'package:naemansan/widget/edit/tag_selector.dart';
 import 'package:naemansan/widget/edit/private_course_edit_spot.dart';
+import 'package:naver_map_plugin/naver_map_plugin.dart';
 
 class PrivateCourseEditInfo extends StatefulWidget {
   final PrivateCourseEditViewModel privateCourseEditViewModel;
   final String type;
+  List<LatLng>? latLngList = [];
+  List<WalkingSingleSpotModel>? spotList = [];
 
-  const PrivateCourseEditInfo({
+  PrivateCourseEditInfo({
     super.key,
     required this.type,
     required this.privateCourseEditViewModel,
+    // 선택적을 받기
+    this.latLngList,
+    this.spotList,
   });
 
   @override
@@ -36,7 +43,6 @@ class _PrivateCourseEditInfoState extends State<PrivateCourseEditInfo> {
   final TextEditingController descriptionController = TextEditingController();
 
   List<Spot> spotList = [];
-
   @override
   void initState() {
     super.initState();
@@ -51,6 +57,23 @@ class _PrivateCourseEditInfoState extends State<PrivateCourseEditInfo> {
     //기존 리스트에 존재하는 모든 스팟을 체크 표시함
     currentSpotSelect = List.generate(
         widget.privateCourseEditViewModel.spots.length, (index) => index);
+
+    // WalkingSingleSpotModel 목록을 Spot 목록으로 변환
+    if (widget.spotList != null) {
+      spotList = widget.spotList!.asMap().entries.map((entry) {
+        int idx = entry.key + 1; // ID 값은 인덱스 + 1
+        WalkingSingleSpotModel walkingSpot = entry.value;
+
+        return Spot(
+          id: idx,
+          title: walkingSpot.title,
+          content: walkingSpot.content,
+          location: walkingSpot.location,
+          category: walkingSpot.category,
+          thumbnailurl: null, // 혹은 적절한 URL 할당
+        );
+      }).toList();
+    }
 
     //새로운 스팟이 있을경우 spot 리스트를 합친다.
     if (widget.privateCourseEditViewModel.isNewSpot) {
@@ -91,10 +114,41 @@ class _PrivateCourseEditInfoState extends State<PrivateCourseEditInfo> {
                 //썸네일
                 SizedBox(
                   width: double.infinity,
-                  height: getScaleWidth(context) * 180,
-                  child: Image.asset(
-                    fit: BoxFit.cover,
-                    'assets/images/defaultImage.png',
+                  height: MediaQuery.of(context).size.height *
+                      0.3, // 높이를 원하는 비율로 조절
+                  child: Stack(
+                    children: [
+                      // 썸네일 이미지
+                      SizedBox(
+                        width: double.infinity,
+                        height: double.infinity, // Container와 동일한 크기로 설정
+                        child: Image.asset(
+                          'assets/images/defaultImage.png',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      // Naver 지도 위젯
+                      Positioned.fill(
+                        child: NaverMap(
+                          scrollGestureEnable: false,
+                          zoomGestureEnable: false,
+                          mapType: MapType.Basic,
+                          pathOverlays: widget.privateCourseEditViewModel
+                              .createPathOverlays(widget.latLngList ??
+                                  [
+                                    const LatLng(37.3595704, 127.105399),
+                                    const LatLng(37.3595704, 127.105399),
+                                  ]),
+                          initialCameraPosition: CameraPosition(
+                            target: widget.latLngList!.isNotEmpty
+                                ? widget.latLngList!.first
+                                : const LatLng(37.3595704, 127.105399),
+                            zoom: 17,
+                          ),
+                          initLocationTrackingMode: LocationTrackingMode.None,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 //썸네일
@@ -193,12 +247,13 @@ class _PrivateCourseEditInfoState extends State<PrivateCourseEditInfo> {
                         content: "정보 저장하기",
                         isActive: isFormValid,
                         onTap: () => widget.privateCourseEditViewModel
-                            .updateCourseDetailWithNewSpot(
+                            .publishCourse(
                                 titleController.text,
                                 descriptionController.text,
                                 currentTagSelect,
                                 currentSpotSelect,
-                                spotList))
+                                spotList,
+                                widget.latLngList!))
                     :
                     //산책로 정보 저장하기
                     widget.privateCourseEditViewModel.isNewSpot

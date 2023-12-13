@@ -57,29 +57,45 @@ class CourseCreateScreen extends StatelessWidget {
               bool hasSimilarWalks =
                   (viewModel.similarityResult.value?.data.length ?? 0) > 0;
               if (hasSimilarWalks) {
-                return ListView.builder(
-                  itemCount: viewModel.similarityResult.value?.data.length ?? 0,
-                  itemBuilder: (context, index) {
-                    var walk = viewModel.similarityResult.value!.data[index];
-                    return ListTile(
-                      title: Text(walk.title),
-                      subtitle: Text(walk.startLocationName),
-                      // ... other UI elements
-                    );
-                  },
+                // 유사 산책로 존재할때
+                return Center(
+                  child: Column(
+                    children: [
+                      Text(
+                        "유사한 산책로가 존재해요!\n정보를 추가해볼까요?",
+                        style: FontStyles.medium20.copyWith(
+                          color: ColorStyles.black,
+                        ),
+                      ),
+                      ListView.builder(
+                        itemCount:
+                            viewModel.similarityResult.value?.data.length ?? 0,
+                        itemBuilder: (context, index) {
+                          var walk =
+                              viewModel.similarityResult.value!.data[index];
+                          return ListTile(
+                            minVerticalPadding: 20,
+                            title: Text(walk.title),
+                            subtitle: Text(walk.startLocationName),
+                            // ... other UI elements
+                          );
+                        },
+                      ),
+                    ],
+                  ),
                 );
               } else {
-                return Container(
-                  child: GetBuilder<PrivateCourseEditViewModel>(
-                      init: privateCourseEditViewModel,
-                      builder: (privateCourseEditViewModel) {
-                        return PrivateCourseEditInfo(
-                          privateCourseEditViewModel:
-                              privateCourseEditViewModel,
-                          type: "edit",
-                        );
-                      }),
-                );
+                // 산책로 만들기 페이지
+                return GetBuilder<PrivateCourseEditViewModel>(
+                    init: privateCourseEditViewModel,
+                    builder: (privateCourseEditViewModel) {
+                      return PrivateCourseEditInfo(
+                        privateCourseEditViewModel: privateCourseEditViewModel,
+                        type: "create",
+                        latLngList: courseCreateViewModel.latLngList,
+                        spotList: courseCreateViewModel.spotList,
+                      );
+                    });
               }
             }),
       ),

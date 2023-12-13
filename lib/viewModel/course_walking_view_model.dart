@@ -33,9 +33,13 @@ class CourseWalkingViewModel extends GetxController {
   bool get isLoading => _isLoading;
 
 /* ---------------- Method ----------------  */
+
   @override
   void onInit() {
     super.onInit();
+    // 경로 초기화
+    latLngList.clear();
+    print("경로 초기화");
     _isLoading = true;
     // 현재 위치를 받아옴
 
@@ -211,10 +215,6 @@ class CourseWalkingViewModel extends GetxController {
     _positionStreamSubscription = null;
     print("위치 추적 중단");
     // latLang List 모두 출력
-
-    // 경로 초기화
-    latLngList.clear();
-    print("경로 초기화");
   }
 
 // 산책 종료

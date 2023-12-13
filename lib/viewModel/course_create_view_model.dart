@@ -15,7 +15,7 @@ class CourseCreateViewModel extends GetxController {
   var isPersonal = true.obs;
 
   var similarityResult = Rxn<SimilarWalkModel>();
-  final SimilarityService _similarityService = SimilarityService();
+  final CreateCourseService _similarityService = CreateCourseService();
 
   void loadData(
       List<LatLng> newLatLngList, List<WalkingSingleSpotModel> newSpotList) {
@@ -29,11 +29,15 @@ class CourseCreateViewModel extends GetxController {
   Future<void> checkSimilarity() async {
     isCheckingSimilarity.value = true;
     try {
+      // 2초 기다리기 (로딩 표시를 위함)
+
       var result = await _similarityService.checkSimilarity(
           latLngList, isPersonal.value);
       similarityResult.value = result;
     } finally {
+      // await Future.delayed(const Duration(seconds: 2));
       isCheckingSimilarity.value = false;
+
       update();
     }
   }
