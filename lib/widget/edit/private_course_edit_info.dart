@@ -186,11 +186,9 @@ class _PrivateCourseEditInfoState extends State<PrivateCourseEditInfo> {
                           currentTagSelect,
                           currentSpotSelect,
                         ))
-                :
-                //산책로 정보 저장하기
-                widget.privateCourseEditViewModel.isNewSpot
+                : widget.type == "create"
                     ?
-                    //새로운 스팟이 있는 경우
+                    //산책로 처음 추가하기
                     SolidButton(
                         content: "정보 저장하기",
                         isActive: isFormValid,
@@ -202,17 +200,32 @@ class _PrivateCourseEditInfoState extends State<PrivateCourseEditInfo> {
                                 currentSpotSelect,
                                 spotList))
                     :
-                    //새로운 스팟이 없는 경우
-                    SolidButton(
-                        content: "산책로 공개하기",
-                        isActive: isFormValid,
-                        onTap: () => widget.privateCourseEditViewModel
-                                .updateCourseDetail(
-                              titleController.text,
-                              descriptionController.text,
-                              currentTagSelect,
-                              currentSpotSelect,
-                            ))
+                    //산책로 정보 저장하기
+                    widget.privateCourseEditViewModel.isNewSpot
+                        ?
+                        //새로운 스팟이 있는 경우
+                        SolidButton(
+                            content: "정보 저장하기",
+                            isActive: isFormValid,
+                            onTap: () => widget.privateCourseEditViewModel
+                                .updateCourseDetailWithNewSpot(
+                                    titleController.text,
+                                    descriptionController.text,
+                                    currentTagSelect,
+                                    currentSpotSelect,
+                                    spotList))
+                        :
+                        //새로운 스팟이 없는 경우
+                        SolidButton(
+                            content: "산책로 공개하기",
+                            isActive: isFormValid,
+                            onTap: () => widget.privateCourseEditViewModel
+                                    .updateCourseDetail(
+                                  titleController.text,
+                                  descriptionController.text,
+                                  currentTagSelect,
+                                  currentSpotSelect,
+                                ))
           ],
         ));
   }

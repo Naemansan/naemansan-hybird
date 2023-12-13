@@ -3,11 +3,14 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 import 'package:naemansan/models/course_walking_single_spot_model.dart';
+import 'package:naemansan/screens/courseDetail/private_course_edit_screen.dart';
 import 'package:naemansan/utilities/style/color_styles.dart';
 import 'package:naemansan/utilities/style/font_styles.dart';
 import 'package:naemansan/viewModel/course_create_view_model.dart';
+import 'package:naemansan/viewModel/private_course_edit_view_model.dart';
 
 import 'package:naemansan/widget/base/custom_appbar.dart';
+import 'package:naemansan/widget/edit/private_course_edit_info.dart';
 import 'package:naver_map_plugin/naver_map_plugin.dart';
 
 class CourseCreateScreen extends StatelessWidget {
@@ -29,6 +32,10 @@ class CourseCreateScreen extends StatelessWidget {
       courseCreateViewModel.loadData(latLngList ?? [], spotList ?? []);
       courseCreateViewModel.checkSimilarity();
     }
+
+    final PrivateCourseEditViewModel privateCourseEditViewModel = Get.put(
+        PrivateCourseEditViewModel(
+            isNewSpot: courseCreateViewModel.spotList.isEmpty));
     return Scaffold(
       appBar: const PreferredSize(
           preferredSize: Size.fromHeight(48),
@@ -63,7 +70,15 @@ class CourseCreateScreen extends StatelessWidget {
                 );
               } else {
                 return Container(
-                  child: const Text("No similar walks found"),
+                  child: GetBuilder<PrivateCourseEditViewModel>(
+                      init: privateCourseEditViewModel,
+                      builder: (privateCourseEditViewModel) {
+                        return PrivateCourseEditInfo(
+                          privateCourseEditViewModel:
+                              privateCourseEditViewModel,
+                          type: "edit",
+                        );
+                      }),
                 );
               }
             }),
@@ -82,6 +97,7 @@ class LoadingDramouseWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(children: [
+        const SizedBox(height: 200),
         Image.asset(
           'assets/icons/daramouse.png',
           width: 160,

@@ -12,7 +12,7 @@ class CourseCreateViewModel extends GetxController {
   bool isDataLoaded = false;
   var isSimilarity = false.obs;
   var isCheckingSimilarity = true.obs;
-  var isPersonal = false.obs;
+  var isPersonal = true.obs;
 
   var similarityResult = Rxn<SimilarWalkModel>();
   final SimilarityService _similarityService = SimilarityService();

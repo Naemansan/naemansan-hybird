@@ -8,7 +8,7 @@ import 'package:naemansan/services/course_service.dart';
 
 class PrivateCourseEditViewModel extends GetxController {
   final bool isNewSpot;
-  final int courseId;
+  final int? courseId;
 
   final Rx<CourseDetail> course = CourseDetail(
           id: 0,
@@ -27,7 +27,7 @@ class PrivateCourseEditViewModel extends GetxController {
   final RxList<Spot> spots = <Spot>[].obs;
   final RxList<Spot> newSpots = <Spot>[].obs;
 
-  PrivateCourseEditViewModel({required this.isNewSpot, required this.courseId});
+  PrivateCourseEditViewModel({required this.isNewSpot, this.courseId});
 
   @override
   void onInit() {
@@ -36,8 +36,9 @@ class PrivateCourseEditViewModel extends GetxController {
   }
 
   void loadCourseDetailData(
-    int courseId,
+    int? courseId,
   ) {
+    if (courseId == null) return;
     CourseDetail dummyCourseDetail =
         CourseService().getDummyCourseDetail(courseId);
     List<Moment> dummyMoments = CourseService().getDummyMoment(courseId);
