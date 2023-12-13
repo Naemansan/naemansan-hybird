@@ -1,10 +1,12 @@
+import 'package:naver_map_plugin/naver_map_plugin.dart';
+
 class CourseDetail {
   final int id;
   final String title;
   final String content;
   final String siGuDong; //back siDongGu;
 
-  final List<Location> locations;
+  final List<LatLng> locations;
 
   final List<String> tags;
 

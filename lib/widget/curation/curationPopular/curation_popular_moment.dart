@@ -15,10 +15,10 @@ class CurationPopularMoment extends StatelessWidget {
       Moment(
           id: 1,
           courseId: 1,
-          courseTitle: "1",
-          nickname: "1",
-          content: "1",
-          createdAt: "1111-11-11",
+          courseTitle: "덕수궁 산책로",
+          nickname: "seochan",
+          content: "덕수궁에 이런 묘미가..",
+          createdAt: "2023-12-14",
           emotion: "SADNESS",
           weather: "CLOUDY_NIGHT")
     ];

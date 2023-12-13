@@ -33,6 +33,7 @@ class UserProfileScreen extends StatelessWidget {
             init: userProfileViewModel,
             builder: (userProfileViewModel) {
               return Container(
+                color: Colors.white,
                 width: double.infinity,
                 padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
                 child: Column(
@@ -49,7 +50,7 @@ class UserProfileScreen extends StatelessWidget {
                         child: Container(
                           width: double.infinity,
                           padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: CourseCardList(),
+                          child: const CourseCardList(),
                         ),
                       ),
                     ),

@@ -40,6 +40,7 @@ class _MyProfileEditState extends State<MyProfileEdit> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
+          color: ColorStyles.white,
           padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
           child: Column(
             children: [

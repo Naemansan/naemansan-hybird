@@ -17,6 +17,7 @@ import 'package:naemansan/widget/course/courseDetail/course_detail_moment_list.d
 import 'package:naemansan/widget/course/courseDetail/course_detail_similar_course_list.dart';
 import 'package:naemansan/widget/course/courseDetail/course_detail_spot_list.dart';
 import 'package:naemansan/widget/course/courseDetail/course_detail_writer.dart';
+import 'package:naver_map_plugin/naver_map_plugin.dart';
 
 class CourseDetailScreen extends StatelessWidget {
   const CourseDetailScreen({super.key});
@@ -50,12 +51,45 @@ class CourseDetailScreen extends StatelessWidget {
                   //썸네일
                   SizedBox(
                     width: double.infinity,
-                    height: getScaleWidth(context) * 180,
-                    child: Image.asset(
-                      fit: BoxFit.cover,
-                      'assets/images/defaultImage.png',
+                    height: MediaQuery.of(context).size.height *
+                        0.2, // 높이를 원하는 비율로 조절
+                    child: Stack(
+                      children: [
+                        // 썸네일 이미지
+                        SizedBox(
+                          width: double.infinity,
+                          height: double.infinity, // Container와 동일한 크기로 설정
+                          child: Image.asset(
+                            'assets/images/defaultImage.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        // Naver 지도 위젯
+                        Positioned.fill(
+                          child: NaverMap(
+                            scrollGestureEnable: false,
+                            zoomGestureEnable: false,
+                            mapType: MapType.Basic,
+                            pathOverlays: {
+                              PathOverlay(
+                                PathOverlayId('path'),
+                                courseViewModel.course.value.locations,
+                                width: 12,
+                                color: ColorStyles.main2,
+                                outlineColor: Colors.transparent,
+                              ),
+                            },
+                            initialCameraPosition: CameraPosition(
+                              target:
+                                  courseViewModel.course.value.locations.first,
+                              zoom: 17,
+                            ),
+                            initLocationTrackingMode: LocationTrackingMode.None,
+                          ),
+                        ),
+                      ],
                     ),
-                  ), //썸네일
+                  ),
 
                   //산책로 정보
                   Container(

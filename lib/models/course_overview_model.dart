@@ -1,3 +1,6 @@
+import 'package:naemansan/models/course_detail_model.dart';
+import 'package:naver_map_plugin/naver_map_plugin.dart';
+
 class CourseOverview {
   final int id;
 
@@ -12,6 +15,7 @@ class CourseOverview {
 
   final int momentCount;
   final int likeCount;
+  final List<LatLng> locations;
 
   CourseOverview(
       {required this.id,
@@ -21,5 +25,6 @@ class CourseOverview {
       required this.distance,
       required this.tags,
       required this.momentCount,
-      required this.likeCount});
+      required this.likeCount,
+      required this.locations});
 }
